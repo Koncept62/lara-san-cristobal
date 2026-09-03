@@ -1,5 +1,5 @@
 ---
-propertyName: CHris Test One
+propertyName: CHris Test Two
 location: San Crostobal
 inBrief: "brief description brief description brief description brief
   description brief description brief description brief description brief
@@ -23,7 +23,7 @@ priceMxn: 5000000
 priceUsd: 449977
 referenceCode: refcode1
 status: Available
-mainImage: /images/uploads/lsc_16.jpeg
+mainImage: /images/uploads/lsc_18.jpeg
 gallery:
   - /images/uploads/lsc_14.jpeg
   - /images/uploads/lsc_10.jpeg
