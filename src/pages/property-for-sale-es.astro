@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import ContactCta from '../components/ContactCta.astro';
+import Footer from '../components/Footer.astro';
+
+const path = Astro.url.pathname;
+---
+<Layout title="Propiedades en venta · Lara San Cristóbal" lang="es">
+  <Header lang="es" enHref="/property-for-sale" />
+  <MobileMenu currentPath={path} lang="es" />
+
+  <section id="top" style="position: relative; min-height: 78vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding: clamp(110px, 16vh, 180px) clamp(20px, 4vw, 56px) clamp(40px, 6vh, 72px);">
+    <div style="position: absolute; inset: 0; overflow: hidden;">
+      <img src="/images/colonnade-courtyard.jpg" alt="Columnata arqueada alrededor de un patio" style="width: 100%; height: 100%; object-fit: cover; object-position: center 45%;" />
+      <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(34, 31, 28, 0.34) 0%, rgba(34, 31, 28, 0.3) 40%, rgba(34, 31, 28, 0.66) 100%);"></div>
+    </div>
+    <div style="position: relative; max-width: 1400px; width: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 36px;">
+      <div style="display: flex; flex-direction: column; gap: 22px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(251, 248, 243, 0.72);">Propiedades en venta</span>
+        <h1 style="margin: 0; max-width: 18ch; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(35px, 5.10vw, 84px); line-height: 1.06; letter-spacing: 0.005em; color: #FBF8F3; text-wrap: pretty;">Opciones que valen la pena</h1>
+        <p style="margin: 0; font-size: clamp(17px, 1.7vw, 25px); font-weight: 300; line-height: 1.45; letter-spacing: 0.005em; color: rgba(251, 248, 243, 0.9);">Propiedades con carácter, a muy buen precio…</p>
+      </div>
+      <p style="margin: 0 0 10px; max-width: 36ch; font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(251, 248, 243, 0.86);">Cuéntame tus deseos, preferencias, lo que no es negociable y tu presupuesto, y partimos de ahí.</p>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 4vw, 56px) clamp(30px, 5vh, 60px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(30px, 5vw, 86px); align-items: start;">
+      <p style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.46vw, 35px); line-height: 1.3; letter-spacing: -0.01em; text-wrap: pretty;">Si estás listo para explorar la compra de una propiedad en San Cristóbal, escríbeme por WhatsApp o directamente por correo.</p>
+      <div style="display: flex; flex-direction: column; gap: 24px; padding-top: 8px;">
+        <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Ya sea que tengas una zona favorita, como las muy solicitadas Los Alcanfores, San Nicolás o Corral de Piedra, que quieras estar en el corazón del glorioso centro histórico, o que busques algo más rural fuera de la ciudad, estoy segura de que podemos ofrecerte opciones que valen la pena.</p>
+        <a href="#enquire" style="align-self: flex-start; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Iniciar una conversación</a>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(30px, 5vh, 60px) clamp(20px, 4vw, 56px) clamp(50px, 8vh, 100px);">
+    <div style="max-width: 1400px; margin: 0 auto;">
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 20px; padding-bottom: 40px; border-bottom: 1px solid rgba(43, 38, 34, 0.14);">
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Disponible ahora</h2>
+        <a href="/property-for-rent-es" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E655C;">¿Prefieres alquilar?</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: clamp(28px, 3.4vw, 54px); padding-top: clamp(34px, 4vw, 56px);">
+        <a href="/property-for-sale-es" style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: #E4D8C8;">
+            <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788115974/LSC_16_iems67.jpg" alt="Propiedad Uno, San Cristóbal" style="width: 100%; height: 100%; object-fit: cover;" />
+            <span style="position: absolute; top: 16px; left: 16px; background: rgba(251, 248, 243, 0.92); padding: 6px 12px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #2B2622;">Nueva</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 24px; line-height: 1.2;">Propiedad Uno</h3>
+            <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6E655C;">Barrio del Cerrillo · 3 recámaras</p>
+            <p style="margin: 4px 0 0; font-size: 14px; font-weight: 300; line-height: 1.75; color: #6E655C;">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</p>
+            <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 4px;">
+              <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 400; letter-spacing: 0.005em; color: #c15857;">$4,850,000 MXN</span>
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8C8175;">≈ $260,000 USD aprox.</span>
+            </div>
+          </div>
+        </a>
+        <a href="/property-for-sale-es" style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: #E4D8C8;">
+            <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788115976/LSC_18_bxjflq.jpg" alt="Propiedad Dos, San Cristóbal" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 24px; line-height: 1.2;">Propiedad Dos</h3>
+            <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6E655C;">Barrio de Mexicanos · 4 recámaras</p>
+            <p style="margin: 4px 0 0; font-size: 14px; font-weight: 300; line-height: 1.75; color: #6E655C;">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+            <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 4px;">
+              <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 400; letter-spacing: 0.005em; color: #c15857;">$6,200,000 MXN</span>
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8C8175;">≈ $332,000 USD aprox.</span>
+            </div>
+          </div>
+        </a>
+        <a href="/property-for-sale-es" style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: #E4D8C8;">
+            <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788115954/LSC_11_gud7jc.jpg" alt="Propiedad Tres, San Cristóbal" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 24px; line-height: 1.2;">Propiedad Tres</h3>
+            <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6E655C;">San Nicolás · 3 recámaras</p>
+            <p style="margin: 4px 0 0; font-size: 14px; font-weight: 300; line-height: 1.75; color: #6E655C;">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+            <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 4px;">
+              <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 400; letter-spacing: 0.005em; color: #c15857;">$5,400,000 MXN</span>
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8C8175;">≈ $289,000 USD aprox.</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(50px, 8vh, 110px) clamp(20px, 4vw, 56px); background: #E9E1D6;">
+    <div style="max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(30px, 4vw, 46px);">
+      <div style="display: flex; flex-direction: column; gap: 20px; max-width: 46ch;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Dónde buscar</span>
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3.34vw, 49px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: pretty;">Las zonas más solicitadas</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: rgba(43, 38, 34, 0.14);">
+        <div style="background: #F2EDE6; padding: clamp(24px, 3vw, 34px); display: flex; flex-direction: column; gap: 10px; min-height: 160px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 26px; font-weight: 400; line-height: 1.25;">Los Alcanfores</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Muy solicitada, arbolada y residencial, a pocos minutos del centro.</span>
+        </div>
+        <div style="background: #F2EDE6; padding: clamp(24px, 3vw, 34px); display: flex; flex-direction: column; gap: 10px; min-height: 160px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 26px; font-weight: 400; line-height: 1.25;">San Nicolás</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Calles tranquilas, terrenos amplios y una demanda de alquiler constante.</span>
+        </div>
+        <div style="background: #F2EDE6; padding: clamp(24px, 3vw, 34px); display: flex; flex-direction: column; gap: 10px; min-height: 160px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 26px; font-weight: 400; line-height: 1.25;">Corral de Piedra</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Verde, espaciosa y popular para autoconstrucción y proyectos off grid.</span>
+        </div>
+        <div style="background: #F2EDE6; padding: clamp(24px, 3vw, 34px); display: flex; flex-direction: column; gap: 10px; min-height: 160px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 26px; font-weight: 400; line-height: 1.25;">El centro histórico</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Propiedades antiguas con carácter, dignas de renovar, en el corazón de la ciudad.</span>
+        </div>
+        <div style="background: #F2EDE6; padding: clamp(24px, 3vw, 34px); display: flex; flex-direction: column; gap: 10px; min-height: 160px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 26px; font-weight: 400; line-height: 1.25;">Zona rural, fuera de la ciudad</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Terrenos más grandes con bosque, arroyos y vistas de montaña.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(60px, 10vh, 120px) clamp(20px, 4vw, 56px);">
+    <div style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 26px; text-align: center;">
+      <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Fuera de mercado</span>
+      <p style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.99vw, 40px); line-height: 1.2; letter-spacing: -0.01em; text-wrap: pretty;">No todas las propiedades en venta aparecen en esta página, así que escríbeme: puede haber opciones fuera de mercado que sean perfectas para ti.</p>
+    </div>
+  </section>
+
+  <ContactCta heading="¿Listo para buscar? Envíame tu lista de deseos." lang="es" />
+  <Footer lang="es" />
+</Layout>

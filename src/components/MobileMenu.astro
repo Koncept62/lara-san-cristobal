@@ -1,0 +1,79 @@
+---
+interface Props {
+  currentPath?: string;
+  lang?: 'en' | 'es';
+}
+const { currentPath = '/', lang = 'en' } = Astro.props;
+
+const isActive = (path: string) => currentPath === path || currentPath.startsWith(path + '/');
+const activeStyle = 'color: #c15857;';
+
+const nav = lang === 'es' ? {
+  close: 'Cerrar',
+  sale: 'Propiedades en venta',
+  rent: 'Propiedades en alquiler',
+  offgrid: 'Construcción off grid',
+  land: 'Terrenos en venta',
+  interiors: 'Diseño de interiores',
+  interiorsSuffix: '+ Mobiliario',
+  sancristobal: 'San Cristóbal',
+  notes: 'Notas',
+  about: 'Sobre nosotros',
+  sell: '¿Quieres vender o alquilar?',
+  contact: 'Contáctanos',
+  saleHref: '/property-for-sale-es',
+  rentHref: '/property-for-rent-es',
+  offgridHref: '/off-grid-builds-es',
+  landHref: '/land-for-sale-es',
+  interiorsHref: '/interior-design-es',
+  sanHref: '/san-cristobal-es',
+  notesHref: '/notes-es',
+  aboutHref: '/about-es',
+} : {
+  close: 'Close',
+  sale: 'Property for Sale',
+  rent: 'Property for Rent',
+  offgrid: 'Off Grid Builds',
+  land: 'Land for Sale',
+  interiors: 'Interior Design',
+  interiorsSuffix: '+ Furniture',
+  sancristobal: 'San Cristóbal',
+  notes: 'Notes',
+  about: 'About Us',
+  sell: 'Wanting to sell or rent?',
+  contact: 'Contact Us',
+  saleHref: '/property-for-sale',
+  rentHref: '/property-for-rent',
+  offgridHref: '/off-grid-builds',
+  landHref: '/land-for-sale',
+  interiorsHref: '/interior-design',
+  sanHref: '/san-cristobal',
+  notesHref: '/notes',
+  aboutHref: '/about',
+};
+---
+<div id="mobile-menu" style="position: fixed; inset: 0; z-index: 80; background: #F2EDE6; grid-template-columns: 1fr; align-content: safe center; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: clamp(104px, 12vh, 140px) clamp(20px, 5vw, 90px) clamp(46px, 8vh, 90px);">
+  <img src="/images/logo-crest-ink.png" alt="Lara San Cristóbal" style="position: absolute; top: 22px; left: clamp(20px, 4vw, 56px); width: clamp(54px, 15vw, 74px); height: auto; opacity: 0.9;" />
+  <button type="button" data-toggle-menu style="position: absolute; top: 22px; right: clamp(20px, 4vw, 56px); background: none; border: 0; padding: 10px 0 10px 14px; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #2B2622; cursor: pointer;">{nav.close}</button>
+  <div class="menu-nav-grid">
+    <nav style="display: flex; flex-direction: column;">
+      <a href={nav.saleHref} style={`font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3.87vw, 48px); line-height: 1.24; padding: 9px 0;${isActive(nav.saleHref) ? activeStyle : ''}`}>{nav.sale}</a>
+      <a href={nav.rentHref} style={`font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3.87vw, 48px); line-height: 1.24; padding: 9px 0;${isActive(nav.rentHref) ? activeStyle : ''}`}>{nav.rent}</a>
+      <a href={nav.offgridHref} style={`font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3.87vw, 48px); line-height: 1.24; padding: 9px 0;${isActive(nav.offgridHref) ? activeStyle : ''}`}>{nav.offgrid}</a>
+      <a href={nav.landHref} style={`font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3.87vw, 48px); line-height: 1.24; padding: 9px 0;${isActive(nav.landHref) ? activeStyle : ''}`}>{nav.land}</a>
+      <a href={nav.interiorsHref} style={`font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3.87vw, 48px); line-height: 1.24; padding: 9px 0;${isActive(nav.interiorsHref) ? activeStyle : ''}`}>{nav.interiors} <span style="color: #c15857;">+</span> {lang === 'es' ? 'Mobiliario' : 'Furniture'}</a>
+    </nav>
+    <nav style="display: flex; flex-direction: column; padding-top: 6px;">
+      <a href={nav.sanHref} style={`font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.82vw, 35px); line-height: 1.32; padding: 9px 0;${isActive(nav.sanHref) ? activeStyle : ''}`}>{nav.sancristobal}</a>
+      <a href={nav.notesHref} style={`font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.82vw, 35px); line-height: 1.32; padding: 9px 0;${isActive(nav.notesHref) ? activeStyle : ''}`}>{nav.notes}</a>
+      <a href={nav.aboutHref} style={`font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.82vw, 35px); line-height: 1.32; padding: 9px 0;${isActive(nav.aboutHref) ? activeStyle : ''}`}>{nav.about}</a>
+      <button type="button" data-open-sell style="font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.82vw, 35px); line-height: 1.32; padding: 9px 0; background: none; border: 0; text-align: left; color: inherit; cursor: pointer;">{nav.sell}</button>
+      <a href="#enquire" style="font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.82vw, 35px); line-height: 1.32; padding: 9px 0;">{nav.contact}</a>
+      <div style="margin-top: 34px; display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 300; color: #6E655C; letter-spacing: 0.02em;">
+        <span>Los Alcanfores, San Cristóbal de las Casas</span>
+        <span>Chiapas, {lang === 'es' ? 'México' : 'Mexico'}</span>
+        <a href="mailto:lara@larasancristobal.com" style="color: #c15857;">lara@larasancristobal.com</a>
+      </div>
+    </nav>
+  </div>
+</div>

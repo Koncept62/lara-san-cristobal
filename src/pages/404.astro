@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import Footer from '../components/Footer.astro';
+
+const path = Astro.url.pathname;
+---
+<Layout title="Page not found · Lara San Cristóbal">
+  <Header esHref="/index-es" />
+  <MobileMenu currentPath={path} />
+
+  <section id="top" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: clamp(130px, 18vh, 200px) clamp(20px, 4vw, 56px) clamp(80px, 12vh, 140px);">
+    <div style="max-width: 1400px; margin: 0 auto; width: 100%;">
+      <div style="display: flex; flex-direction: column; gap: clamp(32px, 5vw, 56px); max-width: 56ch;">
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">404</span>
+          <h1 id="404-heading" style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(37px, 5.63vw, 88px); line-height: 1.06; letter-spacing: -0.015em; text-wrap: pretty;">This page seems to have wandered off</h1>
+          <p id="404-body" style="margin: 0; font-size: clamp(16px, 1.6vw, 20px); font-weight: 300; line-height: 1.7; color: #6E655C;">It may have moved, or perhaps it never existed. Either way, there is plenty to explore from here.</p>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+          <a id="404-home" href="/" style="background: #2B2622; color: #FBF8F3; padding: 17px 34px; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none;">Back to homepage</a>
+          <a href="#sections" style="border: 1px solid rgba(43, 38, 34, 0.28); padding: 17px 34px; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; color: #2B2622;" id="404-browse">Browse sections</a>
+        </div>
+
+        <div id="sections" style="display: flex; flex-direction: column; gap: 1px; background: rgba(43, 38, 34, 0.14); margin-top: 8px;">
+          <a id="link-sale" href="/property-for-sale" style="background: #F2EDE6; padding: 20px 2px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; text-decoration: none; color: inherit;">
+            <span id="label-sale" style="font-family: 'Work Sans', sans-serif; font-size: clamp(20px, 2.29vw, 30px); font-weight: 400;">Property for Sale</span>
+            <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c15857; flex-shrink: 0;">→</span>
+          </a>
+          <a id="link-rent" href="/property-for-rent" style="background: #F2EDE6; padding: 20px 2px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; text-decoration: none; color: inherit;">
+            <span id="label-rent" style="font-family: 'Work Sans', sans-serif; font-size: clamp(20px, 2.29vw, 30px); font-weight: 400;">Property for Rent</span>
+            <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c15857; flex-shrink: 0;">→</span>
+          </a>
+          <a id="link-land" href="/land-for-sale" style="background: #F2EDE6; padding: 20px 2px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; text-decoration: none; color: inherit;">
+            <span id="label-land" style="font-family: 'Work Sans', sans-serif; font-size: clamp(20px, 2.29vw, 30px); font-weight: 400;">Land for Sale</span>
+            <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c15857; flex-shrink: 0;">→</span>
+          </a>
+          <a id="link-offgrid" href="/off-grid-builds" style="background: #F2EDE6; padding: 20px 2px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; text-decoration: none; color: inherit;">
+            <span id="label-offgrid" style="font-family: 'Work Sans', sans-serif; font-size: clamp(20px, 2.29vw, 30px); font-weight: 400;">Off Grid Builds</span>
+            <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c15857; flex-shrink: 0;">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+  <script>
+    const es = navigator.language.toLowerCase().startsWith('es');
+    if (es) {
+      document.getElementById('404-heading').textContent = 'Esta página parece haberse extraviado';
+      document.getElementById('404-body').textContent = 'Puede que se haya movido, o quizás nunca existió. De cualquier forma, hay mucho por explorar desde aquí.';
+      document.getElementById('404-home').textContent = 'Volver al inicio';
+      document.getElementById('404-home').href = '/index-es';
+      document.getElementById('404-browse').textContent = 'Ver secciones';
+      document.getElementById('label-sale').textContent = 'Propiedades en venta';
+      document.getElementById('link-sale').href = '/property-for-sale-es';
+      document.getElementById('label-rent').textContent = 'Propiedades en alquiler';
+      document.getElementById('link-rent').href = '/property-for-rent-es';
+      document.getElementById('label-land').textContent = 'Terrenos en venta';
+      document.getElementById('link-land').href = '/land-for-sale-es';
+      document.getElementById('label-offgrid').textContent = 'Construcción off grid';
+      document.getElementById('link-offgrid').href = '/off-grid-builds-es';
+    }
+  </script>
+</Layout>

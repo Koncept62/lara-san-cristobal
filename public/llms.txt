@@ -1,0 +1,51 @@
+# Lara San Cristóbal
+
+> Real estate agency based in San Cristóbal de las Casas, Chiapas, Mexico. We specialise in property for sale, property for rent, land for sale, and off-grid builds in and around San Cristóbal. Founded and run by Lara, who has lived here since 2021 and has 25 years of international real estate experience. We also offer interior design services and sell handmade furniture through our sister brand, Humberto y Lara. The site is bilingual: English and Spanish.
+
+## Main pages (English)
+
+- [Home](https://larasancristobal.com/): Overview of all services — properties, land, off-grid builds, interiors, and the town.
+- [Property for Sale](https://larasancristobal.com/property-for-sale): Houses and residential properties currently for sale in San Cristóbal de las Casas and surrounding areas.
+- [Property for Rent](https://larasancristobal.com/property-for-rent): Residential properties available for monthly and long-stay rental.
+- [Land for Sale](https://larasancristobal.com/land-for-sale): Plots and rural land for sale, from 1,000 m² residential plots to larger rural parcels with forest and mountain views.
+- [Off Grid Builds](https://larasancristobal.com/off-grid-builds): Design-and-build service for off-grid homes, including solar energy, deep-well water, permaculture, and construction oversight.
+- [Interior Design & Furniture](https://larasancristobal.com/interior-design): Full interior design service for new properties, plus handmade furniture and home décor via Humberto y Lara.
+- [San Cristóbal](https://larasancristobal.com/san-cristobal): Guide to the city — neighbourhoods, lifestyle, and the investment case for buying here.
+- [Notes](https://larasancristobal.com/notes): Articles on buying in Mexico, restoring property, off-grid living, and life in San Cristóbal.
+- [About Us](https://larasancristobal.com/about): Lara's background, the team (architects, lawyers, notaries, valuers), and how we work.
+- [Privacy Policy](https://larasancristobal.com/privacy-policy): Data protection information under GDPR and Mexican LFPDPPP (ARCO rights).
+
+## Individual listing pages (English)
+
+Listing detail pages are generated from the CMS at the following URL patterns:
+
+- Property for sale listings: `https://larasancristobal.com/property-for-sale/{slug}`
+- Property for rent listings: `https://larasancristobal.com/property-for-rent/{slug}`
+- Land for sale listings: `https://larasancristobal.com/land/{slug}`
+
+Each listing page includes: property name, location, in-brief summary, full description, key specs (size, bedrooms, bathrooms, price in MXN and USD), photo gallery, floor plan where available, and an enquiry form.
+
+## Main pages (Spanish / Español)
+
+- [Inicio](https://larasancristobal.com/index-es): Página principal en español.
+- [Propiedades en venta](https://larasancristobal.com/property-for-sale-es): Casas y propiedades residenciales en venta.
+- [Propiedades en alquiler](https://larasancristobal.com/property-for-rent-es): Propiedades disponibles para alquiler mensual y larga estancia.
+- [Terrenos en venta](https://larasancristobal.com/land-for-sale-es): Predios y terrenos rurales en venta.
+- [Construcción off grid](https://larasancristobal.com/off-grid-builds-es): Servicio de diseño y construcción de casas off grid.
+- [Diseño de interiores](https://larasancristobal.com/interior-design-es): Servicio de diseño de interiores y mobiliario artesanal Humberto y Lara.
+- [San Cristóbal](https://larasancristobal.com/san-cristobal-es): Guía de la ciudad y el mercado inmobiliario.
+- [Notas](https://larasancristobal.com/notes-es): Artículos sobre comprar en México, restaurar propiedades y vida off grid.
+- [Sobre nosotros](https://larasancristobal.com/about-es): Información sobre Lara y el equipo.
+- [Aviso de Privacidad](https://larasancristobal.com/privacy-policy-es): Información sobre protección de datos bajo la LFPDPPP (derechos ARCO) y el RGPD.
+
+## Individual listing pages (Spanish / Español)
+
+- Propiedades en venta: `https://larasancristobal.com/property-for-sale-es/{slug}`
+- Propiedades en alquiler: `https://larasancristobal.com/property-for-rent-es/{slug}`
+- Terrenos en venta: `https://larasancristobal.com/land-es/{slug}`
+
+## Contact
+
+- Email: lara@larasancristobal.com
+- WhatsApp: +52 967 145 8587
+- Address: Los Alcanfores, San Cristóbal de las Casas, Chiapas, Mexico

@@ -1,0 +1,60 @@
+---
+interface Props {
+  newsletter?: boolean;
+  lang?: 'en' | 'es';
+}
+const { newsletter = false, lang = 'en' } = Astro.props;
+const es = lang === 'es';
+---
+<footer style="background: #221F1C; color: rgba(242, 237, 230, 0.7); padding: clamp(50px, 8vh, 90px) clamp(20px, 4vw, 56px) 34px;">
+  <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: clamp(30px, 4vw, 60px); padding-bottom: clamp(40px, 6vh, 70px);">
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <img src="/images/logo-crest-white.png" alt="Lara San Cristóbal" style="width: 132px; height: auto;" />
+      <p style="margin: 0; max-width: 30ch; font-size: 14px; font-weight: 300; line-height: 1.8;">{es ? 'Casas, terrenos y lugares tranquilos en los altos de Chiapas.' : 'Houses, land and quiet places in the highlands of Chiapas.'}</p>
+    </div>
+    <nav style="display: flex; flex-direction: column; gap: 11px; font-size: 13px; font-weight: 300;">
+      <a href={es ? '/property-for-sale-es' : '/property-for-sale'}>{es ? 'Propiedades en venta' : 'Property for Sale'}</a>
+      <a href={es ? '/property-for-rent-es' : '/property-for-rent'}>{es ? 'Propiedades en alquiler' : 'Property for Rent'}</a>
+      <a href={es ? '/off-grid-builds-es' : '/off-grid-builds'}>{es ? 'Construcción off grid' : 'Off Grid Builds'}</a>
+      <a href={es ? '/land-for-sale-es' : '/land-for-sale'}>{es ? 'Terrenos en venta' : 'Land for Sale'}</a>
+    </nav>
+    <nav style="display: flex; flex-direction: column; gap: 11px; font-size: 13px; font-weight: 300;">
+      <a href={es ? '/interior-design-es' : '/interior-design'}>{es ? 'Diseño de interiores + Mobiliario' : 'Interior Design + Furniture'}</a>
+      <a href={es ? '/san-cristobal-es' : '/san-cristobal'}>San Cristóbal</a>
+      <a href={es ? '/notes-es' : '/notes'}>{es ? 'Notas' : 'Notes'}</a>
+      <a href={es ? '/about-es' : '/about'}>{es ? 'Sobre nosotros' : 'About Us'}</a>
+      <a href="#sell">{es ? 'Vende o alquila con nosotros' : 'Sell or rent with us'}</a>
+    </nav>
+    {newsletter ? (
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(242, 237, 230, 0.5);">{es ? 'Casas nuevas, una vez al mes' : 'New houses, once a month'}</span>
+        <form id="footer-subscribe-form" style="display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(242, 237, 230, 0.28); padding-bottom: 9px;">
+          <input type="email" placeholder={es ? 'Tu correo' : 'Your email'} style="flex: 1; min-width: 0; background: transparent; border: 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #F2EDE6; outline: none;" />
+          <button type="submit" id="footer-subscribe-btn" style="background: none; border: 0; padding: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #c15857; cursor: pointer;">{es ? 'Suscribirme' : 'Join'}</button>
+        </form>
+      </div>
+    ) : (
+      <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px; font-weight: 300;">
+        <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(242, 237, 230, 0.5);">{es ? 'Contacto' : 'Get in touch'}</span>
+        <a href="https://wa.me/529671458587">WhatsApp +52 967 145 8587</a>
+        <a href="mailto:lara@larasancristobal.com">lara@larasancristobal.com</a>
+        <span>Los Alcanfores, San Cristóbal de las Casas</span>
+      </div>
+    )}
+  </div>
+  <div style="max-width: 1400px; margin: 0 auto; padding-top: 26px; border-top: 1px solid rgba(242, 237, 230, 0.14); display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-size: 11px; letter-spacing: 0.1em; color: rgba(242, 237, 230, 0.45);">
+    <span>© 2026 Lara San Cristóbal</span>
+    <a href={es ? '/privacy-policy-es' : '/privacy-policy'}>{es ? 'Aviso de Privacidad' : 'Privacy Policy'}</a>
+    <span>{es ? 'Imágenes provisionales, en espera de la fotografía final' : 'Placeholder imagery, pending final photography'}</span>
+  </div>
+</footer>
+
+{newsletter && (
+  <script>
+    document.getElementById('footer-subscribe-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('footer-subscribe-btn');
+      if (btn) btn.textContent = btn.textContent === 'Suscribirme' ? 'Listo' : 'Added';
+    });
+  </script>
+)}

@@ -1,0 +1,130 @@
+# Use DecapBridge PKCE auth (required)
+backend:
+  name: git-gateway
+  repo: Koncept62/lara-san-cristobal
+  branch: main
+  auth_type: pkce
+  base_url: https://auth.decapbridge.com
+  auth_endpoint: /sites/fb4ebccd-500a-4fc1-b7a9-27c64ae1b621/pkce
+  auth_token_endpoint: /sites/fb4ebccd-500a-4fc1-b7a9-27c64ae1b621/token
+  gateway_url: https://gateway.decapbridge.com
+  # See who did what (optional)
+  commit_messages:
+    create: Create {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    update: Update {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    delete: Delete {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    uploadMedia: Upload "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    deleteMedia: Delete "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    openAuthoring: Message {{message}} - {{author-name}} <{{author-login}}> via DecapBridge
+
+# Enable PKCE fields (optional, recommended)
+auth:
+  email_claim: email
+  first_name_claim: first_name
+  last_name_claim: last_name
+  avatar_url_claim: avatar_url
+
+# Better Decap + Bridge logo (optional)
+logo_url: https://decapbridge.com/decapcms-with-bridge.svg
+
+# Add site links in Decap CMS (optional)
+site_url: https://astro-lsc.netlify.app
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  # ---------------------------------------------------------
+  # PROPERTY FOR SALE
+  # ---------------------------------------------------------
+  - name: "property-for-sale"
+    label: "Properties for Sale"
+    folder: "src/content/property-for-sale"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Property Name", name: "propertyName", widget: "string" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "In Brief", name: "inBrief", widget: "text" }
+      - { label: "Property Size", name: "propertySize", widget: "string" }
+      - { label: "Plot Size", name: "plotSize", widget: "string" }
+      - { label: "Bedrooms", name: "bedrooms", widget: "number" }
+      - { label: "Bathrooms", name: "bathrooms", widget: "number" }
+      - { label: "Description", name: "description", widget: "markdown" }
+      - { label: "Price (MXN)", name: "priceMxn", widget: "number", value_type: "string", required: false }
+      - { label: "Price (USD)", name: "priceUsd", widget: "number", value_type: "string", required: false }
+      - { label: "Reference Code", name: "referenceCode", widget: "string" }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options: ["Available", "Reserved", "Sold"]
+        default: "Available"
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+      - label: "Floor Plan"
+        name: "floorPlan"
+        widget: "image"
+        required: false
+
+  # ---------------------------------------------------------
+  # PROPERTY FOR RENT
+  # ---------------------------------------------------------
+  - name: "property-for-rent"
+    label: "Properties for Rent"
+    folder: "src/content/property-for-rent"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Property Name", name: "propertyName", widget: "string" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "In Brief", name: "inBrief", widget: "text" }
+      - { label: "Property Size", name: "propertySize", widget: "string" }
+      - { label: "Bedrooms", name: "bedrooms", widget: "number" }
+      - { label: "Bathrooms", name: "bathrooms", widget: "number" }
+      - { label: "Description", name: "description", widget: "markdown" }
+      - { label: "Price (MXN)", name: "priceMxn", widget: "number", value_type: "string", required: false }
+      - { label: "Price (USD)", name: "priceUsd", widget: "number", value_type: "string", required: false }
+      - { label: "Reference Code", name: "referenceCode", widget: "string" }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options: ["Available", "Reserved", "Sold"]
+        default: "Available"
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+      - label: "Floor Plan"
+        name: "floorPlan"
+        widget: "image"
+        required: false
+
+  # ---------------------------------------------------------
+  # LAND
+  # ---------------------------------------------------------
+  - name: "land"
+    label: "Land"
+    folder: "src/content/land"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Property Name", name: "propertyName", widget: "string" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "In Brief", name: "inBrief", widget: "text" }
+      - { label: "Land Size", name: "landSize", widget: "string" }
+      - { label: "Description", name: "description", widget: "markdown" }
+      - { label: "Price (MXN)", name: "priceMxn", widget: "number", value_type: "string", required: false }
+      - { label: "Price (USD)", name: "priceUsd", widget: "number", value_type: "string", required: false }
+      - { label: "Reference Code", name: "referenceCode", widget: "string" }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options: ["Available", "Reserved", "Sold"]
+        default: "Available"
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+      # No floorPlan field for land listings

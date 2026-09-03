@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import Footer from '../components/Footer.astro';
+
+const path = Astro.url.pathname;
+
+const posts = [
+  { num: "01", meta: "Note 01", title: "Blog post one", blurb: "Post copy to follow.", img: "/images/colonial-street.jpg", alt: "Painted colonial street", featured: true },
+  { num: "02", meta: "Note 02", title: "Blog post two", blurb: "Post copy to follow.", img: "/images/living-room-plants.jpg", alt: "Warm living room with plants" },
+  { num: "03", meta: "Note 03", title: "Blog post three", blurb: "Post copy to follow.", img: "/images/night-sky.jpg", alt: "Night sky over the highlands" },
+  { num: "04", meta: "Note 04", title: "Blog post four", blurb: "Post copy to follow.", img: "/images/hillside-houses.jpg", alt: "Coloured houses on a hillside" },
+  { num: "05", meta: "Note 05", title: "Blog post five", blurb: "Post copy to follow.", img: "/images/mountains-cloud.jpg", alt: "Cloud over highland mountains" },
+  { num: "06", meta: "Note 06", title: "Blog post six", blurb: "Post copy to follow.", img: "/images/sitting-room-terracotta.jpg", alt: "Terracotta sofa with cushions" },
+  { num: "07", meta: "Note 07", title: "Blog post seven", blurb: "Post copy to follow.", img: "/images/dining-room.jpg", alt: "Dining room with timber table" },
+  { num: "08", meta: "Note 08", title: "Blog post eight", blurb: "Post copy to follow.", img: "/images/bougainvillea-wall.jpg", alt: "White walls with bougainvillea" },
+  { num: "09", meta: "Note 09", title: "Blog post nine", blurb: "Post copy to follow.", img: "/images/cabin-pines.jpg", alt: "Timber cabin among pines" },
+  { num: "10", meta: "Note 10", title: "Blog post ten", blurb: "Post copy to follow.", img: "/images/bedroom-linen.jpg", alt: "Simple bedroom with linen" },
+];
+
+const filters = ["All notes", "Buying in Mexico", "Restoring", "Off grid", "The town", "Interiors"];
+const gridPosts = posts.filter(p => !p.featured);
+---
+<Layout title="Notes · Lara San Cristóbal">
+  <Header esHref="/notes-es" />
+  <MobileMenu currentPath={path} />
+
+  <section id="top" style="padding: clamp(130px, 20vh, 220px) clamp(20px, 4vw, 56px) clamp(30px, 5vh, 60px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(26px, 5vw, 90px); align-items: end;">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Notes</span>
+        <h1 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(37px, 5.63vw, 92px); line-height: 0.98; letter-spacing: -0.02em; text-wrap: pretty;">Things worth writing down</h1>
+      </div>
+      <p style="margin: 0 0 10px; max-width: 40ch; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">What we learn while buying, selling and restoring houses here. Paperwork explained plainly, builders we trust, and the odd note about the town itself.</p>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: 0 clamp(20px, 4vw, 56px) clamp(30px, 5vh, 60px);">
+    <div id="filter-bar" style="max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 10px; padding: 26px 0; border-top: 1px solid rgba(43, 38, 34, 0.14); border-bottom: 1px solid rgba(43, 38, 34, 0.14);">
+      {filters.map((f, i) => (
+        <button
+          type="button"
+          class={`filter-btn${i === 0 ? ' active' : ''}`}
+          data-filter={f}
+          style={`background: ${i === 0 ? '#2B2622' : 'transparent'}; color: ${i === 0 ? '#FBF8F3' : '#6E655C'}; border: 1px solid ${i === 0 ? '#2B2622' : 'rgba(43,38,34,0.22)'}; padding: 10px 18px; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;`}
+        >{f}</button>
+      ))}
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(20px, 4vh, 50px) clamp(20px, 4vw, 56px) clamp(40px, 7vh, 80px);">
+    <a href="/notes" style="display: block; max-width: 1400px; margin: 0 auto;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(26px, 4vw, 60px); align-items: center;">
+        <img src="/images/colonial-street.jpg" alt="Painted colonial street" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #E4D8C8;" />
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c15857;">Note 01</span>
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3.34vw, 49px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: pretty;">Blog post one</h2>
+          <p style="margin: 0; max-width: 46ch; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Post copy to follow.</p>
+          <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px; align-self: flex-start;">Read the note</span>
+        </div>
+      </div>
+    </a>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(20px, 4vh, 40px) clamp(20px, 4vw, 56px) clamp(60px, 10vh, 130px);">
+    <div id="posts-grid" style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(30px, 3.4vw, 56px) clamp(26px, 3vw, 48px);">
+      {gridPosts.map((p) => (
+        <a href="/notes" class="post-card" data-cat={p.meta} style="display: flex; flex-direction: column; gap: 15px;">
+          <img src={p.img} alt={p.alt} style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #E4D8C8;" />
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">{p.meta}</span>
+          <h3 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 23px; line-height: 1.22; text-wrap: pretty;">{p.title}</h3>
+          <p style="margin: 0; font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">{p.blurb}</p>
+        </a>
+      ))}
+    </div>
+    <div style="max-width: 1400px; margin: clamp(40px, 6vh, 70px) auto 0; display: flex; justify-content: center;">
+      <button type="button" id="load-more-btn" class="btn-note-more" style="background: none; border: 1px solid rgba(43, 38, 34, 0.24); padding: 16px 34px; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #2B2622; cursor: pointer;">More notes</button>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="background: #E9E1D6; padding: clamp(60px, 10vh, 130px) clamp(20px, 4vw, 56px);">
+    <div style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 26px; text-align: center;">
+      <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Once a month, no more</span>
+      <p style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(25px, 3.34vw, 49px); line-height: 1.14; letter-spacing: -0.015em; text-wrap: pretty;">New houses, new notes, and whatever the weather is doing to the roofs.</p>
+      <form id="notes-subscribe-form" style="display: flex; align-items: center; gap: 14px; border-bottom: 1px solid rgba(43, 38, 34, 0.3); padding-bottom: 10px; width: min(420px, 100%);">
+        <input type="email" placeholder="Your email" style="flex: 1; min-width: 0; background: transparent; border: 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #2B2622; outline: none;" />
+        <button type="submit" id="notes-subscribe-btn" style="background: none; border: 0; padding: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #c15857; cursor: pointer;">Join</button>
+      </form>
+    </div>
+  </section>
+
+  <Footer />
+
+  <script>
+    const SHOWN_INIT = 6;
+    let shown = SHOWN_INIT;
+    const cards = Array.from(document.querySelectorAll('.post-card'));
+    const loadMoreBtn = document.getElementById('load-more-btn');
+
+    const applyFilter = (filter) => {
+      shown = SHOWN_INIT;
+      const matched = filter === 'All notes' ? cards : cards.filter(c => c.dataset.cat === filter);
+      cards.forEach(c => { (c as HTMLElement).style.display = 'none'; });
+      matched.slice(0, shown).forEach(c => { (c as HTMLElement).style.display = 'flex'; });
+      if (loadMoreBtn) {
+        loadMoreBtn.textContent = shown >= matched.length ? 'That is all of them, for now' : 'More notes';
+        (loadMoreBtn as HTMLButtonElement).disabled = shown >= matched.length;
+      }
+      (loadMoreBtn as any)._matched = matched;
+    };
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          (b as HTMLElement).style.background = 'transparent';
+          (b as HTMLElement).style.color = '#6E655C';
+          (b as HTMLElement).style.borderColor = 'rgba(43,38,34,0.22)';
+        });
+        (btn as HTMLElement).style.background = '#2B2622';
+        (btn as HTMLElement).style.color = '#FBF8F3';
+        (btn as HTMLElement).style.borderColor = '#2B2622';
+        applyFilter((btn as HTMLElement).dataset.filter || 'All notes');
+      });
+    });
+
+    loadMoreBtn?.addEventListener('click', () => {
+      const matched = (loadMoreBtn as any)._matched || cards;
+      shown += 3;
+      matched.slice(0, shown).forEach(c => { (c as HTMLElement).style.display = 'flex'; });
+      if (loadMoreBtn) {
+        loadMoreBtn.textContent = shown >= matched.length ? 'That is all of them, for now' : 'More notes';
+        (loadMoreBtn as HTMLButtonElement).disabled = shown >= matched.length;
+      }
+    });
+
+    applyFilter('All notes');
+
+    document.getElementById('notes-subscribe-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('notes-subscribe-btn');
+      if (btn) btn.textContent = 'Added';
+    });
+  </script>
+</Layout>

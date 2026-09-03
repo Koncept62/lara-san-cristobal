@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import ContactCta from '../components/ContactCta.astro';
+import Footer from '../components/Footer.astro';
+
+const path = Astro.url.pathname;
+const pageStyles = `
+  @media (min-width: 620px) { [data-team-grid] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+  @media (min-width: 1024px) { [data-team-grid] { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } }
+`;
+---
+<Layout title="Construcción off grid · Lara San Cristóbal" pageStyles={pageStyles} lang="es">
+  <Header lang="es" enHref="/off-grid-builds" />
+  <MobileMenu currentPath={path} lang="es" />
+
+  <section id="top" style="position: relative; min-height: 78vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding: clamp(110px, 16vh, 180px) clamp(20px, 4vw, 56px) clamp(40px, 6vh, 72px);">
+    <div style="position: absolute; inset: 0; overflow: hidden;">
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_crop,x_70,w_900/w_1800/v1788115104/AdobeStock_1624415309_Preview_okb2zt.jpg" alt="Una casa off grid en las montañas fuera de San Cristóbal" style="width: 100%; height: 100%; object-fit: cover;" />
+      <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(34, 31, 28, 0.34) 0%, rgba(34, 31, 28, 0.3) 40%, rgba(34, 31, 28, 0.66) 100%);"></div>
+    </div>
+    <div style="position: relative; max-width: 1400px; width: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 36px;">
+      <div style="display: flex; flex-direction: column; gap: 22px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(251, 248, 243, 0.72);">Construcción off grid</span>
+        <h1 style="margin: 0; max-width: 18ch; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(35px, 5.10vw, 84px); line-height: 1.06; letter-spacing: 0.005em; color: #FBF8F3; text-wrap: pretty;">Independencia de agua y energía</h1>
+        <p style="margin: 0; font-size: clamp(17px, 1.7vw, 25px); font-weight: 300; line-height: 1.45; letter-spacing: 0.005em; color: rgba(251, 248, 243, 0.9);">Vida off grid en un entorno extraordinario…</p>
+      </div>
+      <p style="margin: 0 0 10px; max-width: 36ch; font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(251, 248, 243, 0.86);">Vivir off grid es hoy una aspiración para muchos. Con tanta inestabilidad y el alza acelerada de los servicios, casi puede considerarse un lujo.</p>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 4vw, 56px) clamp(40px, 6vh, 70px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(30px, 5vw, 86px); align-items: start;">
+      <p style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.46vw, 35px); line-height: 1.3; letter-spacing: -0.01em; text-wrap: pretty;">Con nuestro grupo de especialistas podemos ayudarte a construir tu propia casa off grid, o construirla para ti, a partir de tu proyecto, preferencias, presupuesto y especificaciones.</p>
+      <div style="display: flex; flex-direction: column; gap: 24px; padding-top: 8px;">
+        <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">He recorrido todo el proceso personalmente: construí una casa off grid en la montaña, a poca distancia de la ciudad. Juntos podemos valorar las ventajas y desventajas de una construcción tradicional frente al método altamente eficiente de concreto, acero y madera.</p>
+        <a href="#enquire" style="align-self: flex-start; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Conversemos tu proyecto</a>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(30px, 5vh, 60px) clamp(20px, 4vw, 56px) clamp(60px, 9vh, 110px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(30px, 4vw, 46px);">
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 20px; padding-bottom: 30px; border-bottom: 1px solid rgba(43, 38, 34, 0.14);">
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">En tu equipo</h2>
+        <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E655C;">Siete especialistas</span>
+      </div>
+      <div data-team-grid="1" style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 1px; background: rgba(43, 38, 34, 0.14);">
+        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 300; color: #c15857;">01</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 27px; font-weight: 400; line-height: 1.2;">Levantamientos topográficos</span>
+          <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">Un profesional de primer nivel realiza un levantamiento detallado de tu terreno, listo para que el arquitecto comience el diseño.</span>
+        </div>
+        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 300; color: #c15857;">02</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 27px; font-weight: 400; line-height: 1.2;">Arquitectura</span>
+          <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">Un arquitecto con amplia experiencia diseña y construye tu residencia off grid según tu proyecto, estilo, presupuesto y especificaciones.</span>
+        </div>
+        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 300; color: #c15857;">03</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 27px; font-weight: 400; line-height: 1.2;">Energía</span>
+          <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">Una empresa especializada en sistemas completos de energía: paneles solares, baterías y tecnología de monitoreo, dimensionados a tu consumo previsto más una reserva.</span>
+        </div>
+        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 300; color: #c15857;">04</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 27px; font-weight: 400; line-height: 1.2;">Agua</span>
+          <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">La principal empresa de perforación de pozos profundos de la región estudia el terreno con equipo electromagnético antes de gastar un peso en perforar, y luego construye pozos profundos en casi cualquier subsuelo.</span>
+        </div>
+        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 300; color: #c15857;">05</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 27px; font-weight: 400; line-height: 1.2;">Purificación de agua</span>
+          <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">Llevamos el agua del pozo a la casa con los filtros de purificación más recientes, tecnología de luz azul y pruebas rigurosas, para que lo que sale de la llave sea potable.</span>
+        </div>
+        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 300; color: #c15857;">06</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 27px; font-weight: 400; line-height: 1.2;">Manejo de residuos</span>
+          <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">Biodigestores para aguas negras y sistemas de riego a medida para la captación y reutilización de aguas grises.</span>
+        </div>
+        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 300; color: #c15857;">07</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 27px; font-weight: 400; line-height: 1.2;">Permacultura</span>
+          <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">Varios de los mejores agricultores orgánicos de San Cristóbal ayudan a planear el uso del terreno, el tipo de suelo, la flora y fauna existentes y la topografía, para crear un proyecto hortícola abundante.</span>
+        </div>
+        <div style="background: #c15857; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; text-align: center;">
+          <span style="width: clamp(96px, 11vw, 132px); height: clamp(96px, 11vw, 132px); display: flex; align-items: center; justify-content: center;">
+            <img src="/images/crest-mark-white.png" alt="" style="width: 56%; height: auto; opacity: 0.95;" />
+          </span>
+          <span style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(251, 248, 243, 0.85);">Siete especialistas, un solo equipo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="background: #221F1C; color: #F2EDE6;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); align-items: stretch;">
+      <div style="display: flex; flex-direction: column; justify-content: center; gap: 26px; padding: clamp(50px, 8vw, 108px) clamp(24px, 5vw, 92px);">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(242, 237, 230, 0.55);">Seguimiento de obra</span>
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3.52vw, 51px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: pretty;">Construir aquí, mientras tú sigues en otro lugar</h2>
+        <p style="margin: 0; max-width: 44ch; font-size: 15px; font-weight: 300; line-height: 1.9; color: rgba(242, 237, 230, 0.72);">Si estás realizando una construcción off grid o tradicional pero no vives de tiempo completo en San Cristóbal, ofrecemos un servicio completo pensado para clientes como tú:</p>
+        <div style="display: flex; flex-direction: column; gap: 1px; background: rgba(242, 237, 230, 0.14);">
+          <span style="background: #221F1C; padding: 16px 0; font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(242, 237, 230, 0.8);">Visitas periódicas a la obra para verificar el avance de tu proyecto</span>
+          <span style="background: #221F1C; padding: 16px 0; font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(242, 237, 230, 0.8);">Fotos y videos frecuentes de la obra para mantenerte al día</span>
+          <span style="background: #221F1C; padding: 16px 0; font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(242, 237, 230, 0.8);">Reuniones periódicas con el arquitecto y los residentes de obra, informando cualquier imprevisto y consultando contigo las decisiones inmediatas</span>
+          <span style="background: #221F1C; padding: 16px 0; font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(242, 237, 230, 0.8);">Supervisión de la calidad de la obra, desde el desmonte del terreno hasta la entrega de llaves</span>
+        </div>
+        <p style="margin: 0; max-width: 44ch; font-size: 15px; font-weight: 300; line-height: 1.9; color: rgba(242, 237, 230, 0.72);">Un solo punto de contacto para la gestión de tu proyecto, sin necesidad de que estés presente todo el tiempo.</p>
+      </div>
+      <div style="min-height: 60vh; position: relative; overflow: hidden;">
+        <img src="https://res.cloudinary.com/disybpuro/image/upload/c_crop,x_70,w_900/w_1800/v1788115103/AdobeStock_457031299_Preview_nbbf04.jpg" alt="Construcción off grid en las montañas de Chiapas" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" />
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(60px, 10vh, 130px) clamp(20px, 4vw, 56px) clamp(20px, 4vh, 40px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(30px, 5vw, 80px); align-items: center;">
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Primero el terreno</span>
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(25px, 2.99vw, 46px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: pretty;">Toda construcción off grid empieza con el terreno adecuado</h2>
+        <p style="margin: 0; max-width: 42ch; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Terrenos de 1,000 a 5,000 m² en Los Alcanfores, San Nicolás y Corral de Piedra son perfectos para autoconstrucción o un proyecto off grid, y más lejos hay predios rurales mucho más grandes, a veces con bosque y arroyos.</p>
+        <a href="/land-for-sale-es" style="align-self: flex-start; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Ver terrenos en venta</a>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 2vw, 24px);">
+        <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788260708/AdobeStock_82763612_Preview_bekiks.jpg" alt="Terreno en las montañas fuera de San Cristóbal" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8;" />
+        <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788330526/AdobeStock_131281266_Preview_xfnwb2.jpg" alt="Campo verde bajo árboles en un día brillante" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8; margin-top: clamp(22px, 4vw, 56px);" />
+      </div>
+    </div>
+  </section>
+
+  <ContactCta heading="¿Piensas en una construcción off grid? Conversémoslo." lang="es" />
+  <Footer lang="es" />
+</Layout>

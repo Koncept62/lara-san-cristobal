@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import ContactCta from '../components/ContactCta.astro';
+import Footer from '../components/Footer.astro';
+
+const path = Astro.url.pathname;
+---
+<Layout title="Diseño de interiores &amp; Mobiliario · Lara San Cristóbal" lang="es">
+  <Header lang="es" enHref="/interior-design" />
+  <MobileMenu currentPath={path} lang="es" />
+
+  <section id="top" style="position: relative; min-height: 78vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding: clamp(110px, 16vh, 180px) clamp(20px, 4vw, 56px) clamp(40px, 6vh, 72px);">
+    <div style="position: absolute; inset: 0; overflow: hidden;">
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_16:9,g_auto,w_2000/v1788341821/HYL_main_py9a5c.jpg" alt="Interiores y mobiliario de Humberto y Lara" style="width: 100%; height: 100%; object-fit: cover; object-position: center 45%;" />
+      <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(34, 31, 28, 0.34) 0%, rgba(34, 31, 28, 0.3) 40%, rgba(34, 31, 28, 0.66) 100%);"></div>
+    </div>
+    <div style="position: relative; max-width: 1400px; width: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 36px;">
+      <div style="display: flex; flex-direction: column; gap: 22px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(251, 248, 243, 0.72);">Diseño de interiores + mobiliario</span>
+        <h1 style="margin: 0; max-width: 18ch; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(35px, 5.10vw, 84px); line-height: 1.06; letter-spacing: 0.005em; color: #FBF8F3; text-wrap: pretty;">Toda una vida de interiores de lujo, ahora en casa</h1>
+        <p style="margin: 0; font-size: clamp(17px, 1.7vw, 25px); font-weight: 300; line-height: 1.45; letter-spacing: 0.005em; color: rgba(251, 248, 243, 0.9);">Un servicio excepcional…</p>
+      </div>
+      <p style="margin: 0 0 10px; max-width: 36ch; font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(251, 248, 243, 0.86);">Veinticinco años entregando bienes raíces de lujo y hoteles y resorts de primer nivel, trabajando con arquitectos célebres por su vanguardia y diseñadores reconocidos internacionalmente.</p>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 4vw, 56px) clamp(40px, 6vh, 70px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(30px, 5vw, 86px); align-items: start;">
+      <p style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.46vw, 35px); line-height: 1.3; letter-spacing: -0.01em; text-wrap: pretty;">A lo largo de esos 25 años he desarrollado mi propio talento para una estética creativa y única.</p>
+      <div style="display: flex; flex-direction: column; gap: 24px; padding-top: 8px;">
+        <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Ofrezco un servicio completo de diseño de interiores para tu nueva propiedad, y si ya tienes tu propio estilo definido y sólo buscas piezas originales y bellas para tu casa, cuento con mi empresa de mobiliario y decoración, Humberto y Lara.</p>
+        <a href="https://humbertoylara.com/" target="_blank" rel="noopener" style="align-self: flex-start; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Humberto y Lara</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="humberto" data-reveal="1" style="padding: clamp(50px, 8vh, 110px) clamp(20px, 4vw, 56px); background: #E9E1D6;">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(30px, 5vw, 80px); align-items: center;">
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Humberto y Lara</span>
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3.34vw, 51px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: pretty;">Mobiliario que es mucho más que su función</h2>
+        <p style="margin: 0; max-width: 42ch; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Piezas preciosas que transmiten estilo, siempre con un fuerte sentido de individualidad y detalle, que elevan los espacios y llevan a tu casa un diseño de interiores de nivel editorial, ejecutado con una artesanía impecable.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 4px;">
+          <a href="https://humbertoylara.com/furniture/" target="_blank" rel="noopener" class="btn-furniture" style="background: #2B2622; color: #FBF8F3; padding: 16px 30px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;">Ver mobiliario</a>
+          <a href="https://humbertoylara.com/decoration/" target="_blank" rel="noopener" class="btn-decor" style="border: 1px solid rgba(43, 38, 34, 0.28); padding: 16px 30px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;">Ver decoración</a>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 2vw, 24px);">
+        <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788341714/INSTAGRAM_CONTENT_202534_lqzs7z.jpg" alt="Mobiliario de Humberto y Lara" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8;" />
+        <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788341715/INSTAGRAM_CONTENT_202542_dyku1m.jpg" alt="Mobiliario de Humberto y Lara" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8; margin-top: clamp(22px, 4vw, 56px);" />
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(60px, 10vh, 120px) clamp(20px, 4vw, 56px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(30px, 4vw, 46px);">
+      <p style="margin: 0; max-width: 60ch; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(21px, 2.29vw, 33px); line-height: 1.3; letter-spacing: -0.01em; text-wrap: pretty;">Desde cerámica hecha aquí por la maravillosa y admirada Esly Vera, y lámparas de fibra natural tejidas a mano, espejos y arte mural, hasta cojines de gran formato y mantas suntuosas, todo curado con cuidado para dar verdadero estilo a tu interior.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: rgba(43, 38, 34, 0.14);">
+        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 10px; min-height: 170px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 26px; font-weight: 400; line-height: 1.25;">Hecho en San Cristóbal</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Toda la colección está hecha a mano, con cariño y fina artesanía, aquí en la ciudad.</span>
+        </div>
+        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 10px; min-height: 170px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 26px; font-weight: 400; line-height: 1.25;">Envíos a todo México</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">A cualquier punto del país, con embalaje cuidadoso y seguimiento.</span>
+        </div>
+        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 10px; min-height: 170px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 26px; font-weight: 400; line-height: 1.25;">Muebles a medida</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Cocinas integrales, clósets y almacenaje hechos a la medida por un equipo excelente de maestros carpinteros.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactCta heading="¿Amueblando una casa aquí? Me encantaría ayudarte." lang="es" />
+  <Footer lang="es" />
+</Layout>

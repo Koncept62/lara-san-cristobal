@@ -1,0 +1,323 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import Footer from '../components/Footer.astro';
+
+const path = Astro.url.pathname;
+const pageStyles = `
+  @media (min-width: 620px) { [data-index-grid] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+  @media (min-width: 1180px) { [data-index-grid] { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; } }
+`;
+---
+<Layout title="Lara San Cristóbal" pageStyles={pageStyles} lang="es">
+  <Header lang="es" enHref="/" />
+  <MobileMenu currentPath={path} lang="es" />
+
+  <section id="top" style="position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding: clamp(110px, 16vh, 180px) clamp(20px, 4vw, 56px) clamp(40px, 6vh, 72px);">
+    <div style="position: absolute; inset: 0; overflow: hidden;">
+      <img src="/images/hero-san-cristobal-2000.jpg" alt="El zócalo y kiosco de San Cristóbal de las Casas desde arriba, tejados terracota hasta los cerros" style="width: 100%; height: 100%; object-fit: cover; object-position: center 40%;" />
+      <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(34, 31, 28, 0.34) 0%, rgba(34, 31, 28, 0.3) 40%, rgba(34, 31, 28, 0.62) 100%);"></div>
+      <img src="/images/sprig-white.png" alt="" style="position: absolute; top: clamp(100px, 15vh, 170px); right: clamp(20px, 4vw, 56px); height: clamp(120px, 15vw, 220px); width: auto; opacity: 0.92; pointer-events: none;" />
+    </div>
+    <div style="position: relative; max-width: 1400px; width: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 36px;">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <h1 style="margin: 0; max-width: 15ch; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(35px, 5.81vw, 92px); line-height: 1.06; letter-spacing: 0.005em; color: #FBF8F3; text-wrap: pretty;">Un pueblo de montaña donde la luz llega despacio</h1>
+        <p style="margin: 0; font-size: clamp(17px, 1.7vw, 25px); font-weight: 300; line-height: 1.45; letter-spacing: 0.005em; color: rgba(251, 248, 243, 0.9);">Invertir para hoy y para mañana</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 26px; max-width: 34ch; padding-bottom: 6px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: clamp(11px, 1vw, 13px); letter-spacing: 0.26em; text-transform: uppercase; color: #FBF8F3;">Venta, alquiler y construcción off grid</span>
+        <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(251, 248, 243, 0.86);">Casas, terrenos y lugares tranquilos para vivir, en San Cristóbal de las Casas y sus alrededores. Encontrados con calma, uno por uno.</p>
+        <a href="#enquire" class="btn-hero" style="align-self: flex-start; background: #FBF8F3; color: #2B2622; padding: 17px 34px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;">Contáctanos</a>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 4vw, 56px) clamp(20px, 4vh, 50px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(30px, 5vw, 90px); align-items: start;">
+      <p style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.55vw, 39px); line-height: 1.24; letter-spacing: 0.005em; text-wrap: pretty; grid-column: span 2;">San Cristóbal de las Casas tiene muchísimo que ofrecer en cuanto a calidad de vida, y también como destino de inversión. Las propiedades bien valoradas y bien presentadas se venden con mucha agilidad y se alquilan sin dificultad.</p>
+      <div style="display: flex; flex-direction: column; gap: 20px; padding-top: 10px;">
+        <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.85; color: #6E655C;">Ya sea que busques alquilar, comprar o incluso construir una casa tradicional o off grid, he recorrido todo el proceso personalmente y me encantará acompañarte.</p>
+        <a href="/about-es" style="align-self: flex-start; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Sobre nosotros</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="properties" data-reveal="1" style="padding: clamp(50px, 9vh, 110px) clamp(20px, 4vw, 56px);">
+    <div style="max-width: 1400px; margin: 0 auto;">
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 20px; padding-bottom: 40px; border-bottom: 1px solid rgba(43, 38, 34, 0.14);">
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Disponible ahora</h2>
+        <div style="display: flex; gap: 26px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;">
+          <a href="/property-for-sale-es" style="border-bottom: 1px solid #c15857; padding-bottom: 4px;">En venta</a>
+          <a href="/property-for-rent-es" style="color: #6E655C;">En alquiler</a>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: clamp(28px, 3.4vw, 54px); padding-top: clamp(34px, 4vw, 56px);">
+        <a href="/property-for-sale-es" style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: #E4D8C8;">
+            <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788115974/LSC_16_iems67.jpg" alt="Columnata con arcos en piedra blanca" style="width: 100%; height: 100%; object-fit: cover;" />
+            <span style="position: absolute; top: 16px; left: 16px; background: rgba(251, 248, 243, 0.92); padding: 6px 12px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #2B2622;">Nueva</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 24px; line-height: 1.2;">Propiedad Uno</h3>
+            <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6E655C;">Barrio del Cerrillo · 3 recámaras</p>
+            <p style="margin: 4px 0 0; font-size: 14px; font-weight: 300; line-height: 1.75; color: #6E655C;">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</p>
+            <span style="margin-top: 6px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c15857;">Precio a consultar</span>
+          </div>
+        </a>
+        <a href="/property-for-sale-es" style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: #E4D8C8;">
+            <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788115976/LSC_18_bxjflq.jpg" alt="Comedor cálido con lino y madera" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 24px; line-height: 1.2;">Propiedad Dos</h3>
+            <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6E655C;">Guadalupe · 2 recámaras · amueblada</p>
+            <p style="margin: 4px 0 0; font-size: 14px; font-weight: 300; line-height: 1.75; color: #6E655C;">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi aliquip.</p>
+            <span style="margin-top: 6px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c15857;">Precio a consultar</span>
+          </div>
+        </a>
+        <a href="/property-for-sale-es" style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: #E4D8C8;">
+            <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788115954/LSC_11_gud7jc.jpg" alt="Papel picado sobre un callejón ocre" style="width: 100%; height: 100%; object-fit: cover;" />
+            <span style="position: absolute; top: 16px; left: 16px; background: rgba(34, 31, 28, 0.78); padding: 6px 12px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #F2EDE6;">Reservada</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 24px; line-height: 1.2;">Propiedad Tres</h3>
+            <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6E655C;">Barrio de Mexicanos · 4 recámaras</p>
+            <p style="margin: 4px 0 0; font-size: 14px; font-weight: 300; line-height: 1.75; color: #6E655C;">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+            <span style="margin-top: 6px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c15857;">Precio a consultar</span>
+          </div>
+        </a>
+      </div>
+      <div style="display: flex; gap: 34px; flex-wrap: wrap; padding-top: clamp(38px, 4vw, 60px);">
+        <a href="/property-for-sale-es" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Todas las propiedades en venta</a>
+        <a href="/property-for-rent-es" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Todas las propiedades en alquiler</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="offgrid" data-reveal="1" style="margin-top: clamp(40px, 7vh, 90px); background: #221F1C; color: #F2EDE6;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); align-items: stretch;">
+      <div style="min-height: 62vh; position: relative; overflow: hidden;">
+        <img src="https://res.cloudinary.com/disybpuro/image/upload/c_crop,x_70,w_900/w_1800/v1788115104/AdobeStock_1624415309_Preview_okb2zt.jpg" alt="Una casa off grid en las montañas fuera de San Cristóbal" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" />
+      </div>
+      <div style="display: flex; flex-direction: column; justify-content: center; gap: 26px; padding: clamp(50px, 8vw, 110px) clamp(24px, 5vw, 96px);">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(242, 237, 230, 0.55);">Construcción off grid</span>
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(30px, 3.78vw, 60px); line-height: 1.08; letter-spacing: -0.015em; text-wrap: pretty;">La independencia de agua y energía casi puede considerarse un lujo</h2>
+        <p style="margin: 0; max-width: 42ch; font-size: 15px; font-weight: 300; line-height: 1.85; color: rgba(242, 237, 230, 0.72);">Con nuestro grupo de especialistas, topógrafos, arquitectos, empresas de energía y perforación de pozos profundos, purificación de agua, manejo de residuos y permacultura, podemos ayudarte a construir tu propia casa off grid, o construirla para ti, a partir de tu proyecto, presupuesto y especificaciones.</p>
+        <a href="/off-grid-builds-es" style="align-self: flex-start; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #F2EDE6; border-bottom: 1px solid rgba(242, 237, 230, 0.35); padding-bottom: 5px;">Sobre la construcción off grid</a>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: rgba(242, 237, 230, 0.12);">
+      <div style="background: #221F1C; padding: 30px clamp(24px, 3vw, 44px); display: flex; flex-direction: column; gap: 8px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 30px; font-weight: 300;">8</span>
+        <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(242, 237, 230, 0.55);">Especialistas en tu equipo</span>
+      </div>
+      <div style="background: #221F1C; padding: 30px clamp(24px, 3vw, 44px); display: flex; flex-direction: column; gap: 8px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 30px; font-weight: 300;">2,100 m</span>
+        <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(242, 237, 230, 0.55);">De altitud, fresco todo el año</span>
+      </div>
+      <div style="background: #221F1C; padding: 30px clamp(24px, 3vw, 44px); display: flex; flex-direction: column; gap: 8px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 30px; font-weight: 300;">1,400 mm</span>
+        <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(242, 237, 230, 0.55);">De lluvia al año para captar</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="land" data-reveal="1" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 4vw, 56px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(30px, 5vw, 80px); align-items: end;">
+      <div style="display: flex; flex-direction: column; gap: 22px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Terrenos en venta</span>
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(28px, 3.52vw, 55px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: pretty;">Un valor excepcional y vistas que rara vez se encuentran en otro lugar</h2>
+        <p style="margin: 0; max-width: 40ch; font-size: 15px; font-weight: 300; line-height: 1.85; color: #6E655C;">Terrenos encantadores de 1,000 a 5,000 m² en las zonas residenciales y arboladas de Los Alcanfores, San Nicolás y Corral de Piedra, además de predios rurales mucho más grandes con bosque, arroyos y vistas de montaña. Que los precios sean bajos hoy no significa que vayan a quedarse así.</p>
+        <a href="/land-for-sale-es" style="align-self: flex-start; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Ver terrenos</a>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 2vw, 26px);">
+        <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788330526/AdobeStock_1159657759_Preview_uc64x9.jpg" alt="Un pastizal iluminado por el sol enmarcado por árboles, con montañas al fondo" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8;" />
+        <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788330526/AdobeStock_131281266_Preview_xfnwb2.jpg" alt="Un campo verde bajo árboles en un día brillante" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8; margin-top: clamp(24px, 5vw, 64px);" />
+      </div>
+    </div>
+  </section>
+
+  <section id="sancristobal" data-reveal="1" style="position: relative; padding: clamp(70px, 12vh, 140px) clamp(20px, 4vw, 56px); background: #E9E1D6;">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(30px, 5vw, 80px); align-items: center;">
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_crop,x_70,w_900/w_1800/v1788115101/AdobeStock_28872615_Preview_wgdtob.jpg" alt="Vida en las calles de San Cristóbal de las Casas" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #E4D8C8;" />
+      <div style="display: flex; flex-direction: column; gap: 26px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">La ciudad</span>
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(28px, 3.52vw, 55px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: pretty;">Una ciudad viva, en perfecto equilibrio</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 22px 34px;">
+          <p style="margin: 0; font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">Aquí conviven hoteles de lujo, cafés sofisticados, restaurantes con estilo, tiendas naturistas y boutiques de moda, con una clase media en crecimiento.</p>
+          <p style="margin: 0; font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">Todo ello equilibrado por las comunidades indígenas que rodean la ciudad, con sus tradiciones firmemente intactas, que aportan una nota única de cultura y color.</p>
+        </div>
+        <a href="/san-cristobal-es" style="align-self: flex-start; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Nuestra guía de San Cristóbal</a>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(60px, 10vh, 130px) clamp(20px, 4vw, 56px);">
+    <div style="max-width: 1400px; margin: 0 auto;">
+      <h2 style="margin: 0 0 clamp(30px, 4vw, 52px); font-family: 'Work Sans', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Todo aquí, en un solo lugar</h2>
+      <div data-index-grid="1" style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 1px; background: rgba(43, 38, 34, 0.14);">
+        <a href="/about-es" class="grid-tile" style="background: #F2EDE6; padding: clamp(26px, 3vw, 40px); display: flex; flex-direction: column; gap: 10px; min-height: 168px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 28px; font-weight: 400; line-height: 1.2;">Sobre nosotros</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Quiénes somos y cómo trabajamos con quienes viven aquí.</span>
+        </a>
+        <a href="/san-cristobal-es" class="grid-tile" style="background: #F2EDE6; padding: clamp(26px, 3vw, 40px); display: flex; flex-direction: column; gap: 10px; min-height: 168px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 28px; font-weight: 400; line-height: 1.2;">San Cristóbal</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Barrio por barrio, y dónde comer mientras buscas.</span>
+        </a>
+        <a href="/property-for-sale-es" class="grid-tile" style="background: #F2EDE6; padding: clamp(26px, 3vw, 40px); display: flex; flex-direction: column; gap: 10px; min-height: 168px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 28px; font-weight: 400; line-height: 1.2;">Propiedades en venta</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Casas en el centro, patios y alguna ruina que vale la pena rescatar.</span>
+        </a>
+        <a href="/property-for-rent-es" class="grid-tile" style="background: #F2EDE6; padding: clamp(26px, 3vw, 40px); display: flex; flex-direction: column; gap: 10px; min-height: 168px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 28px; font-weight: 400; line-height: 1.2;">Propiedades en alquiler</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Por mes y larga estancia, casi siempre amuebladas y céntricas.</span>
+        </a>
+        <a href="/off-grid-builds-es" class="grid-tile" style="background: #F2EDE6; padding: clamp(26px, 3vw, 40px); display: flex; flex-direction: column; gap: 10px; min-height: 168px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 28px; font-weight: 400; line-height: 1.2;">Construcción off grid</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Solar, cisternas, bosque. Independencia, con cada detalle revisado.</span>
+        </a>
+        <a href="/land-for-sale-es" class="grid-tile" style="background: #F2EDE6; padding: clamp(26px, 3vw, 40px); display: flex; flex-direction: column; gap: 10px; min-height: 168px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 28px; font-weight: 400; line-height: 1.2;">Terrenos en venta</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Predios con papeles en orden y una palabra honesta sobre el agua.</span>
+        </a>
+        <a href="/interior-design-es" class="grid-tile" style="background: #F2EDE6; padding: clamp(26px, 3vw, 40px); display: flex; flex-direction: column; gap: 10px; min-height: 168px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 28px; font-weight: 400; line-height: 1.2;">Diseño de interiores <span style="color: #c15857;">+</span> Mobiliario</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Cuando ya es tuya: artesanos, textiles y espacios armados con calma.</span>
+        </a>
+        <a href="/notes-es" class="grid-tile" style="background: #F2EDE6; padding: clamp(26px, 3vw, 40px); display: flex; flex-direction: column; gap: 10px; min-height: 168px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 28px; font-weight: 400; line-height: 1.2;">Notas</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Lo que conviene saber antes de comprar, anotado a medida que lo aprendemos.</span>
+        </a>
+        <a href="#sell" class="grid-tile" style="background: #F2EDE6; padding: clamp(26px, 3vw, 40px); display: flex; flex-direction: column; gap: 10px; min-height: 168px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 28px; font-weight: 400; line-height: 1.2;">¿Vendes o alquilas?</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Una conversación breve, una valuación justa y fotografías que dicen la verdad.</span>
+        </a>
+        <a href="#enquire" class="grid-tile-red" style="background: #c15857; color: #FBF8F3; padding: clamp(26px, 3vw, 40px); display: flex; flex-direction: column; gap: 10px; min-height: 168px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 28px; font-weight: 400; line-height: 1.2;">Contáctanos</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: rgba(251, 248, 243, 0.82);">Escríbenos en español o en inglés. Respondemos la misma semana.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="interiors" data-reveal="1" style="padding: clamp(60px, 10vh, 130px) clamp(20px, 4vw, 56px); background: #FBF8F3;">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(30px, 5vw, 76px); align-items: center;">
+      <div style="display: flex; flex-direction: column; gap: 24px; order: 2;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Diseño de interiores + mobiliario</span>
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(28px, 3.52vw, 55px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: pretty;">La casa es sólo la mitad</h2>
+        <p style="margin: 0; max-width: 40ch; font-size: 15px; font-weight: 300; line-height: 1.85; color: #6E655C;">Un servicio completo de diseño de interiores para tu nueva propiedad, y si simplemente buscas piezas originales y bellas, mi empresa de mobiliario y decoración Humberto y Lara ofrece trabajo de artesanía impecable junto con decoración artesanal de alta gama, todo hecho a mano aquí en San Cristóbal.</p>
+        <a href="/interior-design-es" style="align-self: flex-start; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Ver Humberto y Lara</a>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 2vw, 24px); order: 1;">
+        <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788330793/INSTAGRAM_CONTENT_20257_ljnknc.jpg" alt="Diseño de interiores por Humberto y Lara" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #E4D8C8;" />
+        <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788330792/INSTAGRAM_CONTENT_202511_b83jhn.jpg" alt="Muebles y decoración hechos a mano por Humberto y Lara" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #E4D8C8; margin-top: clamp(22px, 4vw, 54px);" />
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(60px, 10vh, 130px) clamp(20px, 4vw, 56px);">
+    <div style="max-width: 1400px; margin: 0 auto;">
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 18px; padding-bottom: 34px; border-bottom: 1px solid rgba(43, 38, 34, 0.14);">
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Notas desde la oficina</h2>
+        <a href="/notes-es" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E655C;">Todas las notas</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(26px, 3vw, 48px); padding-top: 40px;">
+        <a href="/notes-es" style="display: flex; flex-direction: column; gap: 16px;">
+          <img src="/images/colonial-street.jpg" alt="Calle colonial pintada" style="width: 100%; aspect-ratio: 16 / 11; object-fit: cover; background: #E4D8C8;" />
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Nota 01</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; font-weight: 400; line-height: 1.25;">Entrada de blog uno</span>
+        </a>
+        <a href="/notes-es" style="display: flex; flex-direction: column; gap: 16px;">
+          <img src="/images/living-room-plants.jpg" alt="Sala cálida con plantas" style="width: 100%; aspect-ratio: 16 / 11; object-fit: cover; background: #E4D8C8;" />
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Nota 02</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; font-weight: 400; line-height: 1.25;">Entrada de blog dos</span>
+        </a>
+        <a href="/notes-es" style="display: flex; flex-direction: column; gap: 16px;">
+          <img src="/images/night-sky.jpg" alt="Cielo nocturno sobre las montañas" style="width: 100%; aspect-ratio: 16 / 11; object-fit: cover; background: #E4D8C8;" />
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Nota 03</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; font-weight: 400; line-height: 1.25;">Entrada de blog tres</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(30px, 5vh, 60px) 0; overflow: hidden;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding: 0 clamp(20px, 4vw, 56px) 26px; max-width: 1400px; margin: 0 auto;">
+      <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">@larasancristobal</h2>
+      <a href="#top" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E655C;">Síguenos</a>
+    </div>
+    <div style="display: flex; gap: 12px; padding: 0 clamp(20px, 4vw, 56px); overflow-x: auto; scrollbar-width: none;">
+      <img src="/images/bougainvillea-wall.jpg" alt="" style="width: clamp(180px, 20vw, 300px); aspect-ratio: 1; object-fit: cover; background: #E4D8C8;" />
+      <img src="/images/sitting-room-terracotta.jpg" alt="" style="width: clamp(180px, 20vw, 300px); aspect-ratio: 1; object-fit: cover; background: #E4D8C8;" />
+      <img src="/images/mountains-cloud.jpg" alt="" style="width: clamp(180px, 20vw, 300px); aspect-ratio: 1; object-fit: cover; background: #E4D8C8;" />
+      <img src="/images/colonial-street.jpg" alt="" style="width: clamp(180px, 20vw, 300px); aspect-ratio: 1; object-fit: cover; background: #E4D8C8;" />
+      <img src="/images/bedroom-linen.jpg" alt="" style="width: clamp(180px, 20vw, 300px); aspect-ratio: 1; object-fit: cover; background: #E4D8C8;" />
+      <img src="/images/living-room-plants.jpg" alt="" style="width: clamp(180px, 20vw, 300px); aspect-ratio: 1; object-fit: cover; background: #E4D8C8;" />
+      <img src="/images/bougainvillea-wall.jpg" alt="" style="width: clamp(180px, 20vw, 300px); aspect-ratio: 1; object-fit: cover; background: #E4D8C8;" />
+      <img src="/images/sitting-room-terracotta.jpg" alt="" style="width: clamp(180px, 20vw, 300px); aspect-ratio: 1; object-fit: cover; background: #E4D8C8;" />
+      <img src="/images/mountains-cloud.jpg" alt="" style="width: clamp(180px, 20vw, 300px); aspect-ratio: 1; object-fit: cover; background: #E4D8C8;" />
+      <img src="/images/colonial-street.jpg" alt="" style="width: clamp(180px, 20vw, 300px); aspect-ratio: 1; object-fit: cover; background: #E4D8C8;" />
+      <img src="/images/bedroom-linen.jpg" alt="" style="width: clamp(180px, 20vw, 300px); aspect-ratio: 1; object-fit: cover; background: #E4D8C8;" />
+      <img src="/images/living-room-plants.jpg" alt="" style="width: clamp(180px, 20vw, 300px); aspect-ratio: 1; object-fit: cover; background: #E4D8C8;" />
+    </div>
+  </section>
+
+  <section id="enquire" data-reveal="1" style="background: #c15857; color: #FBF8F3; padding: clamp(70px, 11vh, 140px) clamp(20px, 4vw, 56px) clamp(50px, 8vh, 100px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(34px, 5vw, 90px);">
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(251, 248, 243, 0.88);">Contáctanos</span>
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(28px, 3.52vw, 53px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: pretty; color: #FBF8F3;">Ven a tomar un café con nosotros</h2>
+        <p style="margin: 0; max-width: 38ch; font-size: 15px; font-weight: 300; line-height: 1.85; color: #FBF8F3;">Escríbenos y cuéntanos tu presupuesto y tu lista de deseos, para conversar sobre tus preferencias, lo que no es negociable y el presupuesto, y preparar una selección de propiedades adecuadas para ti.</p>
+        <div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 300; line-height: 1.9; color: #FBF8F3; padding-top: 6px;">
+          <span>Los Alcanfores</span>
+          <span>San Cristóbal de las Casas, Chiapas</span>
+          <a href="mailto:lara@larasancristobal.com" style="color: #FBF8F3; border-bottom: 1px solid rgba(251, 248, 243, 0.5);">lara@larasancristobal.com</a>
+          <span>WhatsApp +52 967 145 8587</span>
+        </div>
+      </div>
+      <form id="contact-form" style="display: flex; flex-direction: column; gap: 22px;">
+        <label style="display: flex; flex-direction: column; gap: 9px;">
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(251, 248, 243, 0.88);">Tu nombre</span>
+          <input type="text" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.45); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none;" />
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 9px;">
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(251, 248, 243, 0.88);">Correo electrónico</span>
+          <input type="email" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.45); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none;" />
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 9px;">
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(251, 248, 243, 0.88);">¿Qué estás buscando?</span>
+          <textarea rows="4" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.45); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.7; color: #FBF8F3; outline: none; resize: vertical;"></textarea>
+        </label>
+        <button type="submit" id="contact-submit" class="btn-submit" style="align-self: flex-start; margin-top: 4px; background: #FBF8F3; color: #2B2622; border: 0; padding: 17px 34px; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer;">Enviar consulta</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="sell" data-reveal="1" style="padding: clamp(60px, 9vh, 110px) clamp(20px, 4vw, 56px); background: #E9E1D6; border-top: 1px solid rgba(43, 38, 34, 0.1);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(28px, 5vw, 80px); align-items: end;">
+      <div style="display: flex; flex-direction: column; gap: 22px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Para vendedores y propietarios</span>
+        <p style="margin: 0; max-width: 26ch; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(25px, 2.99vw, 44px); line-height: 1.1; letter-spacing: 0.005em; text-wrap: pretty;">Una visita, una lectura justa del mercado y la persona adecuada encontrada</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <p style="margin: 0; max-width: 44ch; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Si tienes una propiedad que deseas vender o alquilar, escríbenos para agendar una visita y ayudarte a encontrar un inquilino adecuado o un comprador bien calificado.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+          <a href="https://wa.me/529671458587" class="btn-sell-action" style="background: #2B2622; color: #FBF8F3; padding: 16px 30px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;">WhatsApp +52 967 145 8587</a>
+          <a href="mailto:lara@larasancristobal.com" class="btn-dark-email" style="border: 1px solid rgba(43, 38, 34, 0.28); padding: 16px 30px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;">Escríbenos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer newsletter={true} lang="es" />
+
+  <script>
+    document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('contact-submit');
+      if (btn) btn.textContent = 'Gracias, te escribimos pronto';
+    });
+  </script>
+</Layout>

@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import ContactCta from '../components/ContactCta.astro';
+import Footer from '../components/Footer.astro';
+
+const path = Astro.url.pathname;
+---
+<Layout title="Propiedades en alquiler · Lara San Cristóbal" lang="es">
+  <Header lang="es" enHref="/property-for-rent" />
+  <MobileMenu currentPath={path} lang="es" />
+
+  <section id="top" style="position: relative; min-height: 78vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding: clamp(110px, 16vh, 180px) clamp(20px, 4vw, 56px) clamp(40px, 6vh, 72px);">
+    <div style="position: absolute; inset: 0; overflow: hidden;">
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_16:9,g_auto,w_2000/v1788330836/INSTAGRAM_CONTENT_202560_eq5ckj.jpg" alt="Propiedad en alquiler en San Cristóbal" style="width: 100%; height: 100%; object-fit: cover; object-position: center 45%;" />
+      <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(34, 31, 28, 0.34) 0%, rgba(34, 31, 28, 0.3) 40%, rgba(34, 31, 28, 0.66) 100%);"></div>
+    </div>
+    <div style="position: relative; max-width: 1400px; width: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 36px;">
+      <div style="display: flex; flex-direction: column; gap: 22px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(251, 248, 243, 0.72);">Propiedades en alquiler</span>
+        <h1 style="margin: 0; max-width: 18ch; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(35px, 5.10vw, 84px); line-height: 1.06; letter-spacing: 0.005em; color: #FBF8F3; text-wrap: pretty;">Una gran propiedad, con un propietario de confianza</h1>
+        <p style="margin: 0; font-size: clamp(17px, 1.7vw, 25px); font-weight: 300; line-height: 1.45; letter-spacing: 0.005em; color: rgba(251, 248, 243, 0.9);">Un equipo excelente para acompañarte</p>
+      </div>
+      <p style="margin: 0 0 10px; max-width: 36ch; font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(251, 248, 243, 0.86);">El mercado de alquiler aquí se mueve muy rápido, así que los mejores lugares rara vez llegan a publicarse.</p>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(70px, 12vh, 150px) clamp(20px, 4vw, 56px) clamp(40px, 6vh, 80px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(30px, 5vw, 86px); align-items: start;">
+      <p style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.46vw, 35px); line-height: 1.3; letter-spacing: -0.01em; text-wrap: pretty;">Casi siempre tenemos una selección de propiedades de alquiler de alta calidad, pero como el mercado de propiedades bien presentadas y bien ubicadas se mueve muy rápido, no siempre hay tiempo de publicarlas.</p>
+      <div style="display: flex; flex-direction: column; gap: 24px; padding-top: 8px;">
+        <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Por eso, escríbeme directamente si buscas alquilar aquí en San Cristóbal y haremos todo lo posible por encontrarte una gran propiedad que venga, por supuesto, con un propietario confiable y de toda confianza.</p>
+        <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Te acompañamos durante todo el proceso: escríbenos con tu presupuesto y tu lista de deseos para preparar una selección de propiedades adecuadas, y empezamos a visitarlas en cuanto estés listo.</p>
+        <a href="#enquire" style="align-self: flex-start; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Envía tu lista de deseos</a>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(30px, 5vh, 50px) clamp(20px, 4vw, 56px) clamp(60px, 9vh, 110px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(30px, 4vw, 46px);">
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 20px; padding-bottom: 30px; border-bottom: 1px solid rgba(43, 38, 34, 0.14);">
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Cómo funciona</h2>
+        <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E655C;">Tres pasos y ya estás visitando</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: rgba(43, 38, 34, 0.14);">
+        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 300; color: #c15857;">01</span>
+          <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">Cuéntame tu presupuesto, tu lista de deseos y cuándo quieres mudarte.</span>
+        </div>
+        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 300; color: #c15857;">02</span>
+          <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">Preparamos una selección de propiedades adecuadas, publicadas y no publicadas.</span>
+        </div>
+        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 300; color: #c15857;">03</span>
+          <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">Empezamos las visitas cuando estés listo y te acompañamos con todo el papeleo.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: 0 0 clamp(20px, 4vh, 40px); overflow: hidden;">
+    <div style="display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none;">
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788115974/LSC_16_iems67.jpg" alt="" style="width: clamp(200px, 28vw, 420px); aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8; flex-shrink: 0;" />
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788115976/LSC_18_bxjflq.jpg" alt="" style="width: clamp(200px, 28vw, 420px); aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8; flex-shrink: 0;" />
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/v1788115973/LSC_13_w9j39z.jpg" alt="" style="width: clamp(200px, 28vw, 420px); aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8; flex-shrink: 0;" />
+    </div>
+  </section>
+
+  <ContactCta heading="¿Buscas dónde alquilar? Escríbeme directamente." lang="es" />
+  <Footer lang="es" />
+</Layout>

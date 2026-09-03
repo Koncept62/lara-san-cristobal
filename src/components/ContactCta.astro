@@ -1,0 +1,19 @@
+---
+interface Props {
+  heading: string;
+  lang?: 'en' | 'es';
+}
+const { heading, lang = 'en' } = Astro.props;
+const es = lang === 'es';
+---
+<section id="enquire" data-reveal="1" style="background: #c15857; color: #FBF8F3; padding: clamp(70px, 11vh, 140px) clamp(20px, 4vw, 56px);">
+  <div style="max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 30px; text-align: center;">
+    <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(251, 248, 243, 0.88);">{es ? 'Contáctanos' : 'Contact us'}</span>
+    <p style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3.70vw, 55px); line-height: 1.12; letter-spacing: -0.015em; text-wrap: pretty; color: #FBF8F3;" set:html={heading}></p>
+    <div style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; padding-top: 4px;">
+      <a href="https://wa.me/529671458587" class="btn-wa" style="background: #FBF8F3; color: #2B2622; padding: 17px 34px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;">WhatsApp +52 967 145 8587</a>
+      <a href="mailto:lara@larasancristobal.com" class="btn-email-outline" style="border: 1px solid rgba(251, 248, 243, 0.5); color: #FBF8F3; padding: 17px 34px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;">lara@larasancristobal.com</a>
+    </div>
+    <span style="font-size: 13px; font-weight: 300; color: #FBF8F3;">Los Alcanfores, San Cristóbal de las Casas, Chiapas, {es ? 'México' : 'Mexico'}</span>
+  </div>
+</section>

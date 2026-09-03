@@ -1,0 +1,37 @@
+---
+interface Props {
+  esHref?: string;
+  enHref?: string;
+  lang?: 'en' | 'es';
+}
+const { esHref = '#', enHref = '/', lang = 'en' } = Astro.props;
+const homeHref = lang === 'es' ? '/index-es' : '/';
+---
+<header style="position: fixed; top: 0; left: 0; right: 0; z-index: 60; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 15px clamp(16px, 4vw, 56px); background: #c15857; border-bottom: 1px solid rgba(251, 248, 243, 0.18);">
+  <a href={homeHref} style="display: block; line-height: 0;"><img src="/images/logo-wordmark-white.png" alt="Lara San Cristóbal" style="height: clamp(25px, 6vw, 34px); width: auto;" /></a>
+  <div style="display: flex; align-items: center; gap: clamp(10px, 2vw, 34px);">
+    <div style="display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.72);">
+      {lang === 'es' ? (
+        <>
+          <a href={enHref} style="color: rgba(251, 248, 243, 0.72);">EN</a>
+          <span style="opacity: 0.4;">/</span>
+          <span style="color: #FBF8F3;">ES</span>
+        </>
+      ) : (
+        <>
+          <span style="color: #FBF8F3;">EN</span>
+          <span style="opacity: 0.4;">/</span>
+          <a href={esHref} style="color: rgba(251, 248, 243, 0.72);">ES</a>
+        </>
+      )}
+    </div>
+    <button type="button" data-toggle-menu style="display: flex; align-items: center; gap: 11px; background: none; border: 0; padding: 10px 0; font-family: 'Work Sans', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: #FBF8F3; cursor: pointer;">
+      <span style="display: flex; flex-direction: column; gap: 4px; width: 20px;">
+        <span style="display: block; height: 1px; background: #FBF8F3;"></span>
+        <span style="display: block; height: 1px; background: #FBF8F3;"></span>
+      </span>
+      Menu
+    </button>
+    <img src="/images/sprig-white.png" alt="" style="height: clamp(19px, 5vw, 38px); width: auto; opacity: 0.92;" />
+  </div>
+</header>

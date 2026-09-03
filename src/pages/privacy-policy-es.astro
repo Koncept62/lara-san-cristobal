@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import Footer from '../components/Footer.astro';
+
+const path = Astro.url.pathname;
+const pageStyles = `
+  @media (min-width: 860px) { [data-policy-grid] { grid-template-columns: minmax(200px, 260px) minmax(0, 1fr) !important; } }
+`;
+---
+<Layout title="Aviso de Privacidad · Lara San Cristóbal" pageStyles={pageStyles} lang="es">
+  <Header lang="es" enHref="/privacy-policy" />
+  <MobileMenu currentPath={path} lang="es" />
+
+  <section id="top" style="background: #221F1C; color: #FBF8F3; padding: clamp(120px, 20vh, 210px) clamp(20px, 4vw, 56px) clamp(50px, 8vh, 90px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 30px;">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(251, 248, 243, 0.55);">
+          <a href="/index-es" style="color: rgba(251, 248, 243, 0.55);">Inicio</a>
+          <span>/</span>
+          <span style="color: rgba(251, 248, 243, 0.9);">Privacidad</span>
+        </div>
+        <h1 style="margin: 0; max-width: 20ch; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(37px, 5.2vw, 84px); line-height: 1.06; letter-spacing: 0.005em; color: #FBF8F3; text-wrap: pretty;">Aviso de Privacidad</h1>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 7px; padding-bottom: 8px;">
+        <span style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(251, 248, 243, 0.5);">Última actualización</span>
+        <span style="font-size: 15px; font-weight: 300; color: rgba(251, 248, 243, 0.86);">[FECHA]</span>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(50px, 9vh, 110px) clamp(20px, 4vw, 56px) clamp(60px, 10vh, 120px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(30px, 5vw, 86px); align-items: start;" data-policy-grid="1">
+      <div style="display: flex; flex-direction: column; gap: 18px; position: sticky; top: 96px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Contenido</span>
+        <nav style="display: flex; flex-direction: column; gap: 1px; background: rgba(43, 38, 34, 0.14);">
+          <a href="#who-we-are" style="background: #F2EDE6; padding: 13px 2px; font-size: 14px; font-weight: 300;">Quiénes somos</a>
+          <a href="#what-we-collect" style="background: #F2EDE6; padding: 13px 2px; font-size: 14px; font-weight: 300;">Qué datos recogemos</a>
+          <a href="#how-we-use" style="background: #F2EDE6; padding: 13px 2px; font-size: 14px; font-weight: 300;">Cómo usamos tus datos</a>
+          <a href="#sharing" style="background: #F2EDE6; padding: 13px 2px; font-size: 14px; font-weight: 300;">Con quién los compartimos</a>
+          <a href="#transfers" style="background: #F2EDE6; padding: 13px 2px; font-size: 14px; font-weight: 300;">Transferencias internacionales</a>
+          <a href="#retention" style="background: #F2EDE6; padding: 13px 2px; font-size: 14px; font-weight: 300;">Conservación de los datos</a>
+          <a href="#your-rights" style="background: #F2EDE6; padding: 13px 2px; font-size: 14px; font-weight: 300;">Tus derechos</a>
+          <a href="#arco" style="background: #F2EDE6; padding: 13px 2px; font-size: 14px; font-weight: 300;">México — derechos ARCO</a>
+          <a href="#cookies" style="background: #F2EDE6; padding: 13px 2px; font-size: 14px; font-weight: 300;">Cookies</a>
+          <a href="#security" style="background: #F2EDE6; padding: 13px 2px; font-size: 14px; font-weight: 300;">Seguridad</a>
+          <a href="#changes" style="background: #F2EDE6; padding: 13px 2px; font-size: 14px; font-weight: 300;">Cambios en esta política</a>
+          <a href="#contact" style="background: #F2EDE6; padding: 13px 2px; font-size: 14px; font-weight: 300;">Contacto</a>
+        </nav>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: clamp(38px, 5vh, 58px); max-width: 68ch;">
+        <p style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(20px, 2.02vw, 29px); line-height: 1.36; letter-spacing: -0.01em; text-wrap: pretty;">Este aviso de privacidad explica cómo LARA San Cristóbal ("nosotros") recopila, usa y protege los datos personales cuando visitas larasancristobal.com.</p>
+
+        <div id="who-we-are" style="display: flex; flex-direction: column; gap: 16px;">
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: clamp(23px, 2.3vw, 32px); line-height: 1.2; letter-spacing: -0.01em;">Quiénes somos</h2>
+          <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">LARA San Cristóbal es la responsable del tratamiento de los datos personales recogidos a través de este sitio web. Domicilio fiscal: [DIRECCIÓN DEL CLIENTE]. RFC: [RFC]. Contacto: <a href="mailto:lara@larasancristobal.com" style="color: #c15857;">lara@larasancristobal.com</a>.</p>
+        </div>
+
+        <div id="what-we-collect" style="display: flex; flex-direction: column; gap: 16px;">
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: clamp(23px, 2.3vw, 32px); line-height: 1.2; letter-spacing: -0.01em;">Qué datos recogemos</h2>
+          <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Según cómo interactúes con este sitio, podemos recoger:</p>
+          <div style="display: flex; flex-direction: column; gap: 1px; background: rgba(43, 38, 34, 0.14); margin-top: 4px;">
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Los datos de contacto que nos facilites en el formulario de consulta — nombre, correo electrónico y el contenido de tu mensaje sobre una propiedad, un terreno o una construcción off-grid que te interese.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Los datos que compartas si nos escribes por WhatsApp — tu número de teléfono y el contenido del mensaje, sujetos a la propia política de privacidad de WhatsApp.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Los datos de la reserva si agendas una visita o una llamada — nombre, correo electrónico y el horario elegido.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Datos técnicos y de uso recogidos automáticamente mediante analítica — páginas visitadas, ubicación aproximada, tipo de dispositivo y navegador.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Tus preferencias de cookies y decisiones de consentimiento, guardadas para recordar tus ajustes en visitas posteriores.</p>
+          </div>
+        </div>
+
+        <div id="how-we-use" style="display: flex; flex-direction: column; gap: 16px;">
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: clamp(23px, 2.3vw, 32px); line-height: 1.2; letter-spacing: -0.01em;">Cómo usamos tus datos</h2>
+          <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Usamos los datos personales para:</p>
+          <div style="display: flex; flex-direction: column; gap: 1px; background: rgba(43, 38, 34, 0.14); margin-top: 4px;">
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Responder a consultas sobre propiedades, terrenos y construcciones off-grid recibidas por el formulario de contacto o por WhatsApp.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Organizar y gestionar visitas, llamadas y citas.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Entender cómo se usa el sitio, para mejorar el contenido y el diseño.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Enviar novedades de propiedades y comunicaciones comerciales, únicamente si has dado tu consentimiento para recibirlas.</p>
+          </div>
+          <p style="margin: 0; padding-top: 10px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #6E655C;">Base legal del tratamiento</p>
+          <div style="display: flex; flex-direction: column; gap: 1px; background: rgba(43, 38, 34, 0.14); margin-top: 4px;">
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Consultas por formulario y por WhatsApp — sobre la base de tu consentimiento al contactarnos y de nuestro interés legítimo en responderte.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Cookies de analítica — sobre la base de tu consentimiento, otorgado en el aviso de cookies.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Comunicaciones comerciales — sobre la base de tu consentimiento explícito, que puedes retirar en cualquier momento.</p>
+          </div>
+        </div>
+
+        <div id="sharing" style="display: flex; flex-direction: column; gap: 16px;">
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: clamp(23px, 2.3vw, 32px); line-height: 1.2; letter-spacing: -0.01em;">Con quién compartimos los datos</h2>
+          <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Utilizamos los siguientes servicios de terceros para operar este sitio web. Cada uno trata los datos por cuenta nuestra al amparo de un contrato de tratamiento de datos:</p>
+          <div style="display: flex; flex-direction: column; gap: 1px; background: rgba(43, 38, 34, 0.14); margin-top: 4px;">
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;"><strong style="font-weight: 400; color: #2B2622;">Netlify</strong> — alojamiento del sitio y gestión del envío de formularios.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;"><strong style="font-weight: 400; color: #2B2622;">GitHub</strong> — gestión de contenidos de las secciones editables de este sitio.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;"><strong style="font-weight: 400; color: #2B2622;">[Proveedor de analítica — por confirmar]</strong> — analítica de uso del sitio.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;"><strong style="font-weight: 400; color: #2B2622;">[Herramienta de consentimiento — por confirmar, probablemente CookieYes]</strong> — gestión del consentimiento de cookies.</p>
+          </div>
+        </div>
+
+        <div id="transfers" style="display: flex; flex-direction: column; gap: 16px;">
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: clamp(23px, 2.3vw, 32px); line-height: 1.2; letter-spacing: -0.01em;">Transferencias internacionales de datos</h2>
+          <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Algunos de los servicios anteriores pueden tratar datos fuera de México, incluidos Estados Unidos y el Espacio Económico Europeo. Cuando esto ocurre, las transferencias están protegidas por Cláusulas Contractuales Tipo o una salvaguarda aprobada equivalente, según se establece en las condiciones de tratamiento de datos de cada proveedor.</p>
+        </div>
+
+        <div id="retention" style="display: flex; flex-direction: column; gap: 16px;">
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: clamp(23px, 2.3vw, 32px); line-height: 1.2; letter-spacing: -0.01em;">Conservación de los datos</h2>
+          <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Conservamos los datos del formulario de contacto y de las reservas durante [PERIODO DE CONSERVACIÓN, p. ej. 24 meses] desde tu última interacción con nosotros, salvo que la ley exija un plazo mayor. Los datos de analítica se conservan según los ajustes predeterminados del proveedor correspondiente.</p>
+        </div>
+
+        <div id="your-rights" style="display: flex; flex-direction: column; gap: 16px;">
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: clamp(23px, 2.3vw, 32px); line-height: 1.2; letter-spacing: -0.01em;">Tus derechos</h2>
+          <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Si te encuentras en la Unión Europea o el Reino Unido, el Reglamento General de Protección de Datos (RGPD) te otorga el derecho a:</p>
+          <div style="display: flex; flex-direction: column; gap: 1px; background: rgba(43, 38, 34, 0.14); margin-top: 4px;">
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Solicitar acceso a los datos personales que tenemos sobre ti.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Solicitar la rectificación de datos inexactos.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Solicitar la supresión de tus datos («derecho al olvido»).</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Oponerte a determinados tratamientos o solicitar su limitación.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Solicitar una copia de tus datos en un formato portable.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;">Retirar tu consentimiento en cualquier momento, sin que ello afecte al tratamiento previo a la retirada.</p>
+          </div>
+          <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Para ejercer cualquiera de estos derechos, escríbenos a <a href="mailto:lara@larasancristobal.com" style="color: #c15857;">lara@larasancristobal.com</a>. Responderemos en el plazo de un mes, según exige la ley.</p>
+        </div>
+
+        <div id="arco" style="display: flex; flex-direction: column; gap: 16px;">
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: clamp(23px, 2.3vw, 32px); line-height: 1.2; letter-spacing: -0.01em;">México — derechos ARCO (LFPDPPP)</h2>
+          <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Como nuestra actividad se desarrolla en México, esta sección constituye nuestro Aviso de Privacidad para visitantes situados en México. Conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP), tienes derechos ARCO sobre tus datos personales:</p>
+          <div style="display: flex; flex-direction: column; gap: 1px; background: rgba(43, 38, 34, 0.14); margin-top: 4px;">
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;"><strong style="font-weight: 400; color: #2B2622;">Acceso</strong> — conocer qué datos personales tenemos sobre ti y cómo se usan.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;"><strong style="font-weight: 400; color: #2B2622;">Rectificación</strong> — solicitar la corrección de datos inexactos o desactualizados.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;"><strong style="font-weight: 400; color: #2B2622;">Cancelación</strong> — solicitar la supresión de tus datos cuando ya no sean necesarios para la finalidad recogida.</p>
+            <p style="margin: 0; background: #F2EDE6; padding: 15px 0; font-size: 15px; font-weight: 300; line-height: 1.8; color: #2B2622;"><strong style="font-weight: 400; color: #2B2622;">Oposición</strong> — oponerte a usos concretos de tus datos, incluidos los fines comerciales.</p>
+          </div>
+          <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Para ejercer cualquier derecho ARCO, escríbenos a <a href="mailto:lara@larasancristobal.com" style="color: #c15857;">lara@larasancristobal.com</a> indicando tu nombre, una descripción del dato o derecho en cuestión y un comprobante de identidad.</p>
+        </div>
+
+        <div id="cookies" style="display: flex; flex-direction: column; gap: 16px;">
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: clamp(23px, 2.3vw, 32px); line-height: 1.2; letter-spacing: -0.01em;">Cookies</h2>
+          <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Este sitio usa cookies para recordar tus preferencias y entender el uso del sitio. Puedes gestionar tus preferencias de cookies en cualquier momento desde el enlace de ajustes de cookies en el pie de página.</p>
+        </div>
+
+        <div id="security" style="display: flex; flex-direction: column; gap: 16px;">
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: clamp(23px, 2.3vw, 32px); line-height: 1.2; letter-spacing: -0.01em;">Seguridad</h2>
+          <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Adoptamos medidas técnicas y organizativas razonables para proteger los datos personales frente a accesos no autorizados, pérdida o uso indebido, apoyándonos también en las prácticas de seguridad de los proveedores de alojamiento e infraestructura indicados arriba.</p>
+        </div>
+
+        <div id="changes" style="display: flex; flex-direction: column; gap: 16px;">
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: clamp(23px, 2.3vw, 32px); line-height: 1.2; letter-spacing: -0.01em;">Cambios en esta política</h2>
+          <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Podemos actualizar esta política de vez en cuando. La fecha de «última actualización» al inicio de esta página refleja la revisión más reciente.</p>
+        </div>
+
+        <div id="contact" style="display: flex; flex-direction: column; gap: 16px;">
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: clamp(23px, 2.3vw, 32px); line-height: 1.2; letter-spacing: -0.01em;">Contacto</h2>
+          <p style="margin: 0; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">Si tienes alguna duda sobre esta política o sobre cómo tratamos tus datos, escríbenos a <a href="mailto:lara@larasancristobal.com" style="color: #c15857;">lara@larasancristobal.com</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer lang="es" />
+</Layout>

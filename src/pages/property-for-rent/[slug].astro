@@ -1,0 +1,242 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import MobileMenu from '../../components/MobileMenu.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('property-for-rent');
+  return entries.map(entry => {
+    const slug = entry.id.replace(/\.md$/, '');
+    return {
+      params: { slug },
+      props: { entry, others: entries.filter(e => e.id !== entry.id).slice(0, 3) },
+    };
+  });
+}
+
+const { entry, others } = Astro.props;
+const d = entry.data;
+const slug = entry.id.replace(/\.md$/, '');
+
+const statusLabel = d.status === 'Reserved' ? 'Reserved' : d.status === 'Sold' ? 'Let agreed' : '';
+const heroMeta = [d.location, 'For rent', statusLabel || 'Available'].filter(Boolean).join(' · ');
+const paragraphs = d.description.split(/\n\n+/).filter(Boolean);
+---
+<Layout title={`${d.propertyName} · Lara San Cristóbal`}>
+  <Header esHref={`/property-for-rent-es/${slug}`} />
+  <MobileMenu currentPath={Astro.url.pathname} />
+
+  <!-- Hero -->
+  <section style="position: relative; height: 82vh; min-height: 460px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end;">
+    <div style="position: absolute; inset: 0; overflow: hidden;">
+      {d.gallery[0] ? (
+        <img src={d.gallery[0]} alt={d.propertyName} style="width: 100%; height: 100%; object-fit: cover;" />
+      ) : (
+        <div style="width: 100%; height: 100%; background: #E4D8C8;"></div>
+      )}
+      <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(34,31,28,0.3) 0%, rgba(34,31,28,0.08) 40%, rgba(34,31,28,0.58) 100%);"></div>
+    </div>
+    <div style="position: relative; max-width: 1400px; width: 100%; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px) clamp(34px, 5vh, 56px); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 26px;">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <span style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(251,248,243,0.75);">{heroMeta}</span>
+        <h1 style="margin: 0; max-width: 18ch; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(33px, 5.28vw, 81px); line-height: 1; letter-spacing: -0.015em; color: #FBF8F3;">{d.propertyName}</h1>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px;">
+        {d.gallery.length > 0 && (
+          <button id="open-gallery" type="button" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(251,248,243,0.14); border: 1px solid rgba(251,248,243,0.55); color: #FBF8F3; padding: 15px 24px; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; backdrop-filter: blur(6px);">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><rect x="1" y="3" width="11" height="9"></rect><path d="M4 12l3-3 2.4 2.4M15 5v8H5"></path><circle cx="8.6" cy="6" r="1"></circle></svg>
+            Gallery
+          </button>
+        )}
+        {d.floorPlan && (
+          <button id="open-floorplan" type="button" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(251,248,243,0.14); border: 1px solid rgba(251,248,243,0.55); color: #FBF8F3; padding: 15px 24px; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; backdrop-filter: blur(6px);">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="13"></rect><path d="M1.5 9.5h6M7.5 1.5v13M7.5 5.5h7"></path></svg>
+            Floor plan
+          </button>
+        )}
+        <a href="#enquire" style="background: #6E8A56; color: #FBF8F3; padding: 16px 30px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;">Enquire about this rental</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back / Reference bar -->
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; max-width: 1400px; margin: 0 auto; padding: 20px clamp(20px, 4vw, 56px); border-bottom: 1px solid rgba(43,38,34,0.14); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">
+    <a href="/property-for-rent">← Back to all property for rent</a>
+    {d.referenceCode && <span>Reference {d.referenceCode}</span>}
+  </div>
+
+  <!-- Description + Spec table -->
+  <section data-reveal="1" style="padding: clamp(50px, 9vh, 110px) clamp(20px, 4vw, 56px) clamp(30px, 5vh, 60px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(30px, 5vw, 90px); align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">In brief</span>
+        <p style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.55vw, 37px); line-height: 1.26; letter-spacing: -0.01em; text-wrap: pretty;">{d.inBrief}</p>
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Description</span>
+        <div style="display: flex; flex-direction: column; gap: 18px; max-width: 52ch; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">
+          {paragraphs.map(p => <p style="margin: 0;" set:html={p} />)}
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; border-top: 1px solid rgba(43,38,34,0.14);">
+        <div style="display: flex; justify-content: space-between; gap: 20px; padding: 17px 0; border-bottom: 1px solid rgba(43,38,34,0.14);">
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Bedrooms</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 21px;">{d.bedrooms}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 20px; padding: 17px 0; border-bottom: 1px solid rgba(43,38,34,0.14);">
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Bathrooms</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 21px;">{d.bathrooms}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 20px; padding: 17px 0; border-bottom: 1px solid rgba(43,38,34,0.14);">
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Property size</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 21px;">{d.propertySize}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 20px; padding: 17px 0; border-bottom: 1px solid rgba(43,38,34,0.14);">
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Plot size</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 21px;">{d.plotSize}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 20px; padding: 17px 0; border-bottom: 1px solid rgba(43,38,34,0.14);">
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Location</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 21px;">{d.location}</span>
+        </div>
+        {d.referenceCode && (
+          <div style="display: flex; justify-content: space-between; gap: 20px; padding: 17px 0; border-bottom: 1px solid rgba(43,38,34,0.14);">
+            <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Reference code</span>
+            <span style="font-family: 'Work Sans', sans-serif; font-size: 21px;">{d.referenceCode}</span>
+          </div>
+        )}
+        <div style="display: flex; justify-content: space-between; gap: 20px; padding: 17px 0; border-bottom: 1px solid rgba(43,38,34,0.14);">
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Price per month</span>
+          {d.priceMxn ? (
+            <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px; text-align: right;">
+              <span style="font-family: 'Work Sans', sans-serif; font-size: 21px; color: #c15857;">{d.priceMxn}</span>
+              {d.priceUsd && <span style="font-size: 12px; font-weight: 300; color: #6E655C;">≈ {d.priceUsd} USD guide</span>}
+            </span>
+          ) : (
+            <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #c15857;">Enquire for price</span>
+          )}
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 20px; padding: 17px 0; border-bottom: 1px solid rgba(43,38,34,0.14);">
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Status</span>
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 21px;">{d.status}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo gallery grid -->
+  {d.gallery.length > 0 && (
+    <section data-reveal="1" style="background: #38492F; padding: clamp(50px, 8vh, 100px) clamp(20px, 4vw, 56px);">
+      <div style="max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(16px, 2vw, 26px);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(16px, 2vw, 26px);">
+          {d.gallery.slice(0, 3).map((img, i) => (
+            <button type="button" class="gallery-btn" data-index={i} style="border: 0; padding: 0; background: #4A5D3E; cursor: zoom-in; overflow: hidden; aspect-ratio: 4 / 5;">
+              <img src={img} alt={`${d.propertyName} — photo ${i + 1}`} style="width: 100%; height: 100%; object-fit: cover;" />
+            </button>
+          ))}
+        </div>
+        {d.gallery.length > 3 && (
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(16px, 2vw, 26px);">
+            {d.gallery.slice(3, 5).map((img, i) => (
+              <button type="button" class="gallery-btn" data-index={i + 3} style="border: 0; padding: 0; background: #4A5D3E; cursor: zoom-in; overflow: hidden; aspect-ratio: 16 / 11;">
+                <img src={img} alt={`${d.propertyName} — photo ${i + 4}`} style="width: 100%; height: 100%; object-fit: cover;" />
+              </button>
+            ))}
+          </div>
+        )}
+        <p style="margin: 0; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,240,228,0.6);">Tap any photograph to open it larger</p>
+      </div>
+    </section>
+  )}
+
+  <!-- Lightbox overlay -->
+  <div id="lightbox" style="display: none; position: fixed; inset: 0; z-index: 95; background: rgba(28,25,22,0.94); align-items: center; justify-content: center; padding: clamp(24px, 5vw, 70px); cursor: zoom-out;">
+    <img id="lightbox-img" src="" alt="" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+    <button id="lightbox-close" type="button" style="position: absolute; top: 24px; right: clamp(20px, 4vw, 56px); background: none; border: 0; padding: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(242,237,230,0.7); cursor: pointer;">Close</button>
+  </div>
+
+  {d.floorPlan && (
+    <div id="floorplan" style="display: none; position: fixed; inset: 0; z-index: 95; background: rgba(28,25,22,0.94); align-items: center; justify-content: center; padding: clamp(24px, 5vw, 70px); cursor: zoom-out;">
+      <img src={d.floorPlan} alt="Floor plan" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+      <button id="floorplan-close" type="button" style="position: absolute; top: 24px; right: clamp(20px, 4vw, 56px); background: none; border: 0; padding: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(242,237,230,0.7); cursor: pointer;">Close</button>
+    </div>
+  )}
+
+  <!-- Enquire form -->
+  <section id="enquire" data-reveal="1" style="padding: clamp(60px, 10vh, 130px) clamp(20px, 4vw, 56px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(34px, 5vw, 90px);">
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Enquire</span>
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3.34vw, 51px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: pretty; max-width: 20ch;">Ask us anything about this rental</h2>
+        <p style="margin: 0; max-width: 38ch; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">We can send the full plan and paperwork, or meet you at the gate. Viewings most mornings, and we are happy to do a video walkthrough if you are still abroad.</p>
+        <div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 300; line-height: 1.9; padding-top: 6px;">
+          <a href="mailto:lara@larasancristobal.com" style="color: #c15857;">lara@larasancristobal.com</a>
+          <span>WhatsApp +52 967 145 8587</span>
+        </div>
+      </div>
+      <form id="enquire-form" style="display: flex; flex-direction: column; gap: 22px;">
+        <label style="display: flex; flex-direction: column; gap: 9px;">
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Your name</span>
+          <input type="text" name="name" style="background: transparent; border: 0; border-bottom: 1px solid rgba(43,38,34,0.24); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #2B2622; outline: none;" />
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 9px;">
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Email</span>
+          <input type="email" name="email" style="background: transparent; border: 0; border-bottom: 1px solid rgba(43,38,34,0.24); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #2B2622; outline: none;" />
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 9px;">
+          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Your message about {d.propertyName}</span>
+          <textarea name="message" rows="4" style="background: transparent; border: 0; border-bottom: 1px solid rgba(43,38,34,0.24); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.7; color: #2B2622; outline: none; resize: vertical;"></textarea>
+        </label>
+        <button type="submit" id="enquire-submit" class="btn-submit" style="align-self: flex-start; margin-top: 4px; background: #2B2622; color: #FBF8F3; border: 0; padding: 17px 34px; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer;">Send enquiry</button>
+      </form>
+    </div>
+  </section>
+
+  {others.length > 0 && (
+    <section data-reveal="1" style="padding: clamp(40px, 7vh, 90px) clamp(20px, 4vw, 56px) clamp(60px, 10vh, 120px);">
+      <div style="max-width: 1400px; margin: 0 auto;">
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 18px; padding-bottom: 34px; border-bottom: 1px solid rgba(43,38,34,0.14);">
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">You may also like</h2>
+          <a href="/property-for-rent" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E655C;">All property for rent</a>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(26px, 3vw, 48px); padding-top: 40px;">
+          {others.map(o => {
+            const oSlug = o.id.replace(/\.md$/, '');
+            return (
+              <a href={`/property-for-rent/${oSlug}`} style="display: flex; flex-direction: column; gap: 16px;">
+                {o.data.gallery[0] ? (
+                  <img src={o.data.gallery[0]} alt={o.data.propertyName} style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #E4D8C8;" />
+                ) : (
+                  <div style="width: 100%; aspect-ratio: 4 / 5; background: #E4D8C8;"></div>
+                )}
+                <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">{o.data.location} · For rent</span>
+                <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; line-height: 1.2;">{o.data.propertyName}</span>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <Footer />
+</Layout>
+
+<script define:vars={{ gallery: d.gallery, floorPlan: d.floorPlan }}>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const openLightbox = (src, alt) => { lightboxImg.src = src; lightboxImg.alt = alt || ''; lightbox.style.display = 'flex'; document.body.style.overflow = 'hidden'; };
+  const closeLightbox = () => { lightbox.style.display = 'none'; document.body.style.overflow = ''; };
+  document.querySelectorAll('.gallery-btn').forEach(btn => {
+    btn.addEventListener('click', () => { const idx = parseInt(btn.dataset.index); if (gallery[idx]) openLightbox(gallery[idx], btn.querySelector('img')?.alt); });
+  });
+  document.getElementById('open-gallery')?.addEventListener('click', () => { if (gallery[0]) openLightbox(gallery[0]); });
+  lightbox?.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.getElementById('lightbox-close')?.addEventListener('click', closeLightbox);
+  const fp = document.getElementById('floorplan');
+  document.getElementById('open-floorplan')?.addEventListener('click', () => { if (fp) { fp.style.display = 'flex'; document.body.style.overflow = 'hidden'; } });
+  fp?.addEventListener('click', e => { if (e.target === fp) { fp.style.display = 'none'; document.body.style.overflow = ''; } });
+  document.getElementById('floorplan-close')?.addEventListener('click', () => { fp.style.display = 'none'; document.body.style.overflow = ''; });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); if (fp) { fp.style.display = 'none'; document.body.style.overflow = ''; } } });
+  document.getElementById('enquire-form')?.addEventListener('submit', e => { e.preventDefault(); const btn = document.getElementById('enquire-submit'); if (btn) btn.textContent = "Thank you, we'll write back"; });
+</script>

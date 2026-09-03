@@ -1,23 +1,167 @@
+---
+interface Props {
+  title: string;
+  pageStyles?: string;
+  lang?: 'en' | 'es';
+}
+const { title, pageStyles = '', lang = 'en' } = Astro.props;
+const es = lang === 'es';
+---
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png" />
+  <meta name="theme-color" content="#c15857" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style is:global>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #F2EDE6; color: #2B2622; font-family: "Work Sans", sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: #c15857; }
+    img { display: block; }
+    ::selection { background: #E4D8C8; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+    #mobile-menu { display: none; }
+    #mobile-menu.is-open { display: grid; animation: fadeIn 0.35s ease both; }
+    #sell-modal { display: none; }
+    #sell-modal.is-open { display: flex; animation: fadeIn 0.3s ease both; }
+
+    .menu-nav-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(20px, 6vw, 90px);
+      align-items: start;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    @media (min-width: 640px) {
+      .menu-nav-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .btn-wa:hover  { background: #221F1C !important; color: #FBF8F3 !important; }
+    .btn-email-outline:hover { background: rgba(251,248,243,0.12) !important; }
+    .btn-hero:hover { background: #c15857 !important; color: #FBF8F3 !important; }
+    .btn-dark-wa:hover { background: #c15857 !important; }
+    .btn-dark-email:hover { border-color: #c15857 !important; color: #c15857 !important; }
+    .btn-submit:hover { background: #221F1C !important; color: #FBF8F3 !important; }
+    .btn-sell-submit:hover { background: #2B2622 !important; color: #FBF8F3 !important; }
+    .back-top:hover { background: #6E8A56 !important; }
+    .grid-tile:hover { background: #FBF8F3 !important; }
+    .grid-tile-red:hover { background: #a84645 !important; }
+    .btn-furniture:hover { background: #c15857 !important; }
+    .btn-decor:hover { border-color: #c15857 !important; color: #c15857 !important; }
+    .btn-note-more:hover { border-color: #c15857 !important; color: #c15857 !important; }
+    .btn-sell-action:hover { background: #c15857 !important; }
+    .btn-close-modal:hover { color: #FBF8F3 !important; }
+    input:focus, textarea:focus, select:focus { border-bottom-color: #FBF8F3 !important; }
+  </style>
+  {pageStyles && <style set:html={pageStyles} />}
+</head>
+<body>
+  <div style="overflow-x: hidden;">
+    <slot />
+  </div>
+
+  <a href="#top" aria-label="Back to top" class="back-top" style="position: fixed; bottom: 26px; right: clamp(20px, 4vw, 56px); z-index: 50; display: flex; align-items: center; gap: 8px; padding: 13px 19px; background: rgba(43, 38, 34, 0.88); color: #FBF8F3; font-family: 'Work Sans', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;">{es ? '↑ Arriba' : '↑ Top'}</a>
+
+  <div id="sell-modal" style="position: fixed; inset: 0; z-index: 90; align-items: center; justify-content: center; padding: clamp(14px, 4vw, 48px); background: rgba(34, 31, 28, 0.62);">
+    <div id="sell-modal-panel" style="position: relative; width: 100%; max-width: 740px; max-height: 100%; overflow-y: auto; background: #c15857; color: #FBF8F3; padding: clamp(30px, 4.5vw, 60px);">
+      <button type="button" id="sell-modal-close" class="btn-close-modal" style="position: absolute; top: 22px; right: 22px; background: none; border: 0; padding: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.8); cursor: pointer;">{es ? 'Cerrar' : 'Close'}</button>
+      <div style="display: flex; flex-direction: column; gap: 16px; max-width: 46ch;">
+        <span style="font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(251, 248, 243, 0.72);">{es ? 'Para vendedores y propietarios' : 'For sellers & landlords'}</span>
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3vw, 40px); line-height: 1.12; letter-spacing: 0.005em; text-wrap: pretty;">{es ? '¿Quieres vender o alquilar?' : 'Wanting to sell or rent?'}</h2>
+        <p style="margin: 0; font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(251, 248, 243, 0.85);">{es ? 'Si tienes una propiedad que deseas vender o alquilar, ponte en contacto con nosotros para que podamos organizar una visita y ayudarte a avanzar en la búsqueda de un inquilino adecuado o comprador bien cualificado.' : 'If you have a property you wish to sell or rent, please do get in touch so we can arrange a visit and help you to move forward with finding a suitable tenant or well qualified buyer.'}</p>
+      </div>
+      <form id="sell-form" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(20px, 2.6vw, 30px); padding-top: clamp(28px, 3.4vw, 42px);">
+        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? 'Tu nombre' : 'Your name'}</span><input type="text" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%;" /></label>
+        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? 'Correo electrónico' : 'Email'}</span><input type="email" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%;" /></label>
+        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">WhatsApp</span><input type="tel" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%;" /></label>
+        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? '¿Dónde está la propiedad?' : 'Where is the property?'}</span><input type="text" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%;" /></label>
+        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? '¿Vender o alquilar?' : 'Sell or rent?'}</span><select style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%; border-radius: 0; appearance: none;">{es ? (<><option style="color: #2B2622;">En venta</option><option style="color: #2B2622;">En alquiler</option><option style="color: #2B2622;">Aún no lo sé</option></>) : (<><option style="color: #2B2622;">For sale</option><option style="color: #2B2622;">For rent</option><option style="color: #2B2622;">Not sure yet</option></>)}</select></label>
+        <label style="display: flex; flex-direction: column; gap: 9px; grid-column: 1 / -1;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? 'Algo que debamos saber' : 'Anything we should know'}</span><textarea rows="2" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%; resize: vertical;"></textarea></label>
+        <div style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; padding-top: 4px;">
+          <button type="submit" id="sell-submit-btn" class="btn-sell-submit" style="background: #FBF8F3; color: #2B2622; border: 0; padding: 16px 32px; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer;">{es ? 'Enviar datos' : 'Send details'}</button>
+          <div style="display: flex; flex-direction: column; gap: 5px; font-size: 12px; font-weight: 300; color: rgba(251, 248, 243, 0.8);">
+            <span style="font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.6);">{es ? 'O escríbenos directamente' : 'Or write to us directly'}</span>
+            <a href="https://wa.me/529671458587" style="color: #FBF8F3;">WhatsApp +52 967 145 8587</a>
+            <a href="mailto:lara@larasancristobal.com" style="color: #FBF8F3;">lara@larasancristobal.com</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const sellModal = document.getElementById('sell-modal');
+    const openSell = (e) => {
+      if (e) e.preventDefault();
+      sellModal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      const menu = document.getElementById('mobile-menu');
+      if (menu) menu.classList.remove('is-open');
+    };
+    const closeSell = () => {
+      sellModal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    };
+    // Close when clicking the dimmed backdrop (the modal container itself, not its children)
+    sellModal.addEventListener('click', (e) => {
+      if (e.target === sellModal) closeSell();
+    });
+    document.getElementById('sell-modal-close').addEventListener('click', closeSell);
+    document.querySelectorAll('[data-open-sell]').forEach(btn => btn.addEventListener('click', openSell));
+    document.getElementById('sell-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('sell-submit-btn');
+      if (btn) btn.textContent = document.documentElement.lang === 'es' ? "Gracias — te contactamos pronto" : "Thank you — we'll be in touch";
+    });
+
+    const menuEl = document.getElementById('mobile-menu');
+    const toggleMenu = () => {
+      const isOpen = menuEl.classList.contains('is-open');
+      menuEl.classList.toggle('is-open');
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    };
+    document.querySelectorAll('[data-toggle-menu]').forEach(btn => btn.addEventListener('click', toggleMenu));
+    menuEl?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      menuEl.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }));
+
+    const revealEls = Array.from(document.querySelectorAll('[data-reveal]'));
+    const show = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    if (!('IntersectionObserver' in window)) {
+      revealEls.forEach(show);
+    } else {
+      const below = [];
+      revealEls.forEach((el) => {
+        if (el.getBoundingClientRect().top < window.innerHeight) { show(el); return; }
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(26px)';
+        el.style.transition = 'opacity 1s cubic-bezier(.22,.61,.36,1), transform 1s cubic-bezier(.22,.61,.36,1)';
+        below.push(el);
+      });
+      if (below.length) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting || e.boundingClientRect.top < window.innerHeight) {
+              show(e.target); io.unobserve(e.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
+        below.forEach(el => io.observe(el));
+      }
+    }
+  </script>
+</body>
+</html>
