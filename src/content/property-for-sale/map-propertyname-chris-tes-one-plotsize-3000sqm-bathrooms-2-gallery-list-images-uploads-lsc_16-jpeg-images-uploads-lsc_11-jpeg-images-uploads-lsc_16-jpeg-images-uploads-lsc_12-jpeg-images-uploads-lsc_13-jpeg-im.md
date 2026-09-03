@@ -29,5 +29,5 @@ gallery:
   - /images/uploads/lsc_13.jpeg
   - /images/uploads/lsc_14.jpeg
   - /images/uploads/lsc_15.jpeg
-floorPlan: /images/uploads/lsc_16.jpeg
+floorPlan: ""
 ---
