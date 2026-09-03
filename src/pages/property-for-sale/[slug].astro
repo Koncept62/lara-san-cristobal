@@ -31,11 +31,7 @@ const paragraphs = d.description.split(/\n\n+/).filter(Boolean);
   <!-- Hero -->
   <section style="position: relative; height: 82vh; min-height: 460px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end;">
     <div style="position: absolute; inset: 0; overflow: hidden;">
-      {d.gallery[0] ? (
-        <img src={d.gallery[0]} alt={d.propertyName} style="width: 100%; height: 100%; object-fit: cover;" />
-      ) : (
-        <div style="width: 100%; height: 100%; background: #E4D8C8;"></div>
-      )}
+      <img src={d.mainImage} alt={d.propertyName} style="width: 100%; height: 100%; object-fit: cover;" />
       <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(34,31,28,0.3) 0%, rgba(34,31,28,0.08) 40%, rgba(34,31,28,0.58) 100%);"></div>
     </div>
     <div style="position: relative; max-width: 1400px; width: 100%; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px) clamp(34px, 5vh, 56px); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 26px;">
@@ -206,11 +202,7 @@ const paragraphs = d.description.split(/\n\n+/).filter(Boolean);
             const oSlug = o.id.replace(/\.md$/, '');
             return (
               <a href={`/property-for-sale/${oSlug}`} style="display: flex; flex-direction: column; gap: 16px;">
-                {o.data.gallery[0] ? (
-                  <img src={o.data.gallery[0]} alt={o.data.propertyName} style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #E4D8C8;" />
-                ) : (
-                  <div style="width: 100%; aspect-ratio: 4 / 5; background: #E4D8C8;"></div>
-                )}
+                <img src={o.data.mainImage} alt={o.data.propertyName} style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #E4D8C8;" />
                 <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">{o.data.location} · For sale</span>
                 <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; line-height: 1.2;">{o.data.propertyName}</span>
               </a>

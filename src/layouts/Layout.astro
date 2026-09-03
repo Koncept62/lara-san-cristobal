@@ -82,13 +82,14 @@ const es = lang === 'es';
         <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3vw, 40px); line-height: 1.12; letter-spacing: 0.005em; text-wrap: pretty;">{es ? '¿Quieres vender o alquilar?' : 'Wanting to sell or rent?'}</h2>
         <p style="margin: 0; font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(251, 248, 243, 0.85);">{es ? 'Si tienes una propiedad que deseas vender o alquilar, ponte en contacto con nosotros para que podamos organizar una visita y ayudarte a avanzar en la búsqueda de un inquilino adecuado o comprador bien cualificado.' : 'If you have a property you wish to sell or rent, please do get in touch so we can arrange a visit and help you to move forward with finding a suitable tenant or well qualified buyer.'}</p>
       </div>
-      <form id="sell-form" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(20px, 2.6vw, 30px); padding-top: clamp(28px, 3.4vw, 42px);">
-        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? 'Tu nombre' : 'Your name'}</span><input type="text" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%;" /></label>
-        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? 'Correo electrónico' : 'Email'}</span><input type="email" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%;" /></label>
-        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">WhatsApp</span><input type="tel" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%;" /></label>
-        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? '¿Dónde está la propiedad?' : 'Where is the property?'}</span><input type="text" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%;" /></label>
-        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? '¿Vender o alquilar?' : 'Sell or rent?'}</span><select style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%; border-radius: 0; appearance: none;">{es ? (<><option style="color: #2B2622;">En venta</option><option style="color: #2B2622;">En alquiler</option><option style="color: #2B2622;">Aún no lo sé</option></>) : (<><option style="color: #2B2622;">For sale</option><option style="color: #2B2622;">For rent</option><option style="color: #2B2622;">Not sure yet</option></>)}</select></label>
-        <label style="display: flex; flex-direction: column; gap: 9px; grid-column: 1 / -1;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? 'Algo que debamos saber' : 'Anything we should know'}</span><textarea rows="2" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%; resize: vertical;"></textarea></label>
+      <form id="sell-form" name="sell-enquiry" data-netlify="true" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(20px, 2.6vw, 30px); padding-top: clamp(28px, 3.4vw, 42px);">
+        <input type="hidden" name="form-name" value="sell-enquiry" />
+        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? 'Tu nombre' : 'Your name'}</span><input type="text" name="name" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%;" /></label>
+        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? 'Correo electrónico' : 'Email'}</span><input type="email" name="email" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%;" /></label>
+        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">WhatsApp</span><input type="tel" name="whatsapp" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%;" /></label>
+        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? '¿Dónde está la propiedad?' : 'Where is the property?'}</span><input type="text" name="location" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%;" /></label>
+        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? '¿Vender o alquilar?' : 'Sell or rent?'}</span><select name="sell-or-rent" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%; border-radius: 0; appearance: none;">{es ? (<><option style="color: #2B2622;">En venta</option><option style="color: #2B2622;">En alquiler</option><option style="color: #2B2622;">Aún no lo sé</option></>) : (<><option style="color: #2B2622;">For sale</option><option style="color: #2B2622;">For rent</option><option style="color: #2B2622;">Not sure yet</option></>)}</select></label>
+        <label style="display: flex; flex-direction: column; gap: 9px; grid-column: 1 / -1;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? 'Algo que debamos saber' : 'Anything we should know'}</span><textarea name="notes" rows="2" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%; resize: vertical;"></textarea></label>
         <div style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; padding-top: 4px;">
           <button type="submit" id="sell-submit-btn" class="btn-sell-submit" style="background: #FBF8F3; color: #2B2622; border: 0; padding: 16px 32px; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer;">{es ? 'Enviar datos' : 'Send details'}</button>
           <div style="display: flex; flex-direction: column; gap: 5px; font-size: 12px; font-weight: 300; color: rgba(251, 248, 243, 0.8);">
@@ -120,10 +121,35 @@ const es = lang === 'es';
     });
     document.getElementById('sell-modal-close').addEventListener('click', closeSell);
     document.querySelectorAll('[data-open-sell]').forEach(btn => btn.addEventListener('click', openSell));
-    document.getElementById('sell-form')?.addEventListener('submit', (e) => {
+    document.getElementById('sell-form')?.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const form = e.currentTarget;
       const btn = document.getElementById('sell-submit-btn');
-      if (btn) btn.textContent = document.documentElement.lang === 'es' ? "Gracias — te contactamos pronto" : "Thank you — we'll be in touch";
+      const isEs = document.documentElement.lang === 'es';
+      if (btn) btn.disabled = true;
+
+      const fd = new FormData(form);
+      await Promise.allSettled([
+        // Mailchimp via our function
+        fetch('/.netlify/functions/form-submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            formType: 'sell',
+            name: fd.get('name') || '',
+            email: fd.get('email') || '',
+            sellOrRent: fd.get('sell-or-rent') || '',
+          }),
+        }),
+        // Netlify Forms (email notification)
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(fd).toString(),
+        }),
+      ]);
+
+      if (btn) btn.textContent = isEs ? "Gracias — te contactamos pronto" : "Thank you — we'll be in touch";
     });
 
     const menuEl = document.getElementById('mobile-menu');

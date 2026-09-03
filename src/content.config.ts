@@ -3,7 +3,20 @@ import { glob } from 'astro/loaders';
 
 const status = z.enum(['Available', 'Reserved', 'Sold']).default('Available');
 
+const noteCategory = z.enum(['Buying in Mexico', 'Restoring', 'Off grid', 'The town', 'Interiors']);
+
 export const collections = {
+  notes: defineCollection({
+    loader: glob({ pattern: '**/*.md', base: './src/content/notes' }),
+    schema: z.object({
+      title: z.string(),
+      pubDate: z.string(),
+      category: noteCategory,
+      blurb: z.string(),
+      coverImage: z.string(),
+    }),
+  }),
+
   land: defineCollection({
     loader: glob({ pattern: '**/*.md', base: './src/content/land' }),
     schema: z.object({
@@ -16,6 +29,7 @@ export const collections = {
       priceUsd: z.string().optional(),
       referenceCode: z.string().optional(),
       status,
+      mainImage: z.string(),
       gallery: z.array(z.string()).default([]),
     }),
   }),
@@ -35,6 +49,7 @@ export const collections = {
       priceUsd: z.string().optional(),
       referenceCode: z.string().optional(),
       status,
+      mainImage: z.string(),
       gallery: z.array(z.string()).default([]),
       floorPlan: z.string().optional(),
     }),
@@ -47,7 +62,7 @@ export const collections = {
       location: z.string(),
       inBrief: z.string(),
       propertySize: z.string(),
-      plotSize: z.string(),
+      plotSize: z.string().optional(),
       bedrooms: z.number(),
       bathrooms: z.number(),
       description: z.string(),
@@ -55,6 +70,7 @@ export const collections = {
       priceUsd: z.string().optional(),
       referenceCode: z.string().optional(),
       status,
+      mainImage: z.string(),
       gallery: z.array(z.string()).default([]),
       floorPlan: z.string().optional(),
     }),

@@ -59,10 +59,16 @@ collections:
         widget: "select"
         options: ["Available", "Reserved", "Sold"]
         default: "Available"
-      - label: "Gallery"
+      - label: "Main Image"
+        name: "mainImage"
+        widget: "image"
+        hint: "Used as the thumbnail on property cards and listing previews"
+      - label: "Gallery Photos"
         name: "gallery"
         widget: "list"
-        field: { label: "Image", name: "image", widget: "image" }
+        label_singular: "Photo"
+        summary: "{{fields.image}}"
+        field: { label: "Photo", name: "image", widget: "image" }
       - label: "Floor Plan"
         name: "floorPlan"
         widget: "image"
@@ -92,10 +98,16 @@ collections:
         widget: "select"
         options: ["Available", "Reserved", "Sold"]
         default: "Available"
-      - label: "Gallery"
+      - label: "Main Image"
+        name: "mainImage"
+        widget: "image"
+        hint: "Used as the thumbnail on property cards and listing previews"
+      - label: "Gallery Photos"
         name: "gallery"
         widget: "list"
-        field: { label: "Image", name: "image", widget: "image" }
+        label_singular: "Photo"
+        summary: "{{fields.image}}"
+        field: { label: "Photo", name: "image", widget: "image" }
       - label: "Floor Plan"
         name: "floorPlan"
         widget: "image"
@@ -123,8 +135,39 @@ collections:
         widget: "select"
         options: ["Available", "Reserved", "Sold"]
         default: "Available"
-      - label: "Gallery"
+      - label: "Main Image"
+        name: "mainImage"
+        widget: "image"
+        hint: "Used as the thumbnail on land listings and previews"
+      - label: "Gallery Photos"
         name: "gallery"
         widget: "list"
-        field: { label: "Image", name: "image", widget: "image" }
+        label_singular: "Photo"
+        summary: "{{fields.image}}"
+        field: { label: "Photo", name: "image", widget: "image" }
       # No floorPlan field for land listings
+
+  # ---------------------------------------------------------
+  # NOTES (blog)
+  # ---------------------------------------------------------
+  - name: "notes"
+    label: "Notes"
+    folder: "src/content/notes"
+    create: true
+    slug: "{{pubDate}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Publish Date"
+        name: "pubDate"
+        widget: "datetime"
+        format: "YYYY-MM-DDTHH:mm:ssZ"
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm"
+        hint: "Posts with a future date are hidden from visitors until that date/time — no rebuild needed."
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["Buying in Mexico", "Restoring", "Off grid", "The town", "Interiors"]
+      - { label: "Short blurb", name: "blurb", widget: "text", hint: "One or two sentences shown on the listing card." }
+      - { label: "Cover Image", name: "coverImage", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
