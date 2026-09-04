@@ -28,7 +28,7 @@ auth:
 logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 
 # Add site links in Decap CMS (optional)
-site_url: https://larasancristobal.com
+site_url: https://astro-lsc.netlify.app
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
@@ -42,6 +42,7 @@ collections:
     folder: "src/content/property-for-sale"
     create: true
     slug: "{{slug}}"
+    identifier_field: propertyName
     fields:
       - { label: "Property Name", name: "propertyName", widget: "string" }
       - { label: "Location", name: "location", widget: "string" }
@@ -82,6 +83,7 @@ collections:
     folder: "src/content/property-for-rent"
     create: true
     slug: "{{slug}}"
+    identifier_field: propertyName
     fields:
       - { label: "Property Name", name: "propertyName", widget: "string" }
       - { label: "Location", name: "location", widget: "string" }
@@ -121,6 +123,7 @@ collections:
     folder: "src/content/land"
     create: true
     slug: "{{slug}}"
+    identifier_field: propertyName
     fields:
       - { label: "Property Name", name: "propertyName", widget: "string" }
       - { label: "Location", name: "location", widget: "string" }
@@ -167,7 +170,7 @@ collections:
       - label: "Category"
         name: "category"
         widget: "select"
-        options: ["Buying in Mexico", "Restoring", "Off grid", "The town", "Interiors", "From Lara"]
+        options: ["Buying in Mexico", "Restoring", "Off grid", "The town", "Interiors"]
       - { label: "Short blurb", name: "blurb", widget: "text", hint: "One or two sentences shown on the listing card." }
       - { label: "Cover Image", name: "coverImage", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
