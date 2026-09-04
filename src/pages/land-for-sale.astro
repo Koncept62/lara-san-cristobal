@@ -10,7 +10,11 @@ const path = Astro.url.pathname;
 const listings = (await getCollection('land'))
   .sort((a, b) => a.data.propertyName.localeCompare(b.data.propertyName));
 ---
-<Layout title="Land for Sale · Lara San Cristóbal">
+<Layout
+  title="Land for Sale · Lara San Cristóbal"
+  description="Land for sale in San Cristóbal de las Casas — residential plots in Los Alcanfores, San Nicolás and Corral de Piedra, plus larger rural parcels in the highlands of Chiapas."
+  esHref="/land-for-sale-es"
+>
   <Header esHref="/land-for-sale-es" />
   <MobileMenu currentPath={path} />
 

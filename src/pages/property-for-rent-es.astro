@@ -10,7 +10,12 @@ const path = Astro.url.pathname;
 const listings = (await getCollection('property-for-rent'))
   .sort((a, b) => a.data.propertyName.localeCompare(b.data.propertyName));
 ---
-<Layout title="Propiedades en alquiler · Lara San Cristóbal" lang="es">
+<Layout
+  title="Propiedades en alquiler · Lara San Cristóbal"
+  description="Propiedades amuebladas y sin amueblar en alquiler en San Cristóbal de las Casas — estancias mensuales y de larga duración en el centro histórico y zonas residenciales."
+  lang="es"
+  enHref="/property-for-rent"
+>
   <Header lang="es" enHref="/property-for-rent" />
   <MobileMenu currentPath={path} lang="es" />
 

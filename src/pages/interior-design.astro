@@ -7,7 +7,11 @@ import Footer from '../components/Footer.astro';
 
 const path = Astro.url.pathname;
 ---
-<Layout title="Interior Design & Furniture · Lara San Cristóbal">
+<Layout
+  title="Interior Design & Furniture · Lara San Cristóbal"
+  description="Interior design and handmade furniture for your new home in San Cristóbal de las Casas — Humberto y Lara, crafted by artisans in Chiapas."
+  esHref="/interior-design-es"
+>
   <Header esHref="/interior-design-es" />
   <MobileMenu currentPath={path} />
 

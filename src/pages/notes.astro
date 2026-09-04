@@ -12,12 +12,16 @@ const path = Astro.url.pathname;
 const allNotes = (await getCollection('notes'))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
-const filters = ["All notes", "Buying in Mexico", "Restoring", "Off grid", "The town", "Interiors"];
+const filters = ["All notes", "Buying in Mexico", "Restoring", "Off grid", "The town", "Interiors", "From Lara"];
 
 const featured = allNotes[0];
 const gridNotes = allNotes.slice(1);
 ---
-<Layout title="Notes · Lara San Cristóbal">
+<Layout
+  title="Notes · Lara San Cristóbal"
+  description="What we learn while buying, selling and restoring houses in San Cristóbal de las Casas — paperwork explained plainly, builders we trust, and notes about the town."
+  esHref="/notes-es"
+>
   <Header esHref="/notes-es" />
   <MobileMenu currentPath={path} />
 
@@ -74,7 +78,7 @@ const gridNotes = allNotes.slice(1);
         return (
           <a
             href={`/notes/${slug}`}
-            class="post-card"
+            class={`post-card${note.data.category === 'From Lara' ? ' from-lara' : ''}`}
             data-cat={note.data.category}
             data-pubdate={note.data.pubDate}
             style="display: flex; flex-direction: column; gap: 15px;"
@@ -183,3 +187,25 @@ const gridNotes = allNotes.slice(1);
     });
   </script>
 </Layout>
+
+<style>
+  /* "From Lara" grid cards — blush rose treatment */
+  .from-lara {
+    background: #F0DDD8;
+    overflow: hidden;
+    gap: 0 !important;
+  }
+  .from-lara > img {
+    margin-bottom: 15px;
+  }
+  .from-lara > span {
+    padding: 0 16px;
+    color: #c15857 !important;
+  }
+  .from-lara > h3 {
+    padding: 4px 16px 0;
+  }
+  .from-lara > p {
+    padding: 0 16px 20px;
+  }
+</style>

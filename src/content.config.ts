@@ -3,7 +3,7 @@ import { glob } from 'astro/loaders';
 
 const status = z.enum(['Available', 'Reserved', 'Sold']).default('Available');
 
-const noteCategory = z.enum(['Buying in Mexico', 'Restoring', 'Off grid', 'The town', 'Interiors']);
+const noteCategory = z.enum(['Buying in Mexico', 'Restoring', 'Off grid', 'The town', 'Interiors', 'From Lara']);
 
 export const collections = {
   notes: defineCollection({

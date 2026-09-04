@@ -24,7 +24,12 @@ const statusLabel = d.status === 'Reserved' ? 'Reserved' : d.status === 'Sold' ?
 const heroMeta = [d.location, 'For sale', statusLabel || 'Available'].filter(Boolean).join(' · ');
 const paragraphs = d.description.split(/\n\n+/).filter(Boolean);
 ---
-<Layout title={`${d.propertyName} · Lara San Cristóbal`}>
+<Layout
+  title={`${d.propertyName} · ${d.location} · Lara San Cristóbal`}
+  description={d.inBrief}
+  ogImage={d.mainImage}
+  esHref={`/property-for-sale-es/${slug}`}
+>
   <Header esHref={`/property-for-sale-es/${slug}`} />
   <MobileMenu currentPath={Astro.url.pathname} />
 

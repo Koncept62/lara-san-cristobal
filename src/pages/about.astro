@@ -7,7 +7,11 @@ import Footer from '../components/Footer.astro';
 
 const path = Astro.url.pathname;
 ---
-<Layout title="About Us · Lara San Cristóbal">
+<Layout
+  title="About Us · Lara San Cristóbal"
+  description="LARA is a boutique real estate agency in San Cristóbal de las Casas, Chiapas — helping buyers, renters and investors find the right property, land or off-grid build project."
+  esHref="/about-es"
+>
   <Header esHref="/about-es" />
   <MobileMenu currentPath={path} />
 

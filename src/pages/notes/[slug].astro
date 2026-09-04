@@ -1,0 +1,145 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import MobileMenu from '../../components/MobileMenu.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('notes');
+  return entries.map(entry => {
+    const slug = entry.id.replace(/\.md$/, '');
+    return {
+      params: { slug },
+      props: { entry, others: entries.filter(e => e.id !== entry.id).slice(0, 3) },
+    };
+  });
+}
+
+const { entry, others } = Astro.props;
+const d = entry.data;
+const slug = entry.id.replace(/\.md$/, '');
+const { Content } = await render(entry);
+
+const formattedDate = new Date(d.pubDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+const proseStyles = `
+  .prose { display: flex; flex-direction: column; gap: 22px; font-size: 16px; font-weight: 300; line-height: 1.9; color: #4A4440; }
+  .prose h2 { margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: clamp(19px, 2vw, 24px); line-height: 1.2; letter-spacing: -0.01em; color: #2B2622; }
+  .prose h3 { margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 18px; line-height: 1.3; color: #2B2622; }
+  .prose p { margin: 0; }
+  .prose a { color: #c15857; border-bottom: 1px solid rgba(193,88,87,0.35); }
+  .prose a:hover { border-bottom-color: #c15857; }
+  .prose ul, .prose ol { margin: 0; padding-left: 1.5em; display: flex; flex-direction: column; gap: 8px; }
+  .prose li { padding-left: 0.25em; }
+  .prose em { font-style: italic; }
+  .prose strong { font-weight: 500; color: #2B2622; }
+  .prose blockquote { margin: 0; padding: 18px 24px; border-left: 3px solid #c15857; background: rgba(251,248,243,0.6); font-style: italic; color: #6E655C; }
+  .prose hr { border: 0; border-top: 1px solid rgba(43,38,34,0.14); }
+`;
+---
+<Layout
+  title={`${d.title} · Notes · Lara San Cristóbal`}
+  description={d.blurb}
+  ogImage={d.coverImage}
+  esHref={`/notes-es/${slug}`}
+  pageStyles={proseStyles}
+>
+  <Header esHref={`/notes-es/${slug}`} />
+  <MobileMenu currentPath={Astro.url.pathname} />
+
+  <article style="padding: clamp(110px, 18vh, 160px) clamp(20px, 4vw, 56px) clamp(60px, 10vh, 120px);">
+    <div style="max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 0;">
+
+      <!-- Back link -->
+      <a href="/notes" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C; margin-bottom: 44px; display: inline-block;">← Notes</a>
+
+      <!-- Category -->
+      <span style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #c15857; margin-bottom: 16px;">{d.category}</span>
+
+      <!-- Title -->
+      <h1 style="margin: 0 0 18px; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(30px, 4.2vw, 56px); line-height: 1.06; letter-spacing: -0.02em; color: #2B2622; text-wrap: pretty;">{d.title}</h1>
+
+      <!-- Date -->
+      <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C; margin-bottom: clamp(36px, 5vh, 56px);">{formattedDate}</span>
+
+      <!-- Cover image — only rendered if present -->
+      {d.coverImage && (
+        <img
+          src={d.coverImage}
+          alt={d.title}
+          style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #E4D8C8; margin-bottom: clamp(36px, 5vh, 56px);"
+        />
+      )}
+
+      <!-- Blurb -->
+      <p style="margin: 0 0 28px; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(18px, 2vw, 23px); line-height: 1.5; letter-spacing: -0.005em; color: #2B2622; text-wrap: pretty;">{d.blurb}</p>
+
+      <!-- Divider -->
+      <hr style="border: 0; border-top: 1px solid rgba(43,38,34,0.14); margin: 0 0 clamp(32px, 4vh, 48px);" />
+
+      <!-- Body -->
+      <div class="prose">
+        <Content />
+      </div>
+
+    </div>
+  </article>
+
+  <!-- More notes -->
+  {others.length > 0 && (
+    <section data-reveal="1" style="padding: clamp(40px, 7vh, 90px) clamp(20px, 4vw, 56px) clamp(60px, 10vh, 120px); background: #E9E1D6;">
+      <div style="max-width: 1400px; margin: 0 auto;">
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 18px; padding-bottom: 34px; border-bottom: 1px solid rgba(43,38,34,0.14);">
+          <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">More notes</h2>
+          <a href="/notes" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E655C;">All notes</a>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(26px, 3vw, 48px); padding-top: 40px;">
+          {others.map(n => {
+            const nSlug = n.id.replace(/\.md$/, '');
+            const nDate = new Date(n.data.pubDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+            return (
+              <a href={`/notes/${nSlug}`} data-pubdate={n.data.pubDate} class="related-card" style="display: flex; flex-direction: column; gap: 15px;">
+                <img src={n.data.coverImage} alt={n.data.title} style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #E4D8C8;" />
+                <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">{n.data.category} · {nDate}</span>
+                <h3 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 21px; line-height: 1.22; text-wrap: pretty;">{n.data.title}</h3>
+                <p style="margin: 0; font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">{n.data.blurb}</p>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Newsletter -->
+  <section data-reveal="1" style="padding: clamp(60px, 10vh, 130px) clamp(20px, 4vw, 56px);">
+    <div style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 26px; text-align: center;">
+      <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Once a month, no more</span>
+      <p style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(25px, 3.34vw, 49px); line-height: 1.14; letter-spacing: -0.015em; text-wrap: pretty;">New houses, new notes, and whatever the weather is doing to the roofs.</p>
+      <form id="notes-subscribe-form" style="display: flex; align-items: center; gap: 14px; border-bottom: 1px solid rgba(43, 38, 34, 0.3); padding-bottom: 10px; width: min(420px, 100%);">
+        <input type="email" placeholder="Your email" style="flex: 1; min-width: 0; background: transparent; border: 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #2B2622; outline: none;" />
+        <button type="submit" id="notes-subscribe-btn" style="background: none; border: 0; padding: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #c15857; cursor: pointer;">Join</button>
+      </form>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script define:vars={{ pubDate: d.pubDate }}>
+  if (new Date(pubDate).getTime() > Date.now()) {
+    window.location.replace('/notes');
+  }
+
+  document.querySelectorAll('.related-card').forEach(card => {
+    const pd = card.dataset.pubdate;
+    if (pd && new Date(pd).getTime() > Date.now()) card.style.display = 'none';
+  });
+
+  document.getElementById('notes-subscribe-form')?.addEventListener('submit', e => {
+    e.preventDefault();
+    const btn = document.getElementById('notes-subscribe-btn');
+    if (btn) btn.textContent = 'Added';
+  });
+</script>

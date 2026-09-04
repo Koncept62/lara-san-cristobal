@@ -1,11 +1,23 @@
 ---
+const SITE = 'https://larasancristobal.com';
+const DEFAULT_OG_IMAGE = 'https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_16:9,g_auto,w_1200/f_auto,q_auto/v1788439502/AdobeStock_494284653_lr2hik.jpg';
+
 interface Props {
   title: string;
+  description?: string;
+  ogImage?: string;
   pageStyles?: string;
   lang?: 'en' | 'es';
+  esHref?: string;  // path to the ES equivalent of this page (used on EN pages)
+  enHref?: string;  // path to the EN equivalent of this page (used on ES pages)
 }
-const { title, pageStyles = '', lang = 'en' } = Astro.props;
+
+const { title, description, ogImage, pageStyles = '', lang = 'en', esHref, enHref } = Astro.props;
 const es = lang === 'es';
+const canonical = `${SITE}${Astro.url.pathname}`;
+const ogImg = ogImage
+  ? (ogImage.startsWith('http') ? ogImage : `${SITE}${ogImage}`)
+  : DEFAULT_OG_IMAGE;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -13,6 +25,35 @@ const es = lang === 'es';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
+  {description && <meta name="description" content={description} />}
+
+  <!-- Canonical -->
+  <link rel="canonical" href={canonical} />
+
+  <!-- hreflang — EN pages declare self + ES alternate; ES pages declare self + EN alternate -->
+  {!es && esHref && <link rel="alternate" hreflang="en" href={canonical} />}
+  {!es && esHref && <link rel="alternate" hreflang="es" href={`${SITE}${esHref}`} />}
+  {!es && esHref && <link rel="alternate" hreflang="x-default" href={canonical} />}
+  {es && enHref && <link rel="alternate" hreflang="es" href={canonical} />}
+  {es && enHref && <link rel="alternate" hreflang="en" href={`${SITE}${enHref}`} />}
+  {es && enHref && <link rel="alternate" hreflang="x-default" href={`${SITE}${enHref}`} />}
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  {description && <meta property="og:description" content={description} />}
+  <meta property="og:image" content={ogImg} />
+  <meta property="og:locale" content={es ? 'es_MX' : 'en_US'} />
+  {!es && esHref && <meta property="og:locale:alternate" content="es_MX" />}
+  {es && enHref && <meta property="og:locale:alternate" content="en_US" />}
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  {description && <meta name="twitter:description" content={description} />}
+  <meta name="twitter:image" content={ogImg} />
+
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png" />

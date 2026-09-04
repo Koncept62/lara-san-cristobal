@@ -7,7 +7,12 @@ import Footer from '../components/Footer.astro';
 
 const path = Astro.url.pathname;
 ---
-<Layout title="Sobre nosotros · Lara San Cristóbal" lang="es">
+<Layout
+  title="Sobre nosotros · Lara San Cristóbal"
+  description="LARA es una agencia inmobiliaria boutique en San Cristóbal de las Casas, Chiapas — ayudando a compradores, arrendatarios e inversores a encontrar la propiedad o terreno ideal."
+  lang="es"
+  enHref="/about"
+>
   <Header lang="es" enHref="/about" />
   <MobileMenu currentPath={path} lang="es" />
 

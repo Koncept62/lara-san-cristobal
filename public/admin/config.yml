@@ -28,7 +28,7 @@ auth:
 logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 
 # Add site links in Decap CMS (optional)
-site_url: https://astro-lsc.netlify.app
+site_url: https://larasancristobal.com
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
@@ -51,8 +51,8 @@ collections:
       - { label: "Bedrooms", name: "bedrooms", widget: "number" }
       - { label: "Bathrooms", name: "bathrooms", widget: "number" }
       - { label: "Description", name: "description", widget: "markdown" }
-      - { label: "Price (MXN)", name: "priceMxn", widget: "number", value_type: "string", required: false }
-      - { label: "Price (USD)", name: "priceUsd", widget: "number", value_type: "string", required: false }
+      - { label: "Price (MXN)", name: "priceMxn", widget: "string", required: false }
+      - { label: "Price (USD)", name: "priceUsd", widget: "string", required: false }
       - { label: "Reference Code", name: "referenceCode", widget: "string" }
       - label: "Status"
         name: "status"
@@ -90,8 +90,8 @@ collections:
       - { label: "Bedrooms", name: "bedrooms", widget: "number" }
       - { label: "Bathrooms", name: "bathrooms", widget: "number" }
       - { label: "Description", name: "description", widget: "markdown" }
-      - { label: "Price (MXN)", name: "priceMxn", widget: "number", value_type: "string", required: false }
-      - { label: "Price (USD)", name: "priceUsd", widget: "number", value_type: "string", required: false }
+      - { label: "Price (MXN)", name: "priceMxn", widget: "string", required: false }
+      - { label: "Price (USD)", name: "priceUsd", widget: "string", required: false }
       - { label: "Reference Code", name: "referenceCode", widget: "string" }
       - label: "Status"
         name: "status"
@@ -127,8 +127,8 @@ collections:
       - { label: "In Brief", name: "inBrief", widget: "text" }
       - { label: "Land Size", name: "landSize", widget: "string" }
       - { label: "Description", name: "description", widget: "markdown" }
-      - { label: "Price (MXN)", name: "priceMxn", widget: "number", value_type: "string", required: false }
-      - { label: "Price (USD)", name: "priceUsd", widget: "number", value_type: "string", required: false }
+      - { label: "Price (MXN)", name: "priceMxn", widget: "string", required: false }
+      - { label: "Price (USD)", name: "priceUsd", widget: "string", required: false }
       - { label: "Reference Code", name: "referenceCode", widget: "string" }
       - label: "Status"
         name: "status"
@@ -167,7 +167,7 @@ collections:
       - label: "Category"
         name: "category"
         widget: "select"
-        options: ["Buying in Mexico", "Restoring", "Off grid", "The town", "Interiors"]
+        options: ["Buying in Mexico", "Restoring", "Off grid", "The town", "Interiors", "From Lara"]
       - { label: "Short blurb", name: "blurb", widget: "text", hint: "One or two sentences shown on the listing card." }
       - { label: "Cover Image", name: "coverImage", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }

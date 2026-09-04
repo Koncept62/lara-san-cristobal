@@ -7,7 +7,12 @@ import Footer from '../components/Footer.astro';
 
 const path = Astro.url.pathname;
 ---
-<Layout title="San Cristóbal · Lara San Cristóbal" lang="es">
+<Layout
+  title="San Cristóbal de las Casas · Lara San Cristóbal"
+  description="Tu guía a San Cristóbal de las Casas — una ciudad de las tierras altas de Chiapas en pleno auge, con un mercado inmobiliario en crecimiento y una calidad de vida singular."
+  lang="es"
+  enHref="/san-cristobal"
+>
   <Header lang="es" enHref="/san-cristobal" />
   <MobileMenu currentPath={path} lang="es" />
 
@@ -38,7 +43,7 @@ const path = Astro.url.pathname;
 
   <section data-reveal="1" style="padding: clamp(40px, 7vh, 90px) clamp(20px, 4vw, 56px);">
     <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(30px, 5vw, 80px); align-items: center;">
-      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_crop,x_70,w_900/w_1800/f_auto,q_auto/v1788115101/AdobeStock_28872615_Preview_wgdtob.jpg" alt="Vida en las calles de San Cristóbal de las Casas" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #E4D8C8;" />
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,g_auto,w_1200/f_auto,q_auto/v1788461271/LSC_29_nun3w8.jpg" alt="Vida en las calles de San Cristóbal de las Casas" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #E4D8C8;" />
       <div style="display: flex; flex-direction: column; gap: 26px;">
         <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">La vida en la ciudad</span>
         <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(28px, 3.52vw, 55px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: pretty;">Hoteles de lujo, cafés sofisticados y tradiciones firmemente intactas</h2>
@@ -81,7 +86,7 @@ const path = Astro.url.pathname;
   </section>
 
   <section data-reveal="1" style="padding: clamp(60px, 10vh, 130px) clamp(20px, 4vw, 56px) clamp(20px, 4vh, 40px);">
-    <div style="max-width: 1400px; margin: 0 auto; display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none;">
+    <div class="img-row" style="max-width: 1400px; margin: 0 auto; display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none;">
       <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_3:4,g_auto,w_900/f_auto,q_auto/v1788342261/AdobeStock_1511049897_Preview_u3ydl9.jpg" alt="San Cristóbal de las Casas" style="width: clamp(200px, 24vw, 340px); aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8;" />
       <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_3:4,g_auto,w_900/f_auto,q_auto/v1788342263/AdobeStock_104631534_Preview_fpxeue.jpg" alt="San Cristóbal de las Casas" style="width: clamp(200px, 24vw, 340px); aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8;" />
       <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_3:4,g_auto,w_900/f_auto,q_auto/v1788342260/AdobeStock_408245433_Preview_suwz4t.jpg" alt="San Cristóbal de las Casas" style="width: clamp(200px, 24vw, 340px); aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8;" />
@@ -92,3 +97,17 @@ const path = Astro.url.pathname;
   <ContactCta heading="¿Pensando en los altos de Chiapas? Conversemos." lang="es" />
   <Footer lang="es" />
 </Layout>
+
+<style>
+  @media (max-width: 639px) {
+    .img-row {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      overflow-x: visible !important;
+      gap: 6px !important;
+    }
+    .img-row img {
+      width: 100% !important;
+    }
+  }
+</style>

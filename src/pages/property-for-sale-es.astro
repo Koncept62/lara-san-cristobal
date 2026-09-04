@@ -10,7 +10,12 @@ const path = Astro.url.pathname;
 const listings = (await getCollection('property-for-sale'))
   .sort((a, b) => a.data.propertyName.localeCompare(b.data.propertyName));
 ---
-<Layout title="Propiedades en venta · Lara San Cristóbal" lang="es">
+<Layout
+  title="Propiedades en venta · Lara San Cristóbal"
+  description="Descubre propiedades en venta en San Cristóbal de las Casas — casas con carácter, patios históricos y opciones para renovar. Escríbenos por WhatsApp o correo electrónico."
+  lang="es"
+  enHref="/property-for-sale"
+>
   <Header lang="es" enHref="/property-for-sale" />
   <MobileMenu currentPath={path} lang="es" />
 
@@ -88,7 +93,7 @@ const listings = (await getCollection('property-for-sale'))
         <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Dónde buscar</span>
         <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3.34vw, 49px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: pretty;">Las zonas más solicitadas</h2>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: rgba(43, 38, 34, 0.14);">
+      <div class="areas-grid" style="display: grid; gap: 1px; background: rgba(43, 38, 34, 0.14);">
         <div style="background: #F2EDE6; padding: clamp(24px, 3vw, 34px); display: flex; flex-direction: column; gap: 10px; min-height: 160px;">
           <span style="font-family: 'Work Sans', sans-serif; font-size: 26px; font-weight: 400; line-height: 1.25;">Los Alcanfores</span>
           <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Muy solicitada, arbolada y residencial, a pocos minutos del centro.</span>
@@ -109,7 +114,20 @@ const listings = (await getCollection('property-for-sale'))
           <span style="font-family: 'Work Sans', sans-serif; font-size: 26px; font-weight: 400; line-height: 1.25;">Zona rural, fuera de la ciudad</span>
           <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Terrenos más grandes con bosque, arroyos y vistas de montaña.</span>
         </div>
+        <div style="background: #F2EDE6; padding: clamp(24px, 3vw, 34px); display: flex; flex-direction: column; gap: 10px; min-height: 160px;">
+          <span style="font-family: 'Work Sans', sans-serif; font-size: 26px; font-weight: 400; line-height: 1.25;">San Martín</span>
+          <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Un barrio tranquilo y verde en las afueras de la ciudad, junto a la reserva natural del Huitepec.</span>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="padding: clamp(40px, 7vh, 90px) clamp(20px, 4vw, 56px) clamp(20px, 4vh, 40px);">
+    <div class="img-row" style="max-width: 1400px; margin: 0 auto; display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none;">
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_3:4,g_auto,w_900/f_auto,q_auto/v1788460291/LSC_24_jbrywi.jpg" alt="Los Alcanfores, San Cristóbal de las Casas" style="width: clamp(200px, 24vw, 340px); aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8;" />
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_3:4,g_auto,w_900/f_auto,q_auto/v1788460283/LSC_23_dz4nu9.jpg" alt="San Nicolás, San Cristóbal de las Casas" style="width: clamp(200px, 24vw, 340px); aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8;" />
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_3:4,g_auto,w_900/f_auto,q_auto/v1788460279/LSC_25_small_geyngo.jpg" alt="Corral de Piedra, San Cristóbal de las Casas" style="width: clamp(200px, 24vw, 340px); aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8;" />
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_3:4,g_auto,w_900/f_auto,q_auto/v1788342264/AdobeStock_1511049804_Preview_rt7i3s.jpg" alt="Centro histórico, San Cristóbal de las Casas" style="width: clamp(200px, 24vw, 340px); aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8;" />
     </div>
   </section>
 
@@ -123,3 +141,21 @@ const listings = (await getCollection('property-for-sale'))
   <ContactCta heading="¿Listo para buscar? Envíame tu lista de deseos." lang="es" />
   <Footer lang="es" />
 </Layout>
+
+<style>
+  .areas-grid { grid-template-columns: 1fr; }
+  @media (min-width: 640px)  { .areas-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .areas-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  @media (max-width: 639px) {
+    .img-row {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      overflow-x: visible !important;
+      gap: 6px !important;
+    }
+    .img-row img {
+      width: 100% !important;
+    }
+  }
+</style>

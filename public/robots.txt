@@ -16,4 +16,4 @@ Allow: /
 User-agent: bingbot
 Allow: /
 
-Sitemap: https://larasancristobal.com/sitemap.xml
+Sitemap: https://larasancristobal.com/sitemap-index.xml

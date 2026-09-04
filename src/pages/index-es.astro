@@ -10,7 +10,13 @@ const pageStyles = `
   @media (min-width: 1180px) { [data-index-grid] { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; } }
 `;
 ---
-<Layout title="Lara San Cristóbal" pageStyles={pageStyles} lang="es">
+<Layout
+  title="Lara San Cristóbal — Propiedades en venta, alquiler y autoconstrucción en Chiapas"
+  description="Casas, terrenos y lugares tranquilos en San Cristóbal de las Casas, Chiapas. Propiedades en venta, en alquiler, autoconstrucción off grid y terrenos, elegidos con cuidado."
+  pageStyles={pageStyles}
+  lang="es"
+  enHref="/"
+>
   <Header lang="es" enHref="/" />
   <MobileMenu currentPath={path} lang="es" />
 

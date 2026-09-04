@@ -10,7 +10,12 @@ const path = Astro.url.pathname;
 const listings = (await getCollection('land'))
   .sort((a, b) => a.data.propertyName.localeCompare(b.data.propertyName));
 ---
-<Layout title="Terrenos en venta · Lara San Cristóbal" lang="es">
+<Layout
+  title="Terrenos en venta · Lara San Cristóbal"
+  description="Terrenos en venta en San Cristóbal de las Casas — parcelas residenciales en Los Alcanfores, San Nicolás y Corral de Piedra, y predios rurales más amplios en las tierras altas de Chiapas."
+  lang="es"
+  enHref="/land-for-sale"
+>
   <Header lang="es" enHref="/land-for-sale" />
   <MobileMenu currentPath={path} lang="es" />
 

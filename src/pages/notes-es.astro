@@ -16,21 +16,28 @@ const categoryLabels: Record<string, string> = {
   'Off grid': 'Off grid',
   'The town': 'La ciudad',
   'Interiors': 'Interiores',
+  'From Lara': 'De Lara',
 };
 
-const filters = ['Todas las notas', 'Comprar en México', 'Restaurar', 'Off grid', 'La ciudad', 'Interiores'];
+const filters = ['Todas las notas', 'Comprar en México', 'Restaurar', 'Off grid', 'La ciudad', 'Interiores', 'De Lara'];
 const categoryFilter: Record<string, string> = {
   'Comprar en México': 'Buying in Mexico',
   'Restaurar': 'Restoring',
   'Off grid': 'Off grid',
   'La ciudad': 'The town',
   'Interiores': 'Interiors',
+  'De Lara': 'From Lara',
 };
 
 const featured = allNotes[0];
 const gridNotes = allNotes.slice(1);
 ---
-<Layout title="Notas · Lara San Cristóbal" lang="es">
+<Layout
+  title="Notas · Lara San Cristóbal"
+  description="Lo que aprendemos comprando, vendiendo y restaurando casas en San Cristóbal de las Casas — trámites explicados con claridad, constructores de confianza y notas sobre la ciudad."
+  lang="es"
+  enHref="/notes"
+>
   <Header lang="es" enHref="/notes" />
   <MobileMenu currentPath={path} lang="es" />
 
@@ -85,7 +92,7 @@ const gridNotes = allNotes.slice(1);
         return (
           <a
             href={`/notes-es/${slug}`}
-            class="post-card"
+            class={`post-card${note.data.category === 'From Lara' ? ' from-lara' : ''}`}
             data-cat={categoryLabels[note.data.category] || note.data.category}
             data-pubdate={note.data.pubDate}
             style="display: flex; flex-direction: column; gap: 15px;"
@@ -187,3 +194,25 @@ const gridNotes = allNotes.slice(1);
     });
   </script>
 </Layout>
+
+<style>
+  /* Cards "De Lara" — fondo rosa empolvado */
+  .from-lara {
+    background: #F0DDD8;
+    overflow: hidden;
+    gap: 0 !important;
+  }
+  .from-lara > img {
+    margin-bottom: 15px;
+  }
+  .from-lara > span {
+    padding: 0 16px;
+    color: #c15857 !important;
+  }
+  .from-lara > h3 {
+    padding: 4px 16px 0;
+  }
+  .from-lara > p {
+    padding: 0 16px 20px;
+  }
+</style>
