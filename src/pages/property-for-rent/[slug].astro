@@ -151,9 +151,12 @@ const paragraphs = d.description.split(/\n\n+/).filter(Boolean);
   )}
 
   <!-- Lightbox overlay -->
-  <div id="lightbox" style="display: none; position: fixed; inset: 0; z-index: 95; background: rgba(28,25,22,0.94); align-items: center; justify-content: center; padding: clamp(24px, 5vw, 70px); cursor: zoom-out;">
-    <img id="lightbox-img" src="" alt="" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+  <div id="lightbox" style="display: none; position: fixed; inset: 0; z-index: 95; background: rgba(28,25,22,0.94); align-items: center; justify-content: center; padding: clamp(24px, 5vw, 70px);">
+    <button id="lightbox-prev" type="button" style="position: absolute; left: clamp(14px, 3vw, 40px); top: 50%; transform: translateY(-50%); background: none; border: 0; padding: 12px; font-family: 'Work Sans', sans-serif; font-size: 24px; color: rgba(242,237,230,0.7); cursor: pointer; line-height: 1; z-index: 1;">←</button>
+    <img id="lightbox-img" src="" alt="" style="max-width: calc(100% - 120px); max-height: 100%; object-fit: contain;" />
+    <button id="lightbox-next" type="button" style="position: absolute; right: clamp(14px, 3vw, 40px); top: 50%; transform: translateY(-50%); background: none; border: 0; padding: 12px; font-family: 'Work Sans', sans-serif; font-size: 24px; color: rgba(242,237,230,0.7); cursor: pointer; line-height: 1; z-index: 1;">→</button>
     <button id="lightbox-close" type="button" style="position: absolute; top: 24px; right: clamp(20px, 4vw, 56px); background: none; border: 0; padding: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(242,237,230,0.7); cursor: pointer;">Close</button>
+    <span id="lightbox-count" style="position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); font-size: 11px; letter-spacing: 0.16em; color: rgba(242,237,230,0.5);"></span>
   </div>
 
   {d.floorPlan && (
@@ -175,7 +178,10 @@ const paragraphs = d.description.split(/\n\n+/).filter(Boolean);
           <span>WhatsApp +52 967 145 8587</span>
         </div>
       </div>
-      <form id="enquire-form" style="display: flex; flex-direction: column; gap: 22px;">
+      <form id="enquire-form" name="property-rent-enquiry" data-netlify="true" style="display: flex; flex-direction: column; gap: 22px;">
+        <input type="hidden" name="form-name" value="property-rent-enquiry" />
+        <input type="hidden" name="property-name" value={d.propertyName} />
+        {d.referenceCode && <input type="hidden" name="reference-code" value={d.referenceCode} />}
         <label style="display: flex; flex-direction: column; gap: 9px;">
           <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Your name</span>
           <input type="text" name="name" style="background: transparent; border: 0; border-bottom: 1px solid rgba(43,38,34,0.24); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #2B2622; outline: none;" />
@@ -222,18 +228,62 @@ const paragraphs = d.description.split(/\n\n+/).filter(Boolean);
 <script define:vars={{ gallery: d.gallery, floorPlan: d.floorPlan }}>
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
-  const openLightbox = (src, alt) => { lightboxImg.src = src; lightboxImg.alt = alt || ''; lightbox.style.display = 'flex'; document.body.style.overflow = 'hidden'; };
+  const lightboxCount = document.getElementById('lightbox-count');
+  let currentIdx = 0;
+  const updateLightbox = () => {
+    lightboxImg.src = gallery[currentIdx];
+    if (lightboxCount) lightboxCount.textContent = gallery.length > 1 ? `${currentIdx + 1} / ${gallery.length}` : '';
+  };
+  const openLightbox = (idx) => { currentIdx = idx; updateLightbox(); lightbox.style.display = 'flex'; document.body.style.overflow = 'hidden'; };
   const closeLightbox = () => { lightbox.style.display = 'none'; document.body.style.overflow = ''; };
   document.querySelectorAll('.gallery-btn').forEach(btn => {
-    btn.addEventListener('click', () => { const idx = parseInt(btn.dataset.index); if (gallery[idx]) openLightbox(gallery[idx], btn.querySelector('img')?.alt); });
+    btn.addEventListener('click', () => openLightbox(parseInt(btn.dataset.index)));
   });
-  document.getElementById('open-gallery')?.addEventListener('click', () => { if (gallery[0]) openLightbox(gallery[0]); });
+  document.getElementById('open-gallery')?.addEventListener('click', () => { if (gallery.length > 0) openLightbox(0); });
+  document.getElementById('lightbox-prev')?.addEventListener('click', e => { e.stopPropagation(); currentIdx = (currentIdx - 1 + gallery.length) % gallery.length; updateLightbox(); });
+  document.getElementById('lightbox-next')?.addEventListener('click', e => { e.stopPropagation(); currentIdx = (currentIdx + 1) % gallery.length; updateLightbox(); });
   lightbox?.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
   document.getElementById('lightbox-close')?.addEventListener('click', closeLightbox);
+
   const fp = document.getElementById('floorplan');
   document.getElementById('open-floorplan')?.addEventListener('click', () => { if (fp) { fp.style.display = 'flex'; document.body.style.overflow = 'hidden'; } });
   fp?.addEventListener('click', e => { if (e.target === fp) { fp.style.display = 'none'; document.body.style.overflow = ''; } });
   document.getElementById('floorplan-close')?.addEventListener('click', () => { fp.style.display = 'none'; document.body.style.overflow = ''; });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); if (fp) { fp.style.display = 'none'; document.body.style.overflow = ''; } } });
-  document.getElementById('enquire-form')?.addEventListener('submit', e => { e.preventDefault(); const btn = document.getElementById('enquire-submit'); if (btn) btn.textContent = "Thank you, we'll write back"; });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeLightbox(); if (fp) { fp.style.display = 'none'; document.body.style.overflow = ''; } }
+    if (lightbox.style.display === 'flex') {
+      if (e.key === 'ArrowLeft') { currentIdx = (currentIdx - 1 + gallery.length) % gallery.length; updateLightbox(); }
+      if (e.key === 'ArrowRight') { currentIdx = (currentIdx + 1) % gallery.length; updateLightbox(); }
+    }
+  });
+
+  document.getElementById('enquire-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const btn = document.getElementById('enquire-submit');
+    if (btn) btn.disabled = true;
+    const fd = new FormData(form);
+    await Promise.allSettled([
+      fetch('/.netlify/functions/form-submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formType: 'property-enquiry',
+          enquiryType: 'rent',
+          name: fd.get('name') || '',
+          email: fd.get('email') || '',
+          propertyName: fd.get('property-name') || '',
+          referenceCode: fd.get('reference-code') || '',
+          message: fd.get('message') || '',
+        }),
+      }),
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(fd).toString(),
+      }),
+    ]);
+    if (btn) btn.textContent = "Thank you, we'll write back";
+  });
 </script>

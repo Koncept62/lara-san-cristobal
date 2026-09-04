@@ -17,7 +17,7 @@ const path = Astro.url.pathname;
 
   <section id="top" style="position: relative; min-height: 78vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding: clamp(110px, 16vh, 180px) clamp(20px, 4vw, 56px) clamp(40px, 6vh, 72px);">
     <div style="position: absolute; inset: 0; overflow: hidden;">
-      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_16:9,g_auto,w_2000/f_auto,q_auto/v1788341821/HYL_main_py9a5c.jpg" alt="Interiors and furniture by Humberto y Lara" style="width: 100%; height: 100%; object-fit: cover; object-position: center 45%;" />
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_16:9,g_auto,w_2000/f_auto,q_auto/v1788514101/LSC_HYL_1_wgniak.jpg" alt="Interiors and furniture by Humberto y Lara" style="width: 100%; height: 100%; object-fit: cover; object-position: center 45%;" />
       <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(34, 31, 28, 0.34) 0%, rgba(34, 31, 28, 0.3) 40%, rgba(34, 31, 28, 0.66) 100%);"></div>
     </div>
     <div style="position: relative; max-width: 1400px; width: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 36px;">
@@ -53,7 +53,7 @@ const path = Astro.url.pathname;
       </div>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 2vw, 24px);">
         <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/f_auto,q_auto/v1788341714/INSTAGRAM_CONTENT_202534_lqzs7z.jpg" alt="Furniture by Humberto y Lara" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8;" />
-        <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/f_auto,q_auto/v1788341715/INSTAGRAM_CONTENT_202542_dyku1m.jpg" alt="Furniture by Humberto y Lara" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8; margin-top: clamp(22px, 4vw, 56px);" />
+        <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/f_auto,q_auto/v1788514100/LSC_HYL_2_kp4xx2.jpg" alt="Furniture by Humberto y Lara" style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8; margin-top: clamp(22px, 4vw, 56px);" />
       </div>
     </div>
   </section>
@@ -61,7 +61,7 @@ const path = Astro.url.pathname;
   <section data-reveal="1" style="padding: clamp(60px, 10vh, 120px) clamp(20px, 4vw, 56px);">
     <div style="max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(30px, 4vw, 46px);">
       <p style="margin: 0; max-width: 60ch; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(21px, 2.29vw, 33px); line-height: 1.3; letter-spacing: -0.01em; text-wrap: pretty;">From ceramics made here by the wonderful and esteemed Esly Vera, and hand-woven natural cord lamps, mirrors and wall art, to luxurious oversized cushions and sumptuous throw blankets, all mindfully curated to add serious style to your interior.</p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: rgba(43, 38, 34, 0.14);">
+      <div class="services-grid" style="display: grid; gap: 1px; background: rgba(43, 38, 34, 0.14);">
         <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 10px; min-height: 170px;">
           <span style="font-family: 'Work Sans', sans-serif; font-size: 26px; font-weight: 400; line-height: 1.25;">Made in San Cristóbal</span>
           <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">The entire collection is handmade with love and fine craftsmanship here in the city.</span>
@@ -81,3 +81,8 @@ const path = Astro.url.pathname;
   <ContactCta heading="Furnishing a house here? I would love to help." />
   <Footer />
 </Layout>
+
+<style>
+  .services-grid { grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+</style>

@@ -89,7 +89,7 @@ export default async (req) => {
     });
   }
 
-  const { formType, name, email, message, sellOrRent } = data;
+  const { formType, name, email, message, sellOrRent, enquiryType } = data;
 
   // Basic email guard
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -104,9 +104,22 @@ export default async (req) => {
   if (formType === 'sell') {
     // "Wanting to sell or rent?" modal — map the dropdown selection
     const val = (sellOrRent || '').trim();
-    if (/^(For sale|En venta)$/i.test(val))   tags = ['seller'];
+    if (/^(For sale|En venta)$/i.test(val))        tags = ['seller'];
     else if (/^(For rent|En alquiler)$/i.test(val)) tags = ['landlord'];
-    else                                            tags = ['seller']; // "Not sure yet" / "Aún no lo sé"
+    else                                             tags = ['seller']; // "Not sure yet" / "Aún no lo sé"
+  } else if (formType === 'property-enquiry') {
+    tags = enquiryType === 'rent' ? ['renter'] : ['buyer'];
+  } else if (formType === 'contact-menu') {
+    const typeMap = {
+      'buying':      'buyer',
+      'renting':     'renter',
+      'land':        'land-buyer',
+      'off-grid':    'off-grid',
+      'selling':     'seller',
+      'renting-out': 'landlord',
+      'general':     'enquiry',
+    };
+    tags = [typeMap[(sellOrRent || '').toLowerCase()] || 'enquiry'];
   } else {
     // General contact form — infer from the free-text "what are you looking for?" field
     tags = inferContactTags(message);

@@ -21,7 +21,7 @@ const listings = (await getCollection('property-for-rent'))
 
   <section id="top" style="position: relative; min-height: 78vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding: clamp(110px, 16vh, 180px) clamp(20px, 4vw, 56px) clamp(40px, 6vh, 72px);">
     <div style="position: absolute; inset: 0; overflow: hidden;">
-      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_16:9,g_auto,w_2000/f_auto,q_auto/v1788330836/INSTAGRAM_CONTENT_202560_eq5ckj.jpg" alt="Propiedad en alquiler en San Cristóbal" style="width: 100%; height: 100%; object-fit: cover; object-position: center 45%;" />
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/f_auto,q_auto/v1788114692/LSC_6_cyh5ex.jpg" alt="Propiedad en alquiler en San Cristóbal" style="width: 100%; height: 100%; object-fit: cover; object-position: center 45%;" />
       <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(34, 31, 28, 0.34) 0%, rgba(34, 31, 28, 0.3) 40%, rgba(34, 31, 28, 0.66) 100%);"></div>
     </div>
     <div style="position: relative; max-width: 1400px; width: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 36px;">
@@ -46,9 +46,9 @@ const listings = (await getCollection('property-for-rent'))
   </section>
 
   {listings.length > 0 && (
-    <section data-reveal="1" style="padding: clamp(20px, 4vh, 40px) clamp(20px, 4vw, 56px) clamp(50px, 8vh, 90px);">
+    <section data-reveal="1" style="padding: clamp(20px, 4vh, 50px) clamp(20px, 4vw, 56px) clamp(50px, 8vh, 100px);">
       <div style="max-width: 1400px; margin: 0 auto;">
-        <div style="display: flex; padding-bottom: 40px; border-bottom: 1px solid rgba(43, 38, 34, 0.14);">
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 20px; padding-bottom: 40px; border-bottom: 1px solid rgba(43, 38, 34, 0.14);">
           <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Disponible ahora</h2>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: clamp(28px, 3.4vw, 54px); padding-top: clamp(34px, 4vw, 56px);">
@@ -63,7 +63,7 @@ const listings = (await getCollection('property-for-rent'))
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
                   <h3 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 24px; line-height: 1.2;">{d.propertyName}</h3>
-                  <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6E655C;">{d.location}{d.bedrooms ? ` · ${d.bedrooms} recámaras` : ''}</p>
+                  <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6E655C;">{d.location}{d.bedrooms ? ` · ${d.bedrooms} recámaras` : ''}{d.propertySize ? ` · ${d.propertySize}` : ''}</p>
                   <p style="margin: 4px 0 0; font-size: 14px; font-weight: 300; line-height: 1.75; color: #6E655C;">{d.inBrief}</p>
                   <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 4px;">
                     {d.priceMxn ? (
@@ -84,34 +84,37 @@ const listings = (await getCollection('property-for-rent'))
     </section>
   )}
 
-  <section data-reveal="1" style="padding: clamp(30px, 5vh, 50px) clamp(20px, 4vw, 56px) clamp(60px, 9vh, 110px);">
-    <div style="max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(30px, 4vw, 46px);">
-      <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 20px; padding-bottom: 30px; border-bottom: 1px solid rgba(43, 38, 34, 0.14);">
-        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Cómo funciona</h2>
-        <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E655C;">Tres pasos y ya estás visitando</span>
+  <section data-reveal="1" style="background: #221F1C; color: #F2EDE6;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); align-items: stretch;">
+      <div style="min-height: 56vh; position: relative; overflow: hidden;">
+        <img src="https://res.cloudinary.com/disybpuro/image/upload/f_auto,q_auto/v1788114747/LSC_3_ld5awb.jpg" alt="Interior de una propiedad en alquiler en San Cristóbal" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" />
       </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: rgba(43, 38, 34, 0.14);">
-        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 12px;">
-          <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 300; color: #c15857;">01</span>
-          <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">Cuéntame tu presupuesto, tu lista de deseos y cuándo quieres mudarte.</span>
-        </div>
-        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 12px;">
-          <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 300; color: #c15857;">02</span>
-          <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">Preparamos una selección de propiedades adecuadas, publicadas y no publicadas.</span>
-        </div>
-        <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 12px;">
-          <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 300; color: #c15857;">03</span>
-          <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: #6E655C;">Empezamos las visitas cuando estés listo y te acompañamos con todo el papeleo.</span>
+      <div style="display: flex; flex-direction: column; justify-content: center; gap: 26px; padding: clamp(50px, 8vw, 108px) clamp(24px, 5vw, 92px);">
+        <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(242, 237, 230, 0.55);">Cómo funciona</span>
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3.34vw, 49px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: pretty;">Tres pasos y ya estás visitando</h2>
+        <div style="display: flex; flex-direction: column; gap: 1px; background: rgba(242, 237, 230, 0.14);">
+          <div style="background: #221F1C; padding: 20px 0; display: flex; gap: 20px; align-items: baseline;">
+            <span style="font-family: 'Work Sans', sans-serif; font-size: 23px; font-weight: 300; color: #c15857; min-width: 34px;">01</span>
+            <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(242, 237, 230, 0.8);">Cuéntame tu presupuesto, tu lista de deseos y cuándo quieres mudarte.</span>
+          </div>
+          <div style="background: #221F1C; padding: 20px 0; display: flex; gap: 20px; align-items: baseline;">
+            <span style="font-family: 'Work Sans', sans-serif; font-size: 23px; font-weight: 300; color: #c15857; min-width: 34px;">02</span>
+            <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(242, 237, 230, 0.8);">Preparamos una selección de propiedades adecuadas, publicadas y no publicadas.</span>
+          </div>
+          <div style="background: #221F1C; padding: 20px 0; display: flex; gap: 20px; align-items: baseline;">
+            <span style="font-family: 'Work Sans', sans-serif; font-size: 23px; font-weight: 300; color: #c15857; min-width: 34px;">03</span>
+            <span style="font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(242, 237, 230, 0.8);">Empezamos las visitas cuando estés listo y te acompañamos con todo el papeleo.</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section data-reveal="1" style="padding: 0 0 clamp(20px, 4vh, 40px); overflow: hidden;">
-    <div style="display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none;">
-      <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/f_auto,q_auto/v1788115974/LSC_16_iems67.jpg" alt="" style="width: clamp(200px, 28vw, 420px); aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8; flex-shrink: 0;" />
-      <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/f_auto,q_auto/v1788115976/LSC_18_bxjflq.jpg" alt="" style="width: clamp(200px, 28vw, 420px); aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8; flex-shrink: 0;" />
-      <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/f_auto,q_auto/v1788115973/LSC_13_w9j39z.jpg" alt="" style="width: clamp(200px, 28vw, 420px); aspect-ratio: 3 / 4; object-fit: cover; background: #E4D8C8; flex-shrink: 0;" />
+  <section data-reveal="1" style="padding: clamp(60px, 10vh, 130px) clamp(20px, 4vw, 56px) clamp(20px, 4vh, 40px);">
+    <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(16px, 2vw, 26px);">
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/f_auto,q_auto/v1788114692/LSC_2_y0krs2.jpg" alt="Sala de estar en un alquiler de San Cristóbal" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #E4D8C8;" />
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/f_auto,q_auto/v1788114801/LSC_5_z9yibm.jpg" alt="Habitación en una propiedad en alquiler de San Cristóbal" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #E4D8C8;" />
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/f_auto,q_auto/v1788114692/LSC_1_pejjvf.jpg" alt="Interior de una propiedad en alquiler de San Cristóbal" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #E4D8C8;" />
     </div>
   </section>
 

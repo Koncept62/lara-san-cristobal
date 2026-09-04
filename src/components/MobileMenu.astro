@@ -68,7 +68,7 @@ const nav = lang === 'es' ? {
       <a href={nav.notesHref} style={`font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.82vw, 35px); line-height: 1.32; padding: 9px 0;${isActive(nav.notesHref) ? activeStyle : ''}`}>{nav.notes}</a>
       <a href={nav.aboutHref} style={`font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.82vw, 35px); line-height: 1.32; padding: 9px 0;${isActive(nav.aboutHref) ? activeStyle : ''}`}>{nav.about}</a>
       <button type="button" data-open-sell style="font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.82vw, 35px); line-height: 1.32; padding: 9px 0; background: none; border: 0; text-align: left; color: inherit; cursor: pointer;">{nav.sell}</button>
-      <a href="#enquire" style="font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.82vw, 35px); line-height: 1.32; padding: 9px 0;">{nav.contact}</a>
+      <button type="button" data-open-contact style="font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(23px, 2.82vw, 35px); line-height: 1.32; padding: 9px 0; background: none; border: 0; text-align: left; color: inherit; cursor: pointer;">{nav.contact}</button>
       <div style="margin-top: 34px; display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 300; color: #6E655C; letter-spacing: 0.02em;">
         <span>Los Alcanfores, San Cristóbal de las Casas</span>
         <span>Chiapas, {lang === 'es' ? 'México' : 'Mexico'}</span>

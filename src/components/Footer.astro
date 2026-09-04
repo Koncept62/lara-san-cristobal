@@ -6,8 +6,13 @@ interface Props {
 const { newsletter = false, lang = 'en' } = Astro.props;
 const es = lang === 'es';
 ---
+<style>
+  .footer-cols { grid-template-columns: 1fr; }
+  @media (min-width: 360px) { .footer-cols { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 640px) { .footer-cols { grid-template-columns: repeat(4, 1fr); } }
+</style>
 <footer style="background: #221F1C; color: rgba(242, 237, 230, 0.7); padding: clamp(50px, 8vh, 90px) clamp(20px, 4vw, 56px) 34px;">
-  <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: clamp(30px, 4vw, 60px); padding-bottom: clamp(40px, 6vh, 70px);">
+  <div class="footer-cols" style="max-width: 1400px; margin: 0 auto; display: grid; gap: clamp(30px, 4vw, 60px); padding-bottom: clamp(40px, 6vh, 70px);">
     <div style="display: flex; flex-direction: column; gap: 20px;">
       <img src="/images/logo-crest-white.png" alt="Lara San Cristóbal" style="width: 132px; height: auto;" />
       <p style="margin: 0; max-width: 30ch; font-size: 14px; font-weight: 300; line-height: 1.8;">{es ? 'Casas, terrenos y lugares tranquilos en los altos de Chiapas.' : 'Houses, land and quiet places in the highlands of Chiapas.'}</p>

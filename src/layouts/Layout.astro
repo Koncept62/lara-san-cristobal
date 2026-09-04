@@ -75,6 +75,8 @@ const ogImg = ogImage
     #mobile-menu.is-open { display: grid; animation: fadeIn 0.35s ease both; }
     #sell-modal { display: none; }
     #sell-modal.is-open { display: flex; animation: fadeIn 0.3s ease both; }
+    #contact-modal { display: none; }
+    #contact-modal.is-open { display: flex; animation: fadeIn 0.3s ease both; }
 
     .menu-nav-grid {
       display: grid;
@@ -143,6 +145,54 @@ const ogImg = ogImage
     </div>
   </div>
 
+  <div id="contact-modal" style="position: fixed; inset: 0; z-index: 90; align-items: center; justify-content: center; padding: clamp(14px, 4vw, 48px); background: rgba(34, 31, 28, 0.62);">
+    <div id="contact-modal-panel" style="position: relative; width: 100%; max-width: 740px; max-height: 100%; overflow-y: auto; background: #2B2622; color: #FBF8F3; padding: clamp(30px, 4.5vw, 60px);">
+      <button type="button" id="contact-modal-close" class="btn-close-modal" style="position: absolute; top: 22px; right: 22px; background: none; border: 0; padding: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.8); cursor: pointer;">{es ? 'Cerrar' : 'Close'}</button>
+      <div style="display: flex; flex-direction: column; gap: 16px; max-width: 46ch;">
+        <span style="font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(251, 248, 243, 0.72);">{es ? 'Contacto' : 'Contact us'}</span>
+        <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(26px, 3vw, 40px); line-height: 1.12; letter-spacing: 0.005em; text-wrap: pretty;">{es ? 'Cuéntanos en qué podemos ayudarte' : 'Tell us how we can help'}</h2>
+      </div>
+      <form id="contact-menu-form" name={es ? 'contact-menu-es' : 'contact-menu'} data-netlify="true" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(20px, 2.6vw, 30px); padding-top: clamp(28px, 3.4vw, 42px);">
+        <input type="hidden" name="form-name" value={es ? 'contact-menu-es' : 'contact-menu'} />
+        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? 'Tu nombre' : 'Your name'}</span><input type="text" name="name" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%;" /></label>
+        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? 'Correo electrónico' : 'Email'}</span><input type="email" name="email" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%;" /></label>
+        <label style="display: flex; flex-direction: column; gap: 9px;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? '¿En qué te ayudamos?' : 'How can we help?'}</span>
+          <select name="sell-or-rent" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%; border-radius: 0; appearance: none;">
+            {es ? (
+              <>
+                <option value="buying" style="color: #2B2622;">Quiero comprar</option>
+                <option value="renting" style="color: #2B2622;">Quiero alquilar</option>
+                <option value="land" style="color: #2B2622;">Me interesan terrenos</option>
+                <option value="off-grid" style="color: #2B2622;">Construcción off grid</option>
+                <option value="selling" style="color: #2B2622;">Quiero vender mi propiedad</option>
+                <option value="renting-out" style="color: #2B2622;">Quiero alquilar mi propiedad</option>
+                <option value="general" style="color: #2B2622;">Consulta general</option>
+              </>
+            ) : (
+              <>
+                <option value="buying" style="color: #2B2622;">I want to buy</option>
+                <option value="renting" style="color: #2B2622;">I want to rent</option>
+                <option value="land" style="color: #2B2622;">I'm interested in land</option>
+                <option value="off-grid" style="color: #2B2622;">Off-grid builds</option>
+                <option value="selling" style="color: #2B2622;">I want to sell my property</option>
+                <option value="renting-out" style="color: #2B2622;">I want to rent out my property</option>
+                <option value="general" style="color: #2B2622;">General enquiry</option>
+              </>
+            )}
+          </select>
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 9px; grid-column: 1 / -1;"><span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251, 248, 243, 0.7);">{es ? 'Algo que debamos saber' : 'Anything we should know'}</span><textarea name="message" rows="2" style="background: transparent; border: 0; border-bottom: 1px solid rgba(251, 248, 243, 0.4); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #FBF8F3; outline: none; width: 100%; resize: vertical;"></textarea></label>
+        <div style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; padding-top: 4px;">
+          <button type="submit" id="contact-menu-submit" class="btn-sell-submit" style="background: #FBF8F3; color: #2B2622; border: 0; padding: 16px 32px; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer;">{es ? 'Enviar' : 'Send message'}</button>
+          <div style="display: flex; flex-direction: column; gap: 5px; font-size: 12px; font-weight: 300; color: rgba(251, 248, 243, 0.8);">
+            <a href="https://wa.me/529671458587" style="color: #FBF8F3;">WhatsApp +52 967 145 8587</a>
+            <a href="mailto:lara@larasancristobal.com" style="color: #FBF8F3;">lara@larasancristobal.com</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
     const sellModal = document.getElementById('sell-modal');
     const openSell = (e) => {
@@ -162,6 +212,49 @@ const ogImg = ogImage
     });
     document.getElementById('sell-modal-close').addEventListener('click', closeSell);
     document.querySelectorAll('[data-open-sell]').forEach(btn => btn.addEventListener('click', openSell));
+
+    const contactModal = document.getElementById('contact-modal');
+    const openContact = (e) => {
+      if (e) e.preventDefault();
+      contactModal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      const menu = document.getElementById('mobile-menu');
+      if (menu) menu.classList.remove('is-open');
+    };
+    const closeContact = () => {
+      contactModal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    };
+    contactModal.addEventListener('click', (e) => { if (e.target === contactModal) closeContact(); });
+    document.getElementById('contact-modal-close').addEventListener('click', closeContact);
+    document.querySelectorAll('[data-open-contact]').forEach(btn => btn.addEventListener('click', openContact));
+    document.getElementById('contact-menu-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      const btn = document.getElementById('contact-menu-submit');
+      const isEs = document.documentElement.lang === 'es';
+      if (btn) btn.disabled = true;
+      const fd = new FormData(form);
+      await Promise.allSettled([
+        fetch('/.netlify/functions/form-submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            formType: 'contact-menu',
+            name: fd.get('name') || '',
+            email: fd.get('email') || '',
+            sellOrRent: fd.get('sell-or-rent') || '',
+            message: fd.get('message') || '',
+          }),
+        }),
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(fd).toString(),
+        }),
+      ]);
+      if (btn) btn.textContent = isEs ? 'Gracias — te contactamos pronto' : "Thank you — we'll be in touch";
+    });
     document.getElementById('sell-form')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.currentTarget;

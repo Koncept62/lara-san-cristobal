@@ -60,7 +60,7 @@ const path = Astro.url.pathname;
         <span style="font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(242, 237, 230, 0.55);">The team</span>
         <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: clamp(28px, 3.70vw, 55px); line-height: 1.08; letter-spacing: -0.015em; text-wrap: pretty;">Every box ticked, before anything is signed</h2>
         <p style="margin: 0; max-width: 44ch; font-size: 15px; font-weight: 300; line-height: 1.9; color: rgba(242, 237, 230, 0.72);">I have built an incredible team of real estate professionals, and together we can ensure that exhaustive due diligence is carried out on each and every opportunity, prior to acquisition, so that whatever you choose to do, you can do it confidently and in the knowledge that all the boxes have been ticked.</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1px; background: rgba(242, 237, 230, 0.14); margin-top: 6px;">
+        <div class="team-tags" style="display: grid; gap: 1px; background: rgba(242, 237, 230, 0.14); margin-top: 6px;">
           <span style="background: #221F1C; padding: 18px 20px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242, 237, 230, 0.86);">Architects</span>
           <span style="background: #221F1C; padding: 18px 20px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242, 237, 230, 0.86);">Valuers</span>
           <span style="background: #221F1C; padding: 18px 20px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242, 237, 230, 0.86);">Lawyers</span>
@@ -73,7 +73,7 @@ const path = Astro.url.pathname;
   <section data-reveal="1" style="padding: clamp(60px, 10vh, 120px) clamp(20px, 4vw, 56px);">
     <div style="max-width: 1400px; margin: 0 auto;">
       <h2 style="margin: 0 0 clamp(28px, 4vw, 46px); font-family: 'Work Sans', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Twenty-five years, briefly</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: rgba(43, 38, 34, 0.14);">
+      <div class="fourcard-grid" style="display: grid; gap: 1px; background: rgba(43, 38, 34, 0.14);">
         <div style="background: #F2EDE6; padding: clamp(26px, 3vw, 40px); display: flex; flex-direction: column; gap: 10px; min-height: 168px;">
           <span style="font-family: 'Work Sans', sans-serif; font-size: 35px; font-weight: 300; line-height: 1;">25</span>
           <span style="font-size: 13px; font-weight: 300; line-height: 1.75; color: #6E655C;">Years at the sharp end of international real estate.</span>
@@ -125,3 +125,11 @@ const path = Astro.url.pathname;
   <ContactCta heading="If you are thinking of investing in San Cristóbal, please do call." />
   <Footer />
 </Layout>
+
+<style>
+  .fourcard-grid { grid-template-columns: 1fr; }
+  @media (min-width: 360px) { .fourcard-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 640px) { .fourcard-grid { grid-template-columns: repeat(4, 1fr); } }
+  .team-tags { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 480px) { .team-tags { grid-template-columns: repeat(4, 1fr); } }
+</style>

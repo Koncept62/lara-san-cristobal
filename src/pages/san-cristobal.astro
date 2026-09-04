@@ -17,7 +17,7 @@ const path = Astro.url.pathname;
 
   <section id="top" style="position: relative; min-height: 78vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding: clamp(110px, 16vh, 180px) clamp(20px, 4vw, 56px) clamp(40px, 6vh, 72px);">
     <div style="position: absolute; inset: 0; overflow: hidden;">
-      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_16:9,g_auto,w_2000/f_auto,q_auto/v1788342266/AdobeStock_1511049624_Preview_crvdof.jpg" alt="San Cristóbal de las Casas" style="width: 100%; height: 100%; object-fit: cover;" />
+      <img src="https://res.cloudinary.com/disybpuro/image/upload/c_fill,ar_16:9,g_auto,w_2000/f_auto,q_auto/v1788508817/LSC_31_dcz3nj.jpg" alt="San Cristóbal de las Casas" style="width: 100%; height: 100%; object-fit: cover;" />
       <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(34, 31, 28, 0.34) 0%, rgba(34, 31, 28, 0.3) 40%, rgba(34, 31, 28, 0.66) 100%);"></div>
     </div>
     <div style="position: relative; max-width: 1400px; width: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 36px;">
@@ -63,7 +63,7 @@ const path = Astro.url.pathname;
         </div>
         <p style="margin: 0; max-width: 40ch; font-size: 15px; font-weight: 300; line-height: 1.85; color: rgba(242, 237, 230, 0.72);">Whether you are a buy-to-let investor looking for fantastic value, a stable market and reliable returns, or looking to relocate, San Cristóbal presents a compelling case.</p>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: rgba(242, 237, 230, 0.14);">
+      <div class="fourcard-grid" style="display: grid; gap: 1px; background: rgba(242, 237, 230, 0.14);">
         <div style="background: #221F1C; padding: clamp(26px, 3vw, 38px); display: flex; flex-direction: column; gap: 12px; min-height: 190px;">
           <span style="font-family: 'Work Sans', sans-serif; font-size: 26px; font-weight: 400; line-height: 1.25;">Older, characterful houses</span>
           <span style="font-size: 13px; font-weight: 300; line-height: 1.8; color: rgba(242, 237, 230, 0.7);">Truly excellent opportunities to buy and improve in the historic centre and beyond.</span>
@@ -98,6 +98,10 @@ const path = Astro.url.pathname;
 </Layout>
 
 <style>
+  .fourcard-grid { grid-template-columns: 1fr; }
+  @media (min-width: 360px) { .fourcard-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 640px) { .fourcard-grid { grid-template-columns: repeat(4, 1fr); } }
+
   @media (max-width: 639px) {
     .img-row {
       display: grid !important;
