@@ -1,5 +1,5 @@
 ---
-propertyName: CHRIS FINAL2
+propertyName: CHRIS FINAL3
 location: San Cristobal
 inBrief: "in brief text in brief text in brief text in brief text in brief text
   in brief text in brief text in brief text in brief text in brief text in brief
@@ -27,7 +27,7 @@ priceMxn: "309000"
 priceUsd: "37777"
 referenceCode: ref1
 status: Available
-mainImage: /images/uploads/lsc_16.jpeg
+mainImage: /images/uploads/lsc_18.jpeg
 gallery:
   - /images/uploads/lsc_14.jpeg
   - /images/uploads/lsc_12.jpeg
