@@ -23,6 +23,21 @@ const slug = entry.id.replace(/\.md$/, '');
 const statusLabel = d.status === 'Reserved' ? 'Reservado' : d.status === 'Sold' ? 'Vendido' : 'En venta';
 const heroMeta = [d.location, statusLabel].filter(Boolean).join(' · ');
 const paragraphs = d.description.split(/\n\n+/).filter(Boolean);
+
+const schemaAvailability = d.status === 'Sold' ? 'https://schema.org/SoldOut' : d.status === 'Reserved' ? 'https://schema.org/LimitedAvailability' : 'https://schema.org/InStock';
+const jsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "RealEstateListing",
+  "name": d.propertyName,
+  "description": d.inBrief,
+  "image": [d.mainImage, ...d.gallery].filter(Boolean),
+  "url": `https://larasancristobal.com/land-es/${slug}`,
+  "offers": {
+    "@type": "Offer",
+    "availability": schemaAvailability,
+    ...(d.priceMxn ? { "price": d.priceMxn, "priceCurrency": "MXN" } : d.priceUsd ? { "price": d.priceUsd, "priceCurrency": "USD" } : {}),
+  },
+});
 ---
 <Layout
   title={`${d.propertyName} · ${d.location} · Lara San Cristóbal`}
@@ -33,6 +48,7 @@ const paragraphs = d.description.split(/\n\n+/).filter(Boolean);
 >
   <Header lang="es" enHref={`/land/${slug}`} />
   <MobileMenu currentPath={Astro.url.pathname} lang="es" />
+  <script type="application/ld+json" set:html={jsonLd} />
 
   <section style="position: relative; height: 82vh; min-height: 460px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end;">
     <div style="position: absolute; inset: 0; overflow: hidden;">
@@ -111,7 +127,7 @@ const paragraphs = d.description.split(/\n\n+/).filter(Boolean);
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(16px, 2vw, 26px);">
           {d.gallery.slice(0, 3).map((img, i) => (
             <button type="button" class="gallery-btn" data-index={i} style="border: 0; padding: 0; background: #4A5D3E; cursor: zoom-in; overflow: hidden; aspect-ratio: 4 / 5;">
-              <img src={img} alt={`${d.propertyName} — foto ${i + 1}`} style="width: 100%; height: 100%; object-fit: cover;" />
+              <img src={img} alt={`${d.propertyName} — foto ${i + 1}`} loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" />
             </button>
           ))}
         </div>
@@ -175,7 +191,7 @@ const paragraphs = d.description.split(/\n\n+/).filter(Boolean);
             const oSlug = o.id.replace(/\.md$/, '');
             return (
               <a href={`/land-es/${oSlug}`} style="display: flex; flex-direction: column; gap: 16px;">
-                <img src={o.data.mainImage} alt={o.data.propertyName} style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #E4D8C8;" />
+                <img src={o.data.mainImage} alt={o.data.propertyName} loading="lazy" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #E4D8C8;" />
                 <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">{o.data.location} · {o.data.landSize}</span>
                 <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; line-height: 1.2;">{o.data.propertyName}</span>
               </a>
