@@ -30,6 +30,20 @@ const recentNotes = (await getCollection('notes'))
 const pageStyles = `
   @media (min-width: 620px) { [data-index-grid] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
   @media (min-width: 1180px) { [data-index-grid] { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; } }
+
+  /* Taggbox: override injected white backgrounds to match site background */
+  .tb_wall_header__,
+  .tb_wall_header__inner,
+  .custom_tb_sb__b_cont,
+  .tb_sb__b_cont,
+  .tb__social_wall_header,
+  .taggbox_header,
+  .tb_wall_wrapper,
+  .taggbox { background-color: #F2EDE6 !important; }
+
+  /* Taggbox: override white on the powered-by footer and load-more strip */
+  .tb_powered_by,
+  .tb_wall_load_more { background-color: #F2EDE6 !important; }
 `;
 ---
 <Layout
