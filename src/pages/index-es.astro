@@ -1,10 +1,26 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import MobileMenu from '../components/MobileMenu.astro';
 import Footer from '../components/Footer.astro';
 
 const path = Astro.url.pathname;
+
+const categoryLabels: Record<string, string> = {
+  'Buying in Mexico': 'Comprar en México',
+  'Restoring': 'Restaurar',
+  'Off grid': 'Off grid',
+  'The town': 'La ciudad',
+  'Interiors': 'Interiores',
+  'From Lara': 'De Lara',
+};
+
+const recentNotes = (await getCollection('notes'))
+  .filter(n => new Date(n.data.pubDate) <= new Date())
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .slice(0, 3);
+
 const pageStyles = `
   @media (min-width: 620px) { [data-index-grid] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
   @media (min-width: 1180px) { [data-index-grid] { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; } }
@@ -230,21 +246,16 @@ const pageStyles = `
         <a href="/notes-es" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E655C;">Todas las notas</a>
       </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(26px, 3vw, 48px); padding-top: 40px;">
-        <a href="/notes-es" style="display: flex; flex-direction: column; gap: 16px;">
-          <img src="https://res.cloudinary.com/disybpuro/image/upload/f_auto,q_auto/v1788342264/AdobeStock_1511049804_Preview_rt7i3s.jpg" alt="Calle colonial pintada" style="width: 100%; aspect-ratio: 16 / 11; object-fit: cover; background: #E4D8C8;" />
-          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Nota 01</span>
-          <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; font-weight: 400; line-height: 1.25;">Entrada de blog uno</span>
-        </a>
-        <a href="/notes-es" style="display: flex; flex-direction: column; gap: 16px;">
-          <img src="https://res.cloudinary.com/disybpuro/image/upload/f_auto,q_auto/v1788342264/AdobeStock_1511049804_Preview_rt7i3s.jpg" alt="Sala cálida con plantas" style="width: 100%; aspect-ratio: 16 / 11; object-fit: cover; background: #E4D8C8;" />
-          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Nota 02</span>
-          <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; font-weight: 400; line-height: 1.25;">Entrada de blog dos</span>
-        </a>
-        <a href="/notes-es" style="display: flex; flex-direction: column; gap: 16px;">
-          <img src="https://res.cloudinary.com/disybpuro/image/upload/f_auto,q_auto/v1788342264/AdobeStock_1511049804_Preview_rt7i3s.jpg" alt="Cielo nocturno sobre las montañas" style="width: 100%; aspect-ratio: 16 / 11; object-fit: cover; background: #E4D8C8;" />
-          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Nota 03</span>
-          <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; font-weight: 400; line-height: 1.25;">Entrada de blog tres</span>
-        </a>
+        {recentNotes.map(note => {
+          const slug = note.id.replace(/\.md$/, '');
+          return (
+            <a href={`/notes-es/${slug}`} style="display: flex; flex-direction: column; gap: 16px;">
+              <img src={note.data.coverImage} alt={note.data.title} style="width: 100%; aspect-ratio: 16 / 11; object-fit: cover; background: #E4D8C8;" />
+              <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">{categoryLabels[note.data.category] || note.data.category}</span>
+              <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; font-weight: 400; line-height: 1.25;">{note.data.title}</span>
+            </a>
+          );
+        })}
       </div>
     </div>
   </section>

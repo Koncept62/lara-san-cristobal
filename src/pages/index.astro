@@ -21,6 +21,12 @@ const featuredListings = [
   ...featuredSale.map(e => ({ entry: e, type: 'sale' as const })),
   ...featuredRent.map(e => ({ entry: e, type: 'rent' as const })),
 ];
+
+const recentNotes = (await getCollection('notes'))
+  .filter(n => new Date(n.data.pubDate) <= new Date())
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .slice(0, 3);
+
 const pageStyles = `
   @media (min-width: 620px) { [data-index-grid] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
   @media (min-width: 1180px) { [data-index-grid] { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; } }
@@ -241,21 +247,16 @@ const pageStyles = `
         <a href="/notes" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E655C;">All notes</a>
       </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(26px, 3vw, 48px); padding-top: 40px;">
-        <a href="/notes" style="display: flex; flex-direction: column; gap: 16px;">
-          <img src="https://res.cloudinary.com/disybpuro/image/upload/f_auto,q_auto/v1788342264/AdobeStock_1511049804_Preview_rt7i3s.jpg" alt="Painted colonial street" style="width: 100%; aspect-ratio: 16 / 11; object-fit: cover; background: #E4D8C8;" />
-          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Note 01</span>
-          <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; font-weight: 400; line-height: 1.25;">Blog post one</span>
-        </a>
-        <a href="/notes" style="display: flex; flex-direction: column; gap: 16px;">
-          <img src="https://res.cloudinary.com/disybpuro/image/upload/f_auto,q_auto/v1788342264/AdobeStock_1511049804_Preview_rt7i3s.jpg" alt="Warm living room with plants" style="width: 100%; aspect-ratio: 16 / 11; object-fit: cover; background: #E4D8C8;" />
-          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Note 02</span>
-          <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; font-weight: 400; line-height: 1.25;">Blog post two</span>
-        </a>
-        <a href="/notes" style="display: flex; flex-direction: column; gap: 16px;">
-          <img src="https://res.cloudinary.com/disybpuro/image/upload/f_auto,q_auto/v1788342264/AdobeStock_1511049804_Preview_rt7i3s.jpg" alt="Night sky over the highlands" style="width: 100%; aspect-ratio: 16 / 11; object-fit: cover; background: #E4D8C8;" />
-          <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Note 03</span>
-          <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; font-weight: 400; line-height: 1.25;">Blog post three</span>
-        </a>
+        {recentNotes.map(note => {
+          const slug = note.id.replace(/\.md$/, '');
+          return (
+            <a href={`/notes/${slug}`} style="display: flex; flex-direction: column; gap: 16px;">
+              <img src={note.data.coverImage} alt={note.data.title} style="width: 100%; aspect-ratio: 16 / 11; object-fit: cover; background: #E4D8C8;" />
+              <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">{note.data.category}</span>
+              <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; font-weight: 400; line-height: 1.25;">{note.data.title}</span>
+            </a>
+          );
+        })}
       </div>
     </div>
   </section>
