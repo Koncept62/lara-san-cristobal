@@ -27,9 +27,12 @@ priceMxn: "309000"
 priceUsd: "37777"
 referenceCode: ref1
 status: Available
-mainImage: /images/uploads/lsc_11.jpeg
+mainImage: /images/uploads/lsc_16.jpeg
 gallery:
   - /images/uploads/lsc_14.jpeg
   - /images/uploads/lsc_12.jpeg
   - /images/uploads/lsc_17.jpeg
+  - /images/uploads/lsc_15.jpeg
+  - /images/uploads/instagram_content_202523.jpg
+  - /images/uploads/lsc_13.jpeg
 ---
