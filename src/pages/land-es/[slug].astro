@@ -161,7 +161,10 @@ const jsonLd = JSON.stringify({
           <span>WhatsApp +52 967 145 8587</span>
         </div>
       </div>
-      <form id="enquire-form" style="display: flex; flex-direction: column; gap: 22px;">
+      <form id="enquire-form" name="land-enquiry-es" data-netlify="true" style="display: flex; flex-direction: column; gap: 22px;">
+        <input type="hidden" name="form-name" value="land-enquiry-es" />
+        <input type="hidden" name="property-name" value={d.propertyName} />
+        {d.referenceCode && <input type="hidden" name="reference-code" value={d.referenceCode} />}
         <label style="display: flex; flex-direction: column; gap: 9px;">
           <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">Tu nombre</span>
           <input type="text" name="name" style="background: transparent; border: 0; border-bottom: 1px solid rgba(43,38,34,0.24); padding: 9px 0; font-family: 'Work Sans', sans-serif; font-size: 16px; font-weight: 300; color: #2B2622; outline: none;" />
@@ -215,5 +218,51 @@ const jsonLd = JSON.stringify({
   lightbox?.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
   document.getElementById('lightbox-close')?.addEventListener('click', closeLightbox);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-  document.getElementById('enquire-form')?.addEventListener('submit', e => { e.preventDefault(); const btn = document.getElementById('enquire-submit'); if (btn) btn.textContent = 'Gracias, te escribimos pronto'; });
+  document.getElementById('enquire-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const btn = document.getElementById('enquire-submit');
+    if (btn) btn.disabled = true;
+
+    const fd = new FormData(form);
+
+    // Etiquetado en Mailchimp — no bloqueante, igual que los formularios de propiedades
+    const mailchimp = fetch('/.netlify/functions/form-submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        formType: 'property-enquiry',
+        enquiryType: 'land',
+        name: fd.get('name') || '',
+        email: fd.get('email') || '',
+        propertyName: fd.get('property-name') || '',
+        referenceCode: fd.get('reference-code') || '',
+        message: fd.get('message') || '',
+      }),
+    });
+
+    // Netlify Forms — este POST debe completarse antes de confirmar al visitante
+    let ok = false;
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(fd).toString(),
+      });
+      ok = res.ok;
+    } catch {
+      ok = false;
+    }
+
+    await Promise.allSettled([mailchimp]);
+
+    if (btn) {
+      if (ok) {
+        btn.textContent = 'Gracias, te escribimos pronto';
+      } else {
+        btn.textContent = 'Algo salió mal — inténtalo de nuevo';
+        btn.disabled = false;
+      }
+    }
+  });
 </script>
