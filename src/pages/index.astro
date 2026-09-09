@@ -7,20 +7,17 @@ import Footer from '../components/Footer.astro';
 
 const path = Astro.url.pathname;
 
-// Pull up to 3 featured listings for the homepage preview.
-// Property-for-sale entries fill first; property-for-rent fills remaining slots.
-const allSale = (await getCollection('property-for-sale'))
-  .sort((a, b) => b.id.localeCompare(a.id)); // newest slug first
-const allRent = (await getCollection('property-for-rent'))
-  .sort((a, b) => b.id.localeCompare(a.id));
-
-const LIMIT = 3;
-const featuredSale = allSale.slice(0, LIMIT);
-const featuredRent = allRent.slice(0, Math.max(0, LIMIT - featuredSale.length));
+// Up to 3 property-for-sale listings for the homepage preview.
+// Entries flagged featuredHomepage in Decap lead the grid, newest dateAdded
+// first. If fewer than 3 are flagged, the most recently added listings fill the
+// remaining slots (no repeats). If more than 3 are flagged, the 3 newest win.
+const HOME_LIMIT = 3;
+const saleByRecency = (await getCollection('property-for-sale'))
+  .sort((a, b) => (b.data.dateAdded?.getTime() ?? 0) - (a.data.dateAdded?.getTime() ?? 0));
 const featuredListings = [
-  ...featuredSale.map(e => ({ entry: e, type: 'sale' as const })),
-  ...featuredRent.map(e => ({ entry: e, type: 'rent' as const })),
-];
+  ...saleByRecency.filter(e => e.data.featuredHomepage),
+  ...saleByRecency.filter(e => !e.data.featuredHomepage),
+].slice(0, HOME_LIMIT).map(entry => ({ entry }));
 
 // "Notes from the office" homepage strip.
 // Shows the note manually flagged featuredHomepage in Decap — not the most
@@ -101,18 +98,16 @@ const pageStyles = `
       </div>
       {featuredListings.length > 0 && (
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: clamp(28px, 3.4vw, 54px); padding-top: clamp(34px, 4vw, 56px);">
-          {featuredListings.map(({ entry, type }) => {
+          {featuredListings.map(({ entry }) => {
             const d = entry.data;
             const slug = entry.id.replace(/\.md$/, '');
-            const href = type === 'sale' ? `/property-for-sale/${slug}` : `/property-for-rent/${slug}`;
-            const meta = [d.location, 'bedrooms' in d && d.bedrooms ? `${d.bedrooms} bed` : null].filter(Boolean).join(' · ');
+            const meta = [d.location, d.bedrooms ? `${d.bedrooms} bed` : null].filter(Boolean).join(' · ');
             return (
-              <a href={href} style="display: flex; flex-direction: column; gap: 20px;">
+              <a href={`/property-for-sale/${slug}`} style="display: flex; flex-direction: column; gap: 20px;">
                 <div style="position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: #E4D8C8;">
                   <img src={d.mainImage} alt={d.propertyName} style="width: 100%; height: 100%; object-fit: cover;" />
                   {d.status === 'Reserved' && <span style="position: absolute; top: 16px; left: 16px; background: rgba(34, 31, 28, 0.78); padding: 6px 12px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #F2EDE6;">Reserved</span>}
                   {d.status === 'Sold'     && <span style="position: absolute; top: 16px; left: 16px; background: rgba(34, 31, 28, 0.78); padding: 6px 12px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #F2EDE6;">Sold</span>}
-                  {type === 'rent'         && <span style="position: absolute; top: 16px; right: 16px; background: rgba(251, 248, 243, 0.92); padding: 6px 12px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #2B2622;">For rent</span>}
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
                   <h3 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 24px; line-height: 1.2;">{d.propertyName}</h3>
@@ -120,7 +115,7 @@ const pageStyles = `
                   <p style="margin: 4px 0 0; font-size: 14px; font-weight: 300; line-height: 1.75; color: #6E655C;">{d.inBrief}</p>
                   {d.priceMxn ? (
                     <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 2px;">
-                      <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 400; color: #c15857;">{d.priceMxn}{type === 'rent' ? ' / month' : ''}</span>
+                      <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 400; color: #c15857;">{d.priceMxn}</span>
                       {d.priceUsd && <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8C8175;">≈ {d.priceUsd} USD guide</span>}
                     </div>
                   ) : (

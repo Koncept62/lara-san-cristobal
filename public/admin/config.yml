@@ -98,6 +98,19 @@ collections:
         name: "floorPlan"
         widget: "image"
         required: false
+      - label: "Featured on Homepage"
+        name: "featuredHomepage"
+        widget: "boolean"
+        default: false
+        hint: "Shows this property in the grid on the homepage. Up to 3 show at once — if more are flagged, the 3 most recently added win; if fewer, the newest listings fill the rest."
+      - label: "Date Added"
+        name: "dateAdded"
+        widget: "datetime"
+        format: "YYYY-MM-DDTHH:mm:ssZ"
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm"
+        required: false
+        hint: "Set when the property is created. Controls the order listings fill the homepage grid — newest first."
 
   # ---------------------------------------------------------
   # PROPERTY FOR RENT

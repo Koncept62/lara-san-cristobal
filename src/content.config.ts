@@ -58,6 +58,11 @@ export const collections = {
       mainImage: z.string(),
       gallery: z.array(z.string()).default([]),
       floorPlan: z.string().optional(),
+      // Homepage property grid, toggled in Decap. Flagged entries lead the grid;
+      // any remaining slots fill with the most recently added listings. dateAdded
+      // is set when an entry is created and drives that recency sort.
+      featuredHomepage: z.boolean().default(false),
+      dateAdded: z.coerce.date().optional(),
     }),
   }),
 
