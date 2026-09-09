@@ -22,10 +22,16 @@ const featuredListings = [
   ...featuredRent.map(e => ({ entry: e, type: 'rent' as const })),
 ];
 
-const recentNotes = (await getCollection('notes'))
-  .filter(n => new Date(n.data.pubDate) <= new Date())
-  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
-  .slice(0, 3);
+// "Notes from the office" homepage strip.
+// Shows the note manually flagged featuredHomepage in Decap — not the most
+// recent. Every note is sent to the client; future-dated ones are hidden in
+// the browser (see script at the foot of this file) so a note appears the
+// moment its pubDate passes, with no rebuild. Falls back to the newest note
+// if nothing is flagged, so the strip is never empty.
+const notesByDate = (await getCollection('notes'))
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+const featuredNote = notesByDate.find(n => n.data.featuredHomepage) ?? notesByDate[0];
+const officeNotes = featuredNote ? [featuredNote] : [];
 
 const pageStyles = `
   @media (min-width: 620px) { [data-index-grid] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
@@ -260,14 +266,23 @@ const pageStyles = `
         <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Notes from the office</h2>
         <a href="/notes" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E655C;">All notes</a>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(26px, 3vw, 48px); padding-top: 40px;">
-        {recentNotes.map(note => {
+      <div id="office-notes" style="display: grid; gap: clamp(30px, 5vw, 64px); padding-top: 40px;">
+        {officeNotes.map(note => {
           const slug = note.id.replace(/\.md$/, '');
           return (
-            <a href={`/notes/${slug}`} style="display: flex; flex-direction: column; gap: 16px;">
-              <img src={note.data.coverImage} alt={note.data.title} style="width: 100%; aspect-ratio: 16 / 11; object-fit: cover; background: #E4D8C8;" />
-              <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">{note.data.category}</span>
-              <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; font-weight: 400; line-height: 1.25;">{note.data.title}</span>
+            <a
+              href={`/notes/${slug}`}
+              class="office-note"
+              data-pubdate={note.data.pubDate.toISOString()}
+              style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(24px, 4vw, 56px); align-items: center;"
+            >
+              <img src={note.data.coverImage} alt={note.data.title} style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #E4D8C8;" />
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">{note.data.category}</span>
+                <span style="font-family: 'Work Sans', sans-serif; font-size: clamp(25px, 3vw, 40px); font-weight: 300; line-height: 1.15; letter-spacing: -0.015em;">{note.data.title}</span>
+                <p style="margin: 0; max-width: 48ch; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">{note.data.blurb}</p>
+                <span style="align-self: flex-start; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Read the note</span>
+              </div>
             </a>
           );
         })}
@@ -339,6 +354,17 @@ const pageStyles = `
   <Footer newsletter={true} />
 
   <script>
+    // "Notes from the office" — hide the featured note if its pubDate has not
+    // passed yet, checked against the visitor's browser clock (not build time).
+    const officeStrip = document.getElementById('office-notes');
+    if (officeStrip) {
+      officeStrip.querySelectorAll('.office-note').forEach((el) => {
+        const pd = (el as HTMLElement).dataset.pubdate;
+        if (pd && new Date(pd).getTime() > Date.now()) el.remove();
+      });
+      if (officeStrip.childElementCount === 0) officeStrip.closest('section')?.remove();
+    }
+
     document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.currentTarget;

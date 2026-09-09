@@ -33,6 +33,30 @@ site_url: https://astro-lsc.netlify.app
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
+# ---------------------------------------------------------
+# MEDIA LIBRARY — Cloudinary
+# ---------------------------------------------------------
+# Every `widget: image` field (property mainImage / gallery / floorPlan and
+# notes coverImage) now opens the Cloudinary browse-and-upload picker instead
+# of a plain URL text field. Nothing per-field changes — Decap routes all
+# image widgets through the configured media library automatically.
+#
+# Only PUBLIC credentials live here: cloud name, the public API key, and an
+# UNSIGNED upload preset. The Cloudinary API secret must never appear in this
+# file or anywhere else in the published site — the unsigned preset is what
+# lets the browser upload without it.
+#
+# Image values already saved in content files are plain URL strings (local
+# paths like /images/foo.jpg and existing res.cloudinary.com URLs alike); the
+# picker writes the same kind of string, so saved content keeps working
+# unchanged. media_folder / public_folder above stay as the fallback store.
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: x8jfmflw
+    api_key: "625879793864123"
+    upload_preset: lara-uploads
+
 collections:
   # ---------------------------------------------------------
   # PROPERTY FOR SALE
@@ -167,6 +191,16 @@ collections:
         date_format: "YYYY-MM-DD"
         time_format: "HH:mm"
         hint: "Posts with a future date are hidden from visitors until that date/time — no rebuild needed."
+      - label: "Featured on Homepage"
+        name: "featuredHomepage"
+        widget: "boolean"
+        default: false
+        hint: "Shows this note in the 'Notes from the office' strip on the homepage. Turn on for one note at a time — the newest flagged note wins if more than one is on."
+      - label: "Featured on Notes Page"
+        name: "featuredNotesHero"
+        widget: "boolean"
+        default: false
+        hint: "Shows this note in the hero band above the grid on the /notes page. Independent of the homepage flag; newest flagged note wins if more than one is on."
       - label: "Category"
         name: "category"
         widget: "select"

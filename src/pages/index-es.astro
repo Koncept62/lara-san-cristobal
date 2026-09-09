@@ -16,10 +16,16 @@ const categoryLabels: Record<string, string> = {
   'From Lara': 'De Lara',
 };
 
-const recentNotes = (await getCollection('notes'))
-  .filter(n => new Date(n.data.pubDate) <= new Date())
-  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
-  .slice(0, 3);
+// Franja "Notas desde la oficina" de la portada.
+// Muestra la nota marcada manualmente como featuredHomepage en Decap — no
+// la más reciente. Todas las notas se envían al cliente; las de fecha futura se
+// ocultan en el navegador (ver script al pie de este archivo) para que una nota
+// aparezca en cuanto pasa su pubDate, sin necesidad de recompilar. Si no hay
+// ninguna marcada, recurre a la nota más reciente para que la franja nunca quede vacía.
+const notesByDate = (await getCollection('notes'))
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+const featuredNote = notesByDate.find(n => n.data.featuredHomepage) ?? notesByDate[0];
+const officeNotes = featuredNote ? [featuredNote] : [];
 
 const pageStyles = `
   @media (min-width: 620px) { [data-index-grid] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
@@ -259,14 +265,23 @@ const pageStyles = `
         <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Notas desde la oficina</h2>
         <a href="/notes-es" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E655C;">Todas las notas</a>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(26px, 3vw, 48px); padding-top: 40px;">
-        {recentNotes.map(note => {
+      <div id="office-notes" style="display: grid; gap: clamp(30px, 5vw, 64px); padding-top: 40px;">
+        {officeNotes.map(note => {
           const slug = note.id.replace(/\.md$/, '');
           return (
-            <a href={`/notes-es/${slug}`} style="display: flex; flex-direction: column; gap: 16px;">
-              <img src={note.data.coverImage} alt={note.data.title} style="width: 100%; aspect-ratio: 16 / 11; object-fit: cover; background: #E4D8C8;" />
-              <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">{categoryLabels[note.data.category] || note.data.category}</span>
-              <span style="font-family: 'Work Sans', sans-serif; font-size: 25px; font-weight: 400; line-height: 1.25;">{note.data.title}</span>
+            <a
+              href={`/notes-es/${slug}`}
+              class="office-note"
+              data-pubdate={note.data.pubDate.toISOString()}
+              style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(24px, 4vw, 56px); align-items: center;"
+            >
+              <img src={note.data.coverImage} alt={note.data.title} style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #E4D8C8;" />
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E655C;">{categoryLabels[note.data.category] || note.data.category}</span>
+                <span style="font-family: 'Work Sans', sans-serif; font-size: clamp(25px, 3vw, 40px); font-weight: 300; line-height: 1.15; letter-spacing: -0.015em;">{note.data.title}</span>
+                <p style="margin: 0; max-width: 48ch; font-size: 15px; font-weight: 300; line-height: 1.9; color: #6E655C;">{note.data.blurb}</p>
+                <span style="align-self: flex-start; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Leer la nota</span>
+              </div>
             </a>
           );
         })}
@@ -338,6 +353,17 @@ const pageStyles = `
   <Footer newsletter={true} lang="es" />
 
   <script>
+    // "Notas desde la oficina" — oculta la nota destacada si su pubDate aún no
+    // ha pasado, comprobado contra el reloj del navegador (no la hora de build).
+    const officeStrip = document.getElementById('office-notes');
+    if (officeStrip) {
+      officeStrip.querySelectorAll('.office-note').forEach((el) => {
+        const pd = (el as HTMLElement).dataset.pubdate;
+        if (pd && new Date(pd).getTime() > Date.now()) el.remove();
+      });
+      if (officeStrip.childElementCount === 0) officeStrip.closest('section')?.remove();
+    }
+
     document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.currentTarget;

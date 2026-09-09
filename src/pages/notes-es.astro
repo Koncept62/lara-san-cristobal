@@ -29,8 +29,11 @@ const categoryFilter: Record<string, string> = {
   'De Lara': 'From Lara',
 };
 
-const featured = allNotes[0];
-const gridNotes = allNotes.slice(1);
+// Banda hero sobre la cuadrícula: la nota marcada featuredNotesHero en Decap,
+// con recurso a la nota más reciente (mismo patrón que la franja de la portada).
+// La cuadrícula de abajo excluye la nota del hero para que no aparezca dos veces.
+const featured = allNotes.find(n => n.data.featuredNotesHero) ?? allNotes[0];
+const gridNotes = allNotes.filter(n => n.id !== featured?.id);
 ---
 <Layout
   title="Notas · Lara San Cristóbal"
@@ -64,12 +67,13 @@ const gridNotes = allNotes.slice(1);
     </div>
   </section>
 
+  {/* Hero de notas — la nota marcada featuredNotesHero, o la más reciente */}
   {featured && (
     <section
       id="featured-note"
       data-reveal="1"
-      data-pubdate={featured.data.pubDate}
-      style="padding: clamp(20px, 4vh, 50px) clamp(20px, 4vw, 56px) clamp(40px, 7vh, 80px);"
+      data-pubdate={featured.data.pubDate.toISOString()}
+      style="background: #F2ECE6; padding: clamp(30px, 5vh, 64px) clamp(20px, 4vw, 56px);"
     >
       <a href={`/notes-es/${featured.id.replace(/\.md$/, '')}`} style="display: block; max-width: 1400px; margin: 0 auto;">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(26px, 4vw, 60px); align-items: center;">
@@ -94,7 +98,7 @@ const gridNotes = allNotes.slice(1);
             href={`/notes-es/${slug}`}
             class={`post-card${note.data.category === 'From Lara' ? ' from-lara' : ''}`}
             data-cat={categoryLabels[note.data.category] || note.data.category}
-            data-pubdate={note.data.pubDate}
+            data-pubdate={note.data.pubDate.toISOString()}
             style="display: flex; flex-direction: column; gap: 15px;"
           >
             <img src={note.data.coverImage} alt={note.data.title} loading="lazy" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #E4D8C8;" />

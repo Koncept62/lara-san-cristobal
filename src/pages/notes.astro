@@ -14,8 +14,11 @@ const allNotes = (await getCollection('notes'))
 
 const filters = ["All notes", "Buying in Mexico", "Restoring", "Off grid", "The town", "Interiors", "From Lara"];
 
-const featured = allNotes[0];
-const gridNotes = allNotes.slice(1);
+// Hero band above the grid: the note flagged featuredNotesHero in Decap,
+// falling back to the most recent note (same pattern as the homepage strip).
+// The grid below excludes whichever note the hero shows so it never appears twice.
+const featured = allNotes.find(n => n.data.featuredNotesHero) ?? allNotes[0];
+const gridNotes = allNotes.filter(n => n.id !== featured?.id);
 ---
 <Layout
   title="Notes · Lara San Cristóbal"
@@ -48,13 +51,13 @@ const gridNotes = allNotes.slice(1);
     </div>
   </section>
 
-  {/* Featured (most recent) note */}
+  {/* Notes hero — the note flagged featuredNotesHero, else the most recent */}
   {featured && (
     <section
       id="featured-note"
       data-reveal="1"
-      data-pubdate={featured.data.pubDate}
-      style="padding: clamp(20px, 4vh, 50px) clamp(20px, 4vw, 56px) clamp(40px, 7vh, 80px);"
+      data-pubdate={featured.data.pubDate.toISOString()}
+      style="background: #F2ECE6; padding: clamp(30px, 5vh, 64px) clamp(20px, 4vw, 56px);"
     >
       <a href={`/notes/${featured.id.replace(/\.md$/, '')}`} style="display: block; max-width: 1400px; margin: 0 auto;">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(26px, 4vw, 60px); align-items: center;">
@@ -80,7 +83,7 @@ const gridNotes = allNotes.slice(1);
             href={`/notes/${slug}`}
             class={`post-card${note.data.category === 'From Lara' ? ' from-lara' : ''}`}
             data-cat={note.data.category}
-            data-pubdate={note.data.pubDate}
+            data-pubdate={note.data.pubDate.toISOString()}
             style="display: flex; flex-direction: column; gap: 15px;"
           >
             <img src={note.data.coverImage} alt={note.data.title} loading="lazy" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #E4D8C8;" />

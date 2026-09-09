@@ -10,7 +10,13 @@ export const collections = {
     loader: glob({ pattern: '**/*.md', base: './src/content/notes' }),
     schema: z.object({
       title: z.string(),
-      pubDate: z.string(),
+      pubDate: z.coerce.date(),
+      // Two independent editorial flags, both toggled in Decap. Not tied to
+      // recency; each falls back to the most recent note when nothing is set.
+      //   featuredHomepage  → the "Notes from the office" strip on the homepage
+      //   featuredNotesHero → the hero band above the grid on /notes and /notes-es
+      featuredHomepage: z.boolean().default(false),
+      featuredNotesHero: z.boolean().default(false),
       category: noteCategory,
       blurb: z.string(),
       coverImage: z.string(),
