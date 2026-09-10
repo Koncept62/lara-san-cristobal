@@ -1,7 +1,8 @@
 ---
 propertyName: Coral de Piedra Contemporary Luxury Villas
-location: San Cristobal
-inBrief: Test Copy
+location: Forested Mountains Overlooking Coral de Piedra
+inBrief: An elite collection of luxurious loft-style villas, architectural
+  masterpieces in a beautiful setting
 propertySize: 150sqm
 plotSize: 400sqm
 bedrooms: 3
@@ -11,7 +12,7 @@ referenceCode: REF1
 status: Available
 mainImage: https://res.cloudinary.com/x8jfmflw/image/upload/v1789083465/25_copy.png_CROPPED_PORTRAIT.png
 gallery:
-  - https://res.cloudinary.com/x8jfmflw/image/upload/v1788960647/LSC_16.jpg
+  - https://res.cloudinary.com/x8jfmflw/image/upload/v1789083904/2.5.png
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1789083102/25.png
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1789083622/13_2.png
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1789083616/11.png
