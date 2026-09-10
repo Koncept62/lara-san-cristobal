@@ -1,11 +1,13 @@
 ---
-title: "Why I Love Living Here!"
-pubDate: "2026-09-01"
+title: Why I Love Living Here!
+pubDate: 2026-09-01
 featuredHomepage: true
 featuredNotesHero: true
-category: "The town"
-blurb: "After West London, Ibiza, Hong Kong and Bali, San Cristóbal is the place I chose to stay. The people, the culture, the cost of living — a personal list of why it became home."
-coverImage: "/images/street-papel-picado.jpg"
+category: The town
+blurb: After West London, Ibiza, Hong Kong and Bali, San Cristóbal is the place
+  I chose to stay. The people, the culture, the cost of living — a personal list
+  of why it became home.
+coverImage: https://res.cloudinary.com/x8jfmflw/image/upload/v1789020529/LSC_31.jpg
 ---
 
 There are so many reasons why I love living in San Cristobal so it is difficult to include them all without writing a very long book, but I will have a go!
