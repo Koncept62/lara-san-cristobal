@@ -1,11 +1,13 @@
 ---
-title: "Ready to Go Off-Grid?"
-pubDate: "2026-09-09"
+title: Ready to Go Off-Grid?
+pubDate: 2026-09-09
 featuredHomepage: false
 featuredNotesHero: false
-category: "Off grid"
-blurb: "Why building an off-grid home near San Cristóbal turned out to be so much easier than in Tulum — fertile land, a gentle climate, no scary wildlife, and a build that took about 18 months."
-coverImage: "/images/cabin-pines.jpg"
+category: Off grid
+blurb: Why building an off-grid home near San Cristóbal turned out to be so much
+  easier than in Tulum — fertile land, a gentle climate, no scary wildlife, and
+  a build that took about 18 months.
+coverImage: https://res.cloudinary.com/x8jfmflw/image/upload/v1789020679/LSC_off_grid.jpg
 ---
 
 I can say, looking back, that my quest to try and go off-grid dates back to those crazy days of 2020, when suddenly we all lost a bit of faith in the stability of the world in general.
