@@ -1,7 +1,7 @@
 ---
 propertyName: "Don Lauro Mountain Views "
 location: Approx 25 minutes outside of the city, direction Don Lauro Mountain
-inBrief: Plots available in a gated, concious community, in an incredibly
+inBrief: Plots available in a gated, conscious community, in an incredibly
   beautiful setting and with stunning views
 landSize: 1000m2 plots on average.
 description: >-
