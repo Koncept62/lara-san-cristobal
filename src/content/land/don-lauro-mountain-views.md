@@ -3,7 +3,7 @@ propertyName: "Don Lauro Mountain Views "
 location: Approx 25 minutes outside of the city, direction Don Lauro Mountain
 inBrief: Plots available in a gated, conscious community, in an incredibly
   beautiful setting and with stunning views
-landSize: 1000m2 plots on average.
+landSize: 1000m2 plots on average
 description: >-
   We have some utterly beautiful land plots remaining for sale in a gated
   development just a short distance from San Cristobal. 
