@@ -12,4 +12,6 @@ status: Available
 mainImage: https://res.cloudinary.com/x8jfmflw/image/upload/v1788960647/LSC_16.jpg
 gallery:
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1788960647/LSC_16.jpg
+featuredHomepage: true
+dateAdded: 2026-09-10T08:18:00+02:00
 ---
