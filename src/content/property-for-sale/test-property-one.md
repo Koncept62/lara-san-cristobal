@@ -9,7 +9,7 @@ bathrooms: 3
 description: Test Copy
 referenceCode: REF1
 status: Available
-mainImage: https://res.cloudinary.com/x8jfmflw/image/upload/v1789083313/25.png_CROPPED.png
+mainImage: https://res.cloudinary.com/x8jfmflw/image/upload/v1789083465/25_copy.png_CROPPED_PORTRAIT.png
 gallery:
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1788960647/LSC_16.jpg
 featuredHomepage: true
