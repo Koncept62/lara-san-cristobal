@@ -1,11 +1,13 @@
 ---
-title: "I've Found a Property… What Happens Next?"
-pubDate: "2026-09-05"
+title: I've Found a Property… What Happens Next?
+pubDate: 2026-09-05
 featuredHomepage: false
 featuredNotesHero: false
-category: "Buying in Mexico"
-blurb: "From the Nota Simple to the Arras contract to signing the Escritura at the notary — a plain walk-through of how a property purchase actually works here, step by step."
-coverImage: "/images/colonnade-courtyard.jpg"
+category: Buying in Mexico
+blurb: From the Nota Simple to the Arras contract to signing the Escritura at
+  the notary — a plain walk-through of how a property purchase actually works
+  here, step by step.
+coverImage: https://res.cloudinary.com/x8jfmflw/image/upload/v1789020785/LSC_10.jpg
 ---
 
 If you have found The One, and you are ready to make the leap to ownership, I can tell you that the process is surprisingly smooth and straight forward here.
