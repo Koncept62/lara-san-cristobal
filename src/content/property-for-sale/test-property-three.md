@@ -14,4 +14,5 @@ gallery:
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1788960647/LSC_16.jpg
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1788973088/LSC_18.jpg
 featuredHomepage: true
+dateAdded: 2026-09-10T08:18:00+02:00
 ---
