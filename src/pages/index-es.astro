@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import MobileMenu from '../components/MobileMenu.astro';
 import Footer from '../components/Footer.astro';
+import { getLocalizedNotes } from '../lib/notes';
 
 const path = Astro.url.pathname;
 
@@ -22,8 +23,8 @@ const categoryLabels: Record<string, string> = {
 // ocultan en el navegador (ver script al pie de este archivo) para que una nota
 // aparezca en cuanto pasa su pubDate, sin necesidad de recompilar. Si no hay
 // ninguna marcada, recurre a la nota más reciente para que la franja nunca quede vacía.
-const notesByDate = (await getCollection('notes'))
-  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+const notesByDate = (await getLocalizedNotes('es'))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 const featuredNote = notesByDate.find(n => n.data.featuredHomepage) ?? notesByDate[0];
 const officeNotes = featuredNote ? [featuredNote] : [];
 
@@ -267,7 +268,7 @@ const pageStyles = `
       </div>
       <div id="office-notes" style="display: grid; gap: clamp(30px, 5vw, 64px); padding-top: 40px;">
         {officeNotes.map(note => {
-          const slug = note.id.replace(/\.md$/, '');
+          const slug = note.slug;
           return (
             <a
               href={`/notes-es/${slug}`}

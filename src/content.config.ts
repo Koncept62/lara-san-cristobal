@@ -7,19 +7,37 @@ const noteCategory = z.enum(['Buying in Mexico', 'Restoring', 'Off grid', 'The t
 
 export const collections = {
   notes: defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/notes' }),
+    // Decap i18n (structure_multiple_files) persists one file per locale:
+    // <slug>.en.md / <slug>.es.md. Translatable fields (title, blurb, body)
+    // live in both files; non-translatable fields (pubDate, featured flags,
+    // category, coverImage) are i18n:false in config.yml, so Decap only ever
+    // writes them into the default-locale (.en) file — they're optional here
+    // because the .es entry won't have them. Use getLocalizedNotes() in
+    // src/lib/notes.ts to read a note, which merges the pair correctly and
+    // falls back to English copy when a Spanish file doesn't exist yet.
+    // Custom generateId: the default id generator slugifies the filename
+    // (via github-slugger), which strips the "." before the locale suffix —
+    // "why-i-love-living-here.en.md" becomes id "why-i-love-living-hereen",
+    // merging the locale into the slug with no separator. Preserve the raw
+    // filename (minus extension) instead so "<slug>.en" / "<slug>.es" stay
+    // splittable in src/lib/notes.ts.
+    loader: glob({
+      pattern: '**/*.md',
+      base: './src/content/notes',
+      generateId: ({ entry }) => entry.replace(/\.md$/, ''),
+    }),
     schema: z.object({
-      title: z.string(),
-      pubDate: z.coerce.date(),
+      title: z.string().optional(),
+      blurb: z.string().optional(),
+      pubDate: z.coerce.date().optional(),
       // Two independent editorial flags, both toggled in Decap. Not tied to
       // recency; each falls back to the most recent note when nothing is set.
       //   featuredHomepage  → the "Notes from the office" strip on the homepage
       //   featuredNotesHero → the hero band above the grid on /notes and /notes-es
       featuredHomepage: z.boolean().default(false),
       featuredNotesHero: z.boolean().default(false),
-      category: noteCategory,
-      blurb: z.string(),
-      coverImage: z.string(),
+      category: noteCategory.optional(),
+      coverImage: z.string().optional(),
     }),
   }),
 

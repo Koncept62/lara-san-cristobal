@@ -34,6 +34,18 @@ media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 # ---------------------------------------------------------
+# I18N — Notes (blog) only, for now
+# ---------------------------------------------------------
+# structure_multiple_files persists one file per locale per entry:
+# src/content/notes/<slug>.en.md and src/content/notes/<slug>.es.md.
+# Collections without their own `i18n:` key (property-for-sale, property-for-rent,
+# land) are unaffected — this only activates per collection that opts in below.
+i18n:
+  structure: multiple_files
+  locales: [en, es]
+  default_locale: en
+
+# ---------------------------------------------------------
 # MEDIA LIBRARY — Cloudinary
 # ---------------------------------------------------------
 # Every `widget: image` field (property mainImage / gallery / floorPlan and
@@ -195,29 +207,35 @@ collections:
     folder: "src/content/notes"
     create: true
     slug: "{{pubDate}}-{{slug}}"
+    i18n: true
     fields:
-      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Title", name: "title", widget: "string", i18n: true }
       - label: "Publish Date"
         name: "pubDate"
         widget: "datetime"
         format: "YYYY-MM-DDTHH:mm:ssZ"
         date_format: "YYYY-MM-DD"
         time_format: "HH:mm"
-        hint: "Posts with a future date are hidden from visitors until that date/time — no rebuild needed."
+        i18n: false
+        hint: "Posts with a future date are hidden from visitors until that date/time — no rebuild needed. Set once — shared across languages."
       - label: "Featured on Homepage"
         name: "featuredHomepage"
         widget: "boolean"
         default: false
-        hint: "Shows this note in the 'Notes from the office' strip on the homepage. Turn on for one note at a time — the newest flagged note wins if more than one is on."
+        i18n: false
+        hint: "Shows this note in the 'Notes from the office' strip on the homepage. Turn on for one note at a time — the newest flagged note wins if more than one is on. Shared across languages."
       - label: "Featured on Notes Page"
         name: "featuredNotesHero"
         widget: "boolean"
         default: false
-        hint: "Shows this note in the hero band above the grid on the /notes page. Independent of the homepage flag; newest flagged note wins if more than one is on."
+        i18n: false
+        hint: "Shows this note in the hero band above the grid on the /notes page. Independent of the homepage flag; newest flagged note wins if more than one is on. Shared across languages."
       - label: "Category"
         name: "category"
         widget: "select"
         options: ["Buying in Mexico", "Restoring", "Off grid", "The town", "Interiors"]
-      - { label: "Short blurb", name: "blurb", widget: "text", hint: "One or two sentences shown on the listing card." }
-      - { label: "Cover Image", name: "coverImage", widget: "image" }
-      - { label: "Body", name: "body", widget: "markdown" }
+        i18n: false
+        hint: "Shared across languages."
+      - { label: "Short blurb", name: "blurb", widget: "text", i18n: true, hint: "One or two sentences shown on the listing card." }
+      - { label: "Cover Image", name: "coverImage", widget: "image", i18n: false, hint: "Shared across languages." }
+      - { label: "Body", name: "body", widget: "markdown", i18n: true }

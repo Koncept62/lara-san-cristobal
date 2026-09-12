@@ -1,25 +1,23 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import MobileMenu from '../../components/MobileMenu.astro';
 import Footer from '../../components/Footer.astro';
+import { getLocalizedNotes } from '../../lib/notes';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('notes');
-  return entries.map(entry => {
-    const slug = entry.id.replace(/\.md$/, '');
-    return {
-      params: { slug },
-      props: { entry, others: entries.filter(e => e.id !== entry.id).slice(0, 3) },
-    };
-  });
+  const notes = await getLocalizedNotes('en');
+  return notes.map(note => ({
+    params: { slug: note.slug },
+    props: { note, others: notes.filter(n => n.slug !== note.slug).slice(0, 3) },
+  }));
 }
 
-const { entry, others } = Astro.props;
-const d = entry.data;
-const slug = entry.id.replace(/\.md$/, '');
-const { Content } = await render(entry);
+const { note, others } = Astro.props;
+const d = note.data;
+const slug = note.slug;
+const { Content } = await render(note.entry);
 
 const formattedDate = new Date(d.pubDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 
@@ -96,7 +94,7 @@ const proseStyles = `
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(26px, 3vw, 48px); padding-top: 40px;">
           {others.map(n => {
-            const nSlug = n.id.replace(/\.md$/, '');
+            const nSlug = n.slug;
             const nDate = new Date(n.data.pubDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
             return (
               <a href={`/notes/${nSlug}`} data-pubdate={n.data.pubDate.toISOString()} class="related-card" style="display: flex; flex-direction: column; gap: 15px;">

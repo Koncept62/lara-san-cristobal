@@ -1,16 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import MobileMenu from '../components/MobileMenu.astro';
 import Footer from '../components/Footer.astro';
+import { getLocalizedNotes } from '../lib/notes';
 
 const path = Astro.url.pathname;
 
 // All notes sorted newest-first. Future-dated posts are included in the HTML
 // but hidden at runtime by client-side JS until their pubDate arrives.
-const allNotes = (await getCollection('notes'))
-  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+const allNotes = (await getLocalizedNotes('en'))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 const filters = ["All notes", "Buying in Mexico", "Restoring", "Off grid", "The town", "Interiors", "From Lara"];
 
@@ -18,7 +18,7 @@ const filters = ["All notes", "Buying in Mexico", "Restoring", "Off grid", "The 
 // falling back to the most recent note (same pattern as the homepage strip).
 // The grid below excludes whichever note the hero shows so it never appears twice.
 const featured = allNotes.find(n => n.data.featuredNotesHero) ?? allNotes[0];
-const gridNotes = allNotes.filter(n => n.id !== featured?.id);
+const gridNotes = allNotes.filter(n => n.slug !== featured?.slug);
 ---
 <Layout
   title="Notes · Lara San Cristóbal"
@@ -59,7 +59,7 @@ const gridNotes = allNotes.filter(n => n.id !== featured?.id);
       data-pubdate={featured.data.pubDate.toISOString()}
       style="background: #F2ECE6; padding: clamp(30px, 5vh, 64px) clamp(20px, 4vw, 56px);"
     >
-      <a href={`/notes/${featured.id.replace(/\.md$/, '')}`} style="display: block; max-width: 1400px; margin: 0 auto;">
+      <a href={`/notes/${featured.slug}`} style="display: block; max-width: 1400px; margin: 0 auto;">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(26px, 4vw, 60px); align-items: center;">
           <img src={featured.data.coverImage} alt={featured.data.title} style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #E4D8C8;" />
           <div style="display: flex; flex-direction: column; gap: 18px;">
@@ -77,7 +77,7 @@ const gridNotes = allNotes.filter(n => n.id !== featured?.id);
   <section data-reveal="1" style="padding: clamp(20px, 4vh, 40px) clamp(20px, 4vw, 56px) clamp(60px, 10vh, 130px);">
     <div id="posts-grid" style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(30px, 3.4vw, 56px) clamp(26px, 3vw, 48px);">
       {gridNotes.map(note => {
-        const slug = note.id.replace(/\.md$/, '');
+        const slug = note.slug;
         return (
           <a
             href={`/notes/${slug}`}
