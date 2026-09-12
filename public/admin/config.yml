@@ -82,7 +82,7 @@ collections:
     i18n: true
     fields:
       - { label: "Property Name", name: "propertyName", widget: "string", i18n: true }
-      - { label: "Location", name: "location", widget: "string", i18n: false }
+      - { label: "Location", name: "location", widget: "string", i18n: true }
       - { label: "In Brief", name: "inBrief", widget: "text", i18n: true }
       - { label: "Property Size", name: "propertySize", widget: "string", i18n: false }
       - { label: "Plot Size", name: "plotSize", widget: "string", i18n: false }
@@ -143,7 +143,7 @@ collections:
     i18n: true
     fields:
       - { label: "Property Name", name: "propertyName", widget: "string", i18n: true }
-      - { label: "Location", name: "location", widget: "string", i18n: false }
+      - { label: "Location", name: "location", widget: "string", i18n: true }
       - { label: "In Brief", name: "inBrief", widget: "text", i18n: true }
       - { label: "Property Size", name: "propertySize", widget: "string", i18n: false }
       - { label: "Bedrooms", name: "bedrooms", widget: "number", i18n: false }
@@ -188,7 +188,7 @@ collections:
     i18n: true
     fields:
       - { label: "Property Name", name: "propertyName", widget: "string", i18n: true }
-      - { label: "Location", name: "location", widget: "string", i18n: false }
+      - { label: "Location", name: "location", widget: "string", i18n: true }
       - { label: "In Brief", name: "inBrief", widget: "text", i18n: true }
       - { label: "Land Size", name: "landSize", widget: "string", i18n: false }
       - { label: "Description", name: "description", widget: "markdown", i18n: true }

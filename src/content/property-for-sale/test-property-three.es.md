@@ -1,5 +1,6 @@
 ---
 propertyName: ''
+location: ''
 inBrief: ''
 description: ''
 ---

@@ -65,7 +65,7 @@ export async function getLocalizedPropertyForSale(lang: Locale): Promise<Localiz
       isFallback: lang === 'es' && !translated,
       data: {
         propertyName: useEntry.data.propertyName ?? en.data.propertyName ?? '',
-        location: en.data.location!,
+        location: useEntry.data.location ?? en.data.location ?? '',
         inBrief: useEntry.data.inBrief ?? en.data.inBrief ?? '',
         propertySize: en.data.propertySize!,
         plotSize: en.data.plotSize!,
@@ -127,7 +127,7 @@ export async function getLocalizedPropertyForRent(lang: Locale): Promise<Localiz
       isFallback: lang === 'es' && !translated,
       data: {
         propertyName: useEntry.data.propertyName ?? en.data.propertyName ?? '',
-        location: en.data.location!,
+        location: useEntry.data.location ?? en.data.location ?? '',
         inBrief: useEntry.data.inBrief ?? en.data.inBrief ?? '',
         propertySize: en.data.propertySize!,
         plotSize: en.data.plotSize,
@@ -183,7 +183,7 @@ export async function getLocalizedLand(lang: Locale): Promise<LocalizedLand[]> {
       isFallback: lang === 'es' && !translated,
       data: {
         propertyName: useEntry.data.propertyName ?? en.data.propertyName ?? '',
-        location: en.data.location!,
+        location: useEntry.data.location ?? en.data.location ?? '',
         inBrief: useEntry.data.inBrief ?? en.data.inBrief ?? '',
         landSize: en.data.landSize!,
         description: useEntry.data.description ?? en.data.description ?? '',
