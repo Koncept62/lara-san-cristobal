@@ -1,10 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import MobileMenu from '../components/MobileMenu.astro';
 import Footer from '../components/Footer.astro';
 import { getLocalizedNotes } from '../lib/notes';
+import { getLocalizedPropertyForSale } from '../lib/listings';
 
 const path = Astro.url.pathname;
 
@@ -13,7 +13,7 @@ const path = Astro.url.pathname;
 // first. If fewer than 3 are flagged, the most recently added listings fill the
 // remaining slots (no repeats). If more than 3 are flagged, the 3 newest win.
 const HOME_LIMIT = 3;
-const saleByRecency = (await getCollection('property-for-sale'))
+const saleByRecency = (await getLocalizedPropertyForSale('en'))
   .sort((a, b) => (b.data.dateAdded?.getTime() ?? 0) - (a.data.dateAdded?.getTime() ?? 0));
 const featuredListings = [
   ...saleByRecency.filter(e => e.data.featuredHomepage),
@@ -101,7 +101,7 @@ const pageStyles = `
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: clamp(28px, 3.4vw, 54px); padding-top: clamp(34px, 4vw, 56px);">
           {featuredListings.map(({ entry }) => {
             const d = entry.data;
-            const slug = entry.id.replace(/\.md$/, '');
+            const slug = entry.slug;
             const meta = [d.location, d.bedrooms ? `${d.bedrooms} bed` : null].filter(Boolean).join(' · ');
             return (
               <a href={`/property-for-sale/${slug}`} style="display: flex; flex-direction: column; gap: 20px;">

@@ -1,24 +1,21 @@
 ---
-import { getCollection } from 'astro:content';
+import { getLocalizedPropertyForRent } from '../../lib/listings';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import MobileMenu from '../../components/MobileMenu.astro';
 import Footer from '../../components/Footer.astro';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('property-for-rent');
-  return entries.map(entry => {
-    const slug = entry.id.replace(/\.md$/, '');
-    return {
-      params: { slug },
-      props: { entry, others: entries.filter(e => e.id !== entry.id).slice(0, 3) },
-    };
-  });
+  const entries = await getLocalizedPropertyForRent('en');
+  return entries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry, others: entries.filter(e => e.slug !== entry.slug).slice(0, 3) },
+  }));
 }
 
 const { entry, others } = Astro.props;
 const d = entry.data;
-const slug = entry.id.replace(/\.md$/, '');
+const slug = entry.slug;
 
 const statusLabel = d.status === 'Reserved' ? 'Reserved' : d.status === 'Sold' ? 'Let agreed' : '';
 const heroMeta = [d.location, 'For rent', statusLabel || 'Available'].filter(Boolean).join(' · ');
@@ -224,7 +221,7 @@ const jsonLd = JSON.stringify({
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(26px, 3vw, 48px); padding-top: 40px;">
           {others.map(o => {
-            const oSlug = o.id.replace(/\.md$/, '');
+            const oSlug = o.slug;
             return (
               <a href={`/property-for-rent/${oSlug}`} style="display: flex; flex-direction: column; gap: 16px;">
                 <img src={o.data.mainImage} alt={o.data.propertyName} loading="lazy" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #E4D8C8;" />

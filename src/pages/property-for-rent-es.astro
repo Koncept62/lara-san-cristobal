@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getLocalizedPropertyForRent } from '../lib/listings';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import MobileMenu from '../components/MobileMenu.astro';
@@ -7,7 +7,7 @@ import ContactCta from '../components/ContactCta.astro';
 import Footer from '../components/Footer.astro';
 
 const path = Astro.url.pathname;
-const listings = (await getCollection('property-for-rent'))
+const listings = (await getLocalizedPropertyForRent('es'))
   .sort((a, b) => a.data.propertyName.localeCompare(b.data.propertyName));
 ---
 <Layout
@@ -52,9 +52,9 @@ const listings = (await getCollection('property-for-rent'))
           <h2 style="margin: 0; font-family: 'Work Sans', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E655C;">Disponible ahora</h2>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: clamp(28px, 3.4vw, 54px); padding-top: clamp(34px, 4vw, 56px);">
-          {listings.map(entry => {
-            const slug = entry.id.replace(/\.md$/, '');
-            const d = entry.data;
+          {listings.map(item => {
+            const slug = item.slug;
+            const d = item.data;
             return (
               <a href={`/property-for-rent-es/${slug}`} style="display: flex; flex-direction: column; gap: 20px;">
                 <div style="position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: #E4D8C8;">

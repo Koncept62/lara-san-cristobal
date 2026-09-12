@@ -34,12 +34,12 @@ media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 # ---------------------------------------------------------
-# I18N — Notes (blog) only, for now
+# I18N — notes, property-for-sale, property-for-rent, land
 # ---------------------------------------------------------
-# structure_multiple_files persists one file per locale per entry:
+# structure_multiple_files persists one file per locale per entry, e.g.
 # src/content/notes/<slug>.en.md and src/content/notes/<slug>.es.md.
-# Collections without their own `i18n:` key (property-for-sale, property-for-rent,
-# land) are unaffected — this only activates per collection that opts in below.
+# Collections without their own `i18n:` key are unaffected — this only
+# activates per collection that opts in below with `i18n: true`.
 i18n:
   structure: multiple_files
   locales: [en, es]
@@ -79,42 +79,48 @@ collections:
     create: true
     slug: "{{slug}}"
     identifier_field: propertyName
+    i18n: true
     fields:
-      - { label: "Property Name", name: "propertyName", widget: "string" }
-      - { label: "Location", name: "location", widget: "string" }
-      - { label: "In Brief", name: "inBrief", widget: "text" }
-      - { label: "Property Size", name: "propertySize", widget: "string" }
-      - { label: "Plot Size", name: "plotSize", widget: "string" }
-      - { label: "Bedrooms", name: "bedrooms", widget: "number" }
-      - { label: "Bathrooms", name: "bathrooms", widget: "number" }
-      - { label: "Description", name: "description", widget: "markdown" }
-      - { label: "Price (MXN)", name: "priceMxn", widget: "string", required: false }
-      - { label: "Price (USD)", name: "priceUsd", widget: "string", required: false }
-      - { label: "Reference Code", name: "referenceCode", widget: "string" }
+      - { label: "Property Name", name: "propertyName", widget: "string", i18n: true }
+      - { label: "Location", name: "location", widget: "string", i18n: false }
+      - { label: "In Brief", name: "inBrief", widget: "text", i18n: true }
+      - { label: "Property Size", name: "propertySize", widget: "string", i18n: false }
+      - { label: "Plot Size", name: "plotSize", widget: "string", i18n: false }
+      - { label: "Bedrooms", name: "bedrooms", widget: "number", i18n: false }
+      - { label: "Bathrooms", name: "bathrooms", widget: "number", i18n: false }
+      - { label: "Description", name: "description", widget: "markdown", i18n: true }
+      - { label: "Price (MXN)", name: "priceMxn", widget: "string", required: false, i18n: false }
+      - { label: "Price (USD)", name: "priceUsd", widget: "string", required: false, i18n: false }
+      - { label: "Reference Code", name: "referenceCode", widget: "string", i18n: false }
       - label: "Status"
         name: "status"
         widget: "select"
         options: ["Available", "Reserved", "Sold"]
         default: "Available"
+        i18n: false
       - label: "Main Image"
         name: "mainImage"
         widget: "image"
         hint: "Used as the thumbnail on property cards and listing previews"
+        i18n: false
       - label: "Gallery Photos"
         name: "gallery"
         widget: "list"
         label_singular: "Photo"
         summary: "{{fields.image}}"
         field: { label: "Photo", name: "image", widget: "image" }
+        i18n: false
       - label: "Floor Plan"
         name: "floorPlan"
         widget: "image"
         required: false
+        i18n: false
       - label: "Featured on Homepage"
         name: "featuredHomepage"
         widget: "boolean"
         default: false
         hint: "Shows this property in the grid on the homepage. Up to 3 show at once — if more are flagged, the 3 most recently added win; if fewer, the newest listings fill the rest."
+        i18n: false
       - label: "Date Added"
         name: "dateAdded"
         widget: "datetime"
@@ -123,6 +129,7 @@ collections:
         time_format: "HH:mm"
         required: false
         hint: "Set when the property is created. Controls the order listings fill the homepage grid — newest first."
+        i18n: false
 
   # ---------------------------------------------------------
   # PROPERTY FOR RENT
@@ -133,36 +140,41 @@ collections:
     create: true
     slug: "{{slug}}"
     identifier_field: propertyName
+    i18n: true
     fields:
-      - { label: "Property Name", name: "propertyName", widget: "string" }
-      - { label: "Location", name: "location", widget: "string" }
-      - { label: "In Brief", name: "inBrief", widget: "text" }
-      - { label: "Property Size", name: "propertySize", widget: "string" }
-      - { label: "Bedrooms", name: "bedrooms", widget: "number" }
-      - { label: "Bathrooms", name: "bathrooms", widget: "number" }
-      - { label: "Description", name: "description", widget: "markdown" }
-      - { label: "Price (MXN)", name: "priceMxn", widget: "string", required: false }
-      - { label: "Price (USD)", name: "priceUsd", widget: "string", required: false }
-      - { label: "Reference Code", name: "referenceCode", widget: "string" }
+      - { label: "Property Name", name: "propertyName", widget: "string", i18n: true }
+      - { label: "Location", name: "location", widget: "string", i18n: false }
+      - { label: "In Brief", name: "inBrief", widget: "text", i18n: true }
+      - { label: "Property Size", name: "propertySize", widget: "string", i18n: false }
+      - { label: "Bedrooms", name: "bedrooms", widget: "number", i18n: false }
+      - { label: "Bathrooms", name: "bathrooms", widget: "number", i18n: false }
+      - { label: "Description", name: "description", widget: "markdown", i18n: true }
+      - { label: "Price (MXN)", name: "priceMxn", widget: "string", required: false, i18n: false }
+      - { label: "Price (USD)", name: "priceUsd", widget: "string", required: false, i18n: false }
+      - { label: "Reference Code", name: "referenceCode", widget: "string", i18n: false }
       - label: "Status"
         name: "status"
         widget: "select"
         options: ["Available", "Reserved", "Sold"]
         default: "Available"
+        i18n: false
       - label: "Main Image"
         name: "mainImage"
         widget: "image"
         hint: "Used as the thumbnail on property cards and listing previews"
+        i18n: false
       - label: "Gallery Photos"
         name: "gallery"
         widget: "list"
         label_singular: "Photo"
         summary: "{{fields.image}}"
         field: { label: "Photo", name: "image", widget: "image" }
+        i18n: false
       - label: "Floor Plan"
         name: "floorPlan"
         widget: "image"
         required: false
+        i18n: false
 
   # ---------------------------------------------------------
   # LAND
@@ -173,30 +185,34 @@ collections:
     create: true
     slug: "{{slug}}"
     identifier_field: propertyName
+    i18n: true
     fields:
-      - { label: "Property Name", name: "propertyName", widget: "string" }
-      - { label: "Location", name: "location", widget: "string" }
-      - { label: "In Brief", name: "inBrief", widget: "text" }
-      - { label: "Land Size", name: "landSize", widget: "string" }
-      - { label: "Description", name: "description", widget: "markdown" }
-      - { label: "Price (MXN)", name: "priceMxn", widget: "string", required: false }
-      - { label: "Price (USD)", name: "priceUsd", widget: "string", required: false }
-      - { label: "Reference Code", name: "referenceCode", widget: "string" }
+      - { label: "Property Name", name: "propertyName", widget: "string", i18n: true }
+      - { label: "Location", name: "location", widget: "string", i18n: false }
+      - { label: "In Brief", name: "inBrief", widget: "text", i18n: true }
+      - { label: "Land Size", name: "landSize", widget: "string", i18n: false }
+      - { label: "Description", name: "description", widget: "markdown", i18n: true }
+      - { label: "Price (MXN)", name: "priceMxn", widget: "string", required: false, i18n: false }
+      - { label: "Price (USD)", name: "priceUsd", widget: "string", required: false, i18n: false }
+      - { label: "Reference Code", name: "referenceCode", widget: "string", i18n: false }
       - label: "Status"
         name: "status"
         widget: "select"
         options: ["Available", "Reserved", "Sold"]
         default: "Available"
+        i18n: false
       - label: "Main Image"
         name: "mainImage"
         widget: "image"
         hint: "Used as the thumbnail on land listings and previews"
+        i18n: false
       - label: "Gallery Photos"
         name: "gallery"
         widget: "list"
         label_singular: "Photo"
         summary: "{{fields.image}}"
         field: { label: "Photo", name: "image", widget: "image" }
+        i18n: false
       # No floorPlan field for land listings
 
   # ---------------------------------------------------------

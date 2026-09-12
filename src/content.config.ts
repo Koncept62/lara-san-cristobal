@@ -42,38 +42,55 @@ export const collections = {
   }),
 
   land: defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/land' }),
+    // Decap i18n (structure_multiple_files) persists one file per locale:
+    // <slug>.en.md / <slug>.es.md. Translatable fields (propertyName, inBrief,
+    // description) live in both files; everything else is i18n:false in
+    // config.yml, so Decap only ever writes it into the default-locale (.en)
+    // file — optional here because the .es entry won't have it. Use
+    // getLocalizedLand() in src/lib/listings.ts to read an entry, which merges
+    // the pair and falls back to English copy when no Spanish file exists yet.
+    // Same generateId reasoning as notes (see content.config.ts notes comment).
+    loader: glob({
+      pattern: '**/*.md',
+      base: './src/content/land',
+      generateId: ({ entry }) => entry.replace(/\.md$/, ''),
+    }),
     schema: z.object({
-      propertyName: z.string(),
-      location: z.string(),
-      inBrief: z.string(),
-      landSize: z.string(),
-      description: z.string(),
+      propertyName: z.string().optional(),
+      location: z.string().optional(),
+      inBrief: z.string().optional(),
+      landSize: z.string().optional(),
+      description: z.string().optional(),
       priceMxn: z.string().optional(),
       priceUsd: z.string().optional(),
       referenceCode: z.string().optional(),
       status,
-      mainImage: z.string(),
+      mainImage: z.string().optional(),
       gallery: z.array(z.string()).default([]),
     }),
   }),
 
   'property-for-sale': defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/property-for-sale' }),
+    // See the land collection comment above — same i18n file-per-locale setup.
+    loader: glob({
+      pattern: '**/*.md',
+      base: './src/content/property-for-sale',
+      generateId: ({ entry }) => entry.replace(/\.md$/, ''),
+    }),
     schema: z.object({
-      propertyName: z.string(),
-      location: z.string(),
-      inBrief: z.string(),
-      propertySize: z.string(),
-      plotSize: z.string(),
-      bedrooms: z.number(),
-      bathrooms: z.number(),
-      description: z.string(),
+      propertyName: z.string().optional(),
+      location: z.string().optional(),
+      inBrief: z.string().optional(),
+      propertySize: z.string().optional(),
+      plotSize: z.string().optional(),
+      bedrooms: z.number().optional(),
+      bathrooms: z.number().optional(),
+      description: z.string().optional(),
       priceMxn: z.string().optional(),
       priceUsd: z.string().optional(),
       referenceCode: z.string().optional(),
       status,
-      mainImage: z.string(),
+      mainImage: z.string().optional(),
       gallery: z.array(z.string()).default([]),
       floorPlan: z.string().optional(),
       // Homepage property grid, toggled in Decap. Flagged entries lead the grid;
@@ -85,21 +102,26 @@ export const collections = {
   }),
 
   'property-for-rent': defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/property-for-rent' }),
+    // See the land collection comment above — same i18n file-per-locale setup.
+    loader: glob({
+      pattern: '**/*.md',
+      base: './src/content/property-for-rent',
+      generateId: ({ entry }) => entry.replace(/\.md$/, ''),
+    }),
     schema: z.object({
-      propertyName: z.string(),
-      location: z.string(),
-      inBrief: z.string(),
-      propertySize: z.string(),
+      propertyName: z.string().optional(),
+      location: z.string().optional(),
+      inBrief: z.string().optional(),
+      propertySize: z.string().optional(),
       plotSize: z.string().optional(),
-      bedrooms: z.number(),
-      bathrooms: z.number(),
-      description: z.string(),
+      bedrooms: z.number().optional(),
+      bathrooms: z.number().optional(),
+      description: z.string().optional(),
       priceMxn: z.string().optional(),
       priceUsd: z.string().optional(),
       referenceCode: z.string().optional(),
       status,
-      mainImage: z.string(),
+      mainImage: z.string().optional(),
       gallery: z.array(z.string()).default([]),
       floorPlan: z.string().optional(),
     }),
