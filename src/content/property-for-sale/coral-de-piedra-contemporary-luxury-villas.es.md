@@ -1,5 +1,5 @@
 ---
-propertyName: Casa de lujo contemporáneas de Corral de Piedra
+propertyName: Casa de lujo contemporánea de Corral de Piedra
 location: Ladera boscosa con vistas de Corral de Piedra
 inBrief: Una colección de lujo de villas estilo loft, obras maestras
   arquitectónicas en un entorno precioso
