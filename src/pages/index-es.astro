@@ -1,10 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import MobileMenu from '../components/MobileMenu.astro';
 import Footer from '../components/Footer.astro';
 import { getLocalizedNotes } from '../lib/notes';
+import { getLocalizedPropertyForSale } from '../lib/listings';
 
 const path = Astro.url.pathname;
 
@@ -16,6 +16,19 @@ const categoryLabels: Record<string, string> = {
   'Interiors': 'Interiores',
   'From Lara': 'De Lara',
 };
+
+// Hasta 3 propiedades en venta para la vista previa de la portada.
+// Misma lógica que la portada en inglés (src/pages/index.astro): las
+// marcadas como featuredHomepage en Decap encabezan la cuadrícula, por
+// dateAdded más reciente; si hay menos de 3 marcadas, se completan los
+// espacios restantes con las incorporaciones más recientes.
+const HOME_LIMIT = 3;
+const saleByRecency = (await getLocalizedPropertyForSale('es'))
+  .sort((a, b) => (b.data.dateAdded?.getTime() ?? 0) - (a.data.dateAdded?.getTime() ?? 0));
+const featuredListings = [
+  ...saleByRecency.filter(e => e.data.featuredHomepage),
+  ...saleByRecency.filter(e => !e.data.featuredHomepage),
+].slice(0, HOME_LIMIT).map(entry => ({ entry }));
 
 // Franja "Notas desde la oficina" de la portada.
 // Muestra la nota marcada manualmente como featuredHomepage en Decap — no
@@ -95,43 +108,37 @@ const pageStyles = `
           <a href="/property-for-rent-es" style="color: #6E655C;">En alquiler</a>
         </div>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: clamp(28px, 3.4vw, 54px); padding-top: clamp(34px, 4vw, 56px);">
-        <a href="/property-for-sale-es" style="display: flex; flex-direction: column; gap: 20px;">
-          <div style="position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: #E4D8C8;">
-            <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/f_auto,q_auto/v1788115974/LSC_16_iems67.jpg" alt="Columnata con arcos en piedra blanca" style="width: 100%; height: 100%; object-fit: cover;" />
-            <span style="position: absolute; top: 16px; left: 16px; background: rgba(251, 248, 243, 0.92); padding: 6px 12px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #2B2622;">Nueva</span>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 8px;">
-            <h3 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 24px; line-height: 1.2;">Propiedad Uno</h3>
-            <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6E655C;">Barrio del Cerrillo · 3 recámaras</p>
-            <p style="margin: 4px 0 0; font-size: 14px; font-weight: 300; line-height: 1.75; color: #6E655C;">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</p>
-            <span style="margin-top: 6px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c15857;">Precio a consultar</span>
-          </div>
-        </a>
-        <a href="/property-for-sale-es" style="display: flex; flex-direction: column; gap: 20px;">
-          <div style="position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: #E4D8C8;">
-            <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/f_auto,q_auto/v1788115976/LSC_18_bxjflq.jpg" alt="Comedor cálido con lino y madera" style="width: 100%; height: 100%; object-fit: cover;" />
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 8px;">
-            <h3 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 24px; line-height: 1.2;">Propiedad Dos</h3>
-            <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6E655C;">Guadalupe · 2 recámaras · amueblada</p>
-            <p style="margin: 4px 0 0; font-size: 14px; font-weight: 300; line-height: 1.75; color: #6E655C;">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi aliquip.</p>
-            <span style="margin-top: 6px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c15857;">Precio a consultar</span>
-          </div>
-        </a>
-        <a href="/property-for-sale-es" style="display: flex; flex-direction: column; gap: 20px;">
-          <div style="position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: #E4D8C8;">
-            <img src="https://res.cloudinary.com/disybpuro/image/upload/w_1200/f_auto,q_auto/v1788115954/LSC_11_gud7jc.jpg" alt="Papel picado sobre un callejón ocre" style="width: 100%; height: 100%; object-fit: cover;" />
-            <span style="position: absolute; top: 16px; left: 16px; background: rgba(34, 31, 28, 0.78); padding: 6px 12px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #F2EDE6;">Reservada</span>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 8px;">
-            <h3 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 24px; line-height: 1.2;">Propiedad Tres</h3>
-            <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6E655C;">Barrio de Mexicanos · 4 recámaras</p>
-            <p style="margin: 4px 0 0; font-size: 14px; font-weight: 300; line-height: 1.75; color: #6E655C;">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
-            <span style="margin-top: 6px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c15857;">Precio a consultar</span>
-          </div>
-        </a>
-      </div>
+      {featuredListings.length > 0 && (
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: clamp(28px, 3.4vw, 54px); padding-top: clamp(34px, 4vw, 56px);">
+          {featuredListings.map(({ entry }) => {
+            const d = entry.data;
+            const slug = entry.slug;
+            const meta = [d.location, d.bedrooms ? `${d.bedrooms} recámaras` : null].filter(Boolean).join(' · ');
+            return (
+              <a href={`/property-for-sale-es/${slug}`} style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: #E4D8C8;">
+                  <img src={d.mainImage} alt={d.propertyName} style="width: 100%; height: 100%; object-fit: cover;" />
+                  {d.status === 'Reserved' && <span style="position: absolute; top: 16px; left: 16px; background: rgba(34, 31, 28, 0.78); padding: 6px 12px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #F2EDE6;">Reservada</span>}
+                  {d.status === 'Sold'     && <span style="position: absolute; top: 16px; left: 16px; background: rgba(34, 31, 28, 0.78); padding: 6px 12px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #F2EDE6;">Vendida</span>}
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <h3 style="margin: 0; font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 24px; line-height: 1.2;">{d.propertyName}</h3>
+                  {meta && <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6E655C;">{meta}</p>}
+                  <p style="margin: 4px 0 0; font-size: 14px; font-weight: 300; line-height: 1.75; color: #6E655C;">{d.inBrief}</p>
+                  {d.priceMxn ? (
+                    <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 2px;">
+                      <span style="font-family: 'Work Sans', sans-serif; font-size: 19px; font-weight: 400; color: #c15857;">{d.priceMxn}</span>
+                      {d.priceUsd && <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8C8175;">≈ {d.priceUsd} USD orientativo</span>}
+                    </div>
+                  ) : (
+                    <span style="margin-top: 6px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c15857;">Precio a consultar</span>
+                  )}
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      )}
       <div style="display: flex; gap: 34px; flex-wrap: wrap; padding-top: clamp(38px, 4vw, 60px);">
         <a href="/property-for-sale-es" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Todas las propiedades en venta</a>
         <a href="/property-for-rent-es" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 1px solid rgba(43, 38, 34, 0.28); padding-bottom: 5px;">Todas las propiedades en alquiler</a>
