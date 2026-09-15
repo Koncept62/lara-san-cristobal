@@ -1,5 +1,5 @@
 ---
-propertyName: "Don Lauro Mountain Views "
+propertyName: "Rural Mountain Views "
 location: Approx 25 minutes outside of the city, direction Don Lauro Mountain
 inBrief: Plots available in a gated, conscious community, in an incredibly
   beautiful setting and with stunning views
