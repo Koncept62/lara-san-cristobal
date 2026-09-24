@@ -54,7 +54,7 @@ priceMxn: 6,700,000
 priceUsd: 375,000
 referenceCode: H1010
 status: Available
-mainImage: https://res.cloudinary.com/x8jfmflw/image/upload/v1790287143/DSC08834-HDR.jpg
+mainImage: https://res.cloudinary.com/x8jfmflw/image/upload/v1790293867/DSC08812-HDR_copy.jpg
 gallery:
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1788960647/LSC_16.jpg
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1788973088/LSC_18.jpg
