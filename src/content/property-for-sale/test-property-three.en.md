@@ -30,7 +30,7 @@ description: >-
   To the rear there are very well maintained gardens, plus a roof terrace, and from almost every spot within the property there are views out to gardens, trees and the mountains beyond. 
 
 
-  The overall design is fluid and tactile and the effect is very calming and feels somewhat inspired by Goya. The property is also extremely well maintained, with no works whatsoever required, so any new buyer can simply move straight it! It benefits from an eco water heating system and additional solar panels, making energy bills very low indeed. There is also a private garage easily large enough for 2 cars, or which could be converted in a further bedroom or yoga studio.
+  The overall design is fluid and tactile and the effect is very calming and feels somewhat inspired by Goya. The property is also extremely well maintained, with no works whatsoever required, so any new buyer can simply move straight in! It benefits from an eco water heating system and additional solar panels, making energy bills very low indeed. There is also a private garage easily large enough for 2 cars, or which could be converted in a further bedroom or yoga studio.
 
 
   Viewing highly recommended!
