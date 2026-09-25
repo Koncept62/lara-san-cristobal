@@ -15,7 +15,7 @@ description: >-
   Located in the quiet but highly popular neighborhood of Cuxtitali, which is a very short distance from the heart of the historic centre, this fully detached, independent villa is a dream home for anyone who appreciates a little less conformity! 
 
 
-  The property is extremely spacious, incredibly light and bright and was designed by celebrated architect Kees Grootenboer. It has the most fabulous large glass circular windows (all South facing) which are set into the undulating roof, and there are hardly any straight lines and even fewer strict corners in the entirety of property. 
+  The property is extremely spacious, incredibly light and bright and was designed by celebrated architect Kees Grootenboer. It has the most fabulous large glass circular windows (all South facing) which are set into the undulating roof, and there are hardly any straight lines and even fewer strict corners in the entirety of the property. 
 
 
   This truly special family home is comprised of a comfortable lounge complete with a fire place, leading to an open plan dining area, and then onward to a fully equipped kitchen which also has space for casual dining. Off the kitchen is a lovely sun room and a very pretty central courtyard. 
