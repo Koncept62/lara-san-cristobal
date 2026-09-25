@@ -40,7 +40,7 @@ referenceCode: H1010
 status: Available
 mainImage: https://res.cloudinary.com/x8jfmflw/image/upload/v1790296085/DSC08846-HDR.jpg
 gallery:
-  - https://res.cloudinary.com/x8jfmflw/image/upload/v1790296745/DSC08812-HDR_copy.jpg
+  - https://res.cloudinary.com/x8jfmflw/image/upload/v1790297087/DSC09275-HDR.jpg
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1790296466/DSC09351-HDR.jpg
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1790296094/DSC08878-HDR.jpg
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1790296107/DSC08903-HDR.jpg
@@ -61,7 +61,7 @@ gallery:
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1790296421/DSC09260-HDR.jpg
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1790296119/DSC08913-HDR_copy.jpg
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1790297105/DSC09270-HDR.jpg
-floorPlan: https://res.cloudinary.com/x8jfmflw/image/upload/v1790297087/DSC09275-HDR.jpg
+floorPlan: ""
 featuredHomepage: true
 dateAdded: 2026-09-10T08:18:00+02:00
 ---
