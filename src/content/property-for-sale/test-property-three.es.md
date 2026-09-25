@@ -30,7 +30,7 @@ description: >-
   En la parte trasera hay jardines muy bien cuidados, además de una terraza en la azotea, y desde casi todos los rincones de la propiedad se pueden ver jardines, árboles y las montañas más allá. 
 
 
-  El diseño general es fluido y táctil, y el efecto es muy relajante y se siente algo inspirado en Goya. La propiedad también está extremadamente bien mantenida, sin ningún tipo de trabajo, necesario así que cualquier comprador nuevo puede simplemente mudarse directamente. Se beneficia de un sistema de calentamiento de agua ecológico y paneles solares adicionales, lo que hace que las facturas de energía sean realmente bajas. También hay un garaje privado lo suficientemente grande para dos coches, o que podría convertirse en un dormitorio adicional o estudio de yoga.
+  El diseño general es fluido y táctil, y el efecto es muy relajante y se siente algo inspirado en Gaudi. La propiedad también está extremadamente bien mantenida, sin ningún tipo de trabajo, necesario así que cualquier comprador nuevo puede simplemente mudarse directamente. Se beneficia de un sistema de calentamiento de agua ecológico y paneles solares adicionales, lo que hace que las facturas de energía sean realmente bajas. También hay un garaje privado lo suficientemente grande para dos coches, o que podría convertirse en un dormitorio adicional o estudio de yoga.
 
 
   ¡Se recomienda mucho la visita!
