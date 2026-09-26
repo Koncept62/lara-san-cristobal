@@ -1,5 +1,5 @@
 ---
-propertyName: "Cuxtitali Characterful Casita "
+propertyName: Cuxtitali Characterful Casita
 location: On a quiet road in the highly popular neighborhood of Cuxtitali, a
   short walk to the Historic Centre...
 inBrief: "A wonderful architecturally designed private casita, bursting with

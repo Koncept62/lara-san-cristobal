@@ -111,6 +111,51 @@ const ogImg = ogImage
   </style>
   {pageStyles && <style set:html={pageStyles} />}
   <script type="application/ld+json" is:inline>{"@context":"https://schema.org","@type":"RealEstateAgent","name":"Lara San Cristóbal","url":"https://larasancristobal.com","logo":"https://larasancristobal.com/images/logo-crest-ink.png","telephone":"+529671458587","email":"info@larasancristobal.com","address":{"@type":"PostalAddress","streetAddress":"Los Alcanfores","addressLocality":"San Cristóbal de las Casas","addressRegion":"Chiapas","addressCountry":"MX"},"sameAs":["https://www.instagram.com/larasancristobal/"]}</script>
+  <script is:inline>
+    // Consent-gated third-party scripts. Must run before banner.js: returning
+    // visitors are handled from the stored cookie; new choices arrive through
+    // the banner's consent callback queue (only fired on accept/reject/save).
+    (function () {
+      var loaded = {};
+      function loadScript(key, src) {
+        if (loaded[key]) return;
+        loaded[key] = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = src;
+        document.head.appendChild(s);
+      }
+      function apply(consent) {
+        if (!consent) return;
+        if (consent.analytics) {
+          // Microsoft Clarity
+          window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+          loadScript('clarity', 'https://www.clarity.ms/tag/yoghoeemzz');
+          // Taggbox Instagram feed (homepages only)
+          var feeds = document.querySelectorAll('[data-taggbox-wrap]');
+          if (feeds.length) {
+            feeds.forEach(function (el) { el.hidden = false; });
+            loadScript('taggbox', 'https://widget.taggbox.com/embed.min.js');
+          }
+        } else if (loaded.clarity) {
+          window.clarity('consent', false);
+        }
+      }
+      window.__cbConsentCallbacks = window.__cbConsentCallbacks || [];
+      window.__cbConsentCallbacks.push(apply);
+      var m = document.cookie.match(/(?:^|; )cookie_consent=([^;]+)/);
+      if (m) {
+        try {
+          var stored = JSON.parse(decodeURIComponent(m[1]));
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function () { apply(stored); });
+          } else {
+            apply(stored);
+          }
+        } catch (e) {}
+      }
+    })();
+  </script>
   <script src="https://www.cookie-banner.ca/api/v1/banner.js?id=658443f1-d26e-4e60-8fce-13685374290b" async></script>
   <noscript><a href="https://cookie-banner.ca/?ref=banner" rel="noopener" style="font-size:10px;color:rgba(128,128,128,0.5);text-decoration:none;">Cookie consent by cookie-banner.ca</a></noscript>
 </head>
