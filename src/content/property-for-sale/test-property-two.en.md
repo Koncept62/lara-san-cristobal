@@ -40,7 +40,6 @@ mainImage: https://res.cloudinary.com/x8jfmflw/image/upload/v1791663531/FACADE_P
 gallery:
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1791664252/LOWER_SALON_P_STAR.jpg
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1791664313/LANE_L_STAR.jpg
-  - https://res.cloudinary.com/x8jfmflw/image/upload/v1791664313/LANE_L_STAR.jpg
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1791664046/ENTRANCE_HALL_P.jpg
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1791664343/KITCHEN_L.jpg
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1791664281/UPPER_SALON_L.jpg
