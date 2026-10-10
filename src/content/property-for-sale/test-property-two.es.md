@@ -1,6 +1,6 @@
 ---
-propertyName: ''
-location: ''
-inBrief: ''
-description: ''
+propertyName: ""
+location: ""
+inBrief: ""
+description: ""
 ---
