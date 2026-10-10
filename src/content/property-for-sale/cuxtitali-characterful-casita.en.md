@@ -3,8 +3,8 @@ propertyName: Cuxtitali Characterful Casita
 location: On a quiet road in the highly popular neighborhood of Cuxtitali, a
   short walk to the Historic Centre...
 inBrief: A wonderful architecturally designed private casita, bursting with
-  character and spanning a generous 375m2 of living space! Perfectly maintained
-  and ready to move into today!
+  character and spanning a generous 375m2 of living space. This fabulous
+  property is meticulously maintained and literally ready to move into!
 propertySize: 375sqm
 plotSize: 450sqm
 bedrooms: 3
