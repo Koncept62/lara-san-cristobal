@@ -5,7 +5,7 @@ inBrief: This brilliantly designed property set into expansive grounds is the
   perfect luxury family home, and in addition comes with two further cottages of
   two bedrooms each, creating a fantastic opportunity to generate a lucrative
   side income via airbnb rentals.
-propertySize: 200m2 main house, plus two cottages of 150m2 each
+propertySize: 200m2 main house, plus two cottages of 120m2 each
 plotSize: 2000m2
 bedrooms: 5
 bathrooms: 4
