@@ -32,7 +32,6 @@ referenceCode: H1011
 status: Available
 mainImage: https://res.cloudinary.com/x8jfmflw/image/upload/v1789083465/25_copy.png_CROPPED_PORTRAIT.png
 gallery:
-  - https://res.cloudinary.com/x8jfmflw/image/upload/v1789083904/2.5.png
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1789083622/13_2.png
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1789083616/11.png
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1789083615/15.png
