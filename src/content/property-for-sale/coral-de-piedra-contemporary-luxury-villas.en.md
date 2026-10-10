@@ -40,6 +40,7 @@ gallery:
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1789083622/18.1.png
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1789083614/10.png
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1789083620/19.5.png
+  - https://res.cloudinary.com/x8jfmflw/image/upload/v1789083614/9.png
 floorPlan: ""
 featuredHomepage: true
 dateAdded: 2026-09-10T08:18:00+02:00
