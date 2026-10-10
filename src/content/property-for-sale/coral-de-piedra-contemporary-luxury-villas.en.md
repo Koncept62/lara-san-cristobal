@@ -2,7 +2,9 @@
 propertyName: Corral de Piedra Contemporary Luxury Villa
 location: Forested Mountains Overlooking Corral de Piedra
 inBrief: An elite collection of luxurious loft-style villas, architectural
-  masterpieces in a beautiful setting
+  masterpieces over 3 generous floors, gorgeously interior designed and finished
+  and in a beautiful woodland setting. The new owner will also enjoy private
+  members style access to a nearby boutique hotel + spa.
 propertySize: 190sqm
 plotSize: 200sqm
 bedrooms: 3
