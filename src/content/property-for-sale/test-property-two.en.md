@@ -1,6 +1,6 @@
 ---
 propertyName: Simply Spectacular Los Alcanfores
-location: "A beautiful quiet leafy lane in the heart of Los Alcanfores "
+location: "A beautiful, quiet leafy lane in the heart of Los Alcanfores "
 inBrief: This brilliantly designed property, set into expansive grounds, is the
   perfect luxury family home, and in addition comes with two further cottages of
   two bedrooms each, creating a fantastic opportunity to generate a lucrative
