@@ -1,7 +1,7 @@
 ---
 propertyName: Simply Spectacular Los Alcanfores
 location: "A beautiful quiet leafy lane in the heart of Los Alcanfores "
-inBrief: This brilliantly designed property set into expansive grounds is the
+inBrief: This brilliantly designed property, set into expansive grounds, is the
   perfect luxury family home, and in addition comes with two further cottages of
   two bedrooms each, creating a fantastic opportunity to generate a lucrative
   side income via airbnb rentals.
@@ -12,7 +12,7 @@ bathrooms: 4
 description: >-
   A truly rare opportunity to purchase a wonderfully designed family home, with
   an art-gallery feel, set into expansive, well tended grounds and including two
-  further rental cottages, perfect for San Cristobals highly lucrative airbnb
+  further rental cottages, perfect for San Cristobal´s highly lucrative airbnb
   market.
 
 
@@ -28,10 +28,10 @@ description: >-
   In addition to this impressive property are two fully independent cottages, each bursting with characterful features, and each with two bedrooms, fitted kitchens and open plan lounge/diners, and both with their own private gardens. With very little effort, these properties could be refreshed and rephotographed, and would doubtlessly be extremely popular on airbnb with visitors to San Cristóbal wanting quality short, medium or even longer terms lets. 
 
 
-  The property is gated, and the entrance is via a very pretty conifer lined lane, reminiscent of luxury villas in Tuscany or the Cote d Ázur.
+  The property is gated, and the entrance is via a very pretty conifer lined lane, reminiscent of luxury villas in Tuscany or the Cote d´Azur.
 
 
-  Interested investors please don't delay - this very competitively priced gem of an home combined with a buy-to-let investment opportunity won't be around for long!
+  Interested investors please don't delay - this very competitively priced gem of a home, combined with a superb buy-to-let investment opportunity won't be around for long!
 priceMxn: 19,000,000
 priceUsd: 1,030,000
 referenceCode: H1012
@@ -39,8 +39,9 @@ status: Available
 mainImage: https://res.cloudinary.com/x8jfmflw/image/upload/v1791663531/FACADE_P_STAR.jpg
 gallery:
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1791664252/LOWER_SALON_P_STAR.jpg
-  - https://res.cloudinary.com/x8jfmflw/image/upload/v1791664046/ENTRANCE_HALL_P.jpg
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1791664313/LANE_L_STAR.jpg
+  - https://res.cloudinary.com/x8jfmflw/image/upload/v1791664313/LANE_L_STAR.jpg
+  - https://res.cloudinary.com/x8jfmflw/image/upload/v1791664046/ENTRANCE_HALL_P.jpg
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1791664343/KITCHEN_L.jpg
   - https://res.cloudinary.com/x8jfmflw/image/upload/v1791664281/UPPER_SALON_L.jpg
 featuredHomepage: true
